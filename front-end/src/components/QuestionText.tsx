@@ -1,10 +1,5 @@
-type QuestionTextProps = {
-  helpText?: string,
-  placeHolder?: string
-}
-
-const QuestionText = ( props: QuestionTextProps ) => (
-  <input type="text" placeholder={ props.placeHolder } title={ props.helpText } />
+const QuestionText = ( { placeHolder, helpText }: { helpText?: string, placeHolder?: string } ) => (
+  <input type="text" placeholder={ placeHolder } title={ helpText } />
 )
 
 export default QuestionText;
