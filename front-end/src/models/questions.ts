@@ -4,7 +4,7 @@ import { Question } from "./Question";
 import { QuestionType } from "./QuestionType";
 
 export const questions: Array<Question> = [
-  { id: "A1.1", type: QuestionType.Text, question: "What is your organisation's name (for companies: as registered with Companies House)?" },
+  { id: "A1.1", type: QuestionType.Text,prompt:"company name", question: "What is your organisation's name (for companies: as registered with Companies House)?" },
   { id: "A1.2", type: QuestionType.Text, question: "What is your organisation's registration number (if you have one)?" },
   { id: "A1.3", type: QuestionType.TextArea, question: "What is your organisation's address (for companies: as registered with Companies House)?" },
   { id: "A1.4", type: QuestionType.Text, question: "What is your main business?" },
