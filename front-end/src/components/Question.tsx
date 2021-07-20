@@ -1,5 +1,6 @@
 import { QuestionType } from "../models/QuestionType";
 import styles from "./Question.module.scss";
+import QuestionEmail from "./QuestionEmail";
 import QuestionText from "./QuestionText";
 import QuestionTextArea from "./QuestionTextArea";
 import QuestionYesNo from "./QuestionYesNo";
@@ -13,6 +14,7 @@ const Question = ( { id, text, type }: { id: string, text: string, required: boo
       { type === QuestionType.Text && <QuestionText /> }
       { type === QuestionType.TextArea && <QuestionTextArea /> }
       { type === QuestionType.YesNo && <QuestionYesNo id={id} /> }
+      { type === QuestionType.Email && <QuestionEmail /> }
     </div>
   </div>
 );
