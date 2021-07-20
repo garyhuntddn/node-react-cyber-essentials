@@ -1,7 +1,9 @@
+import { QuestionType } from "../models/QuestionType";
+
 type QuestionProps = {
   text: string,
   required: boolean,
-  type: string
+  type: QuestionType | "" // TODO: fix this
 }
 
 const Question = ( props: QuestionProps ) => (

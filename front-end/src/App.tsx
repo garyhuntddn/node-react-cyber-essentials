@@ -1,12 +1,6 @@
 import "./App.scss";
 import Question from "./components/Question";
-
-const questions = [
-  { text: "Our first question", required: true, type: "undefined" },
-  { text: "Our fourth question", required: true, type: "undefined" },
-  { text: "Our third question", required: true, type: "undefined" },
-  { text: "Our fourth question", required: true, type: "undefined" }
-];
+import { questions } from "./models/questions";
 
 const App = () =>
 (
@@ -16,7 +10,7 @@ const App = () =>
     </header>
     <section>
       {
-        questions.map( m => <Question text={ m.text } required={ m.required } type={ m.type } /> )
+        questions.map( m => <Question text={ m.question } required={ !!!m.optional } type={ m.type } /> )
       }
     </section>
   </div>

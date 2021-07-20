@@ -1,21 +1,7 @@
 /* questions */
 
-export enum QuestionType {
-  YesNo = "yesNo",
-  Text = "text",
-  TextArea = "textArea",
-  Number = "number",
-  Url = "url",
-  Email = "email",
-  Other = "other"
-}
-
-export type Question = {
-  id: string,
-  type: QuestionType | "",
-  question: string,
-  optional?: boolean
-}
+import { Question } from "./Question";
+import { QuestionType } from "./QuestionType";
 
 export const questions: Array<Question> = [
   { id: "A1.1", type: QuestionType.Text, question: "What is your organisation's name (for companies: as registered with Companies House)?" },
@@ -43,7 +29,7 @@ export const questions: Array<Question> = [
   { id: "A3.4", type: QuestionType.YesNo, question: "Is the company or its subsidiaries any of the following: medical, call centre, telemarketing, data processing (outsourcers), internet service provider, telecommunications or an organisation regulated by the FCA? You only need to answer this question if you are taking the insurance. " },
   { id: "A3.5", type: QuestionType.YesNo, question: "Does the company have any domiciled operation or derived revenue from the territory or jurisdiction of Canada and / or USA? " },
   { id: "A3.6", type: QuestionType.Email, question: "What is the organisation email contact for the insurance documents? You only need to answer this question if you are taking the insurance.  " },
-  { id: "A4.1", type: QuestionType.YesNo, question: "A4.2 Do you have firewalls at the boundaries between your organisation’s internal networks and the internet?" },
+  { id: "A4.1", type: QuestionType.YesNo, question: "Do you have firewalls at the boundaries between your organisation’s internal networks and the internet?" },
   { id: "A4.2", type: "", question: "When you first receive an internet router or hardware firewall device it will have had a default password on it. Has this initial password been changed on all such devices? How do you ensure that the password has been changed?" },
   { id: "A4.3", type: "", question: "Is the new password on all your internet routers or hardware firewall devices at least 8 characters in length and difficult to guess?  " },
   { id: "A4.4", type: "", question: "Do you change the password when you believe it may have been compromised? How do you ensure that the password has been changed?" },
