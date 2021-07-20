@@ -13,9 +13,10 @@ const Question = ({ id, text, type }: { id: string; text: string; required: bool
     <span className={styles.id}>{id}</span>
     <label className={styles.text}>{text}</label>
     <div>
-      { type === QuestionType.Text && <QuestionText /> }
-      { type === QuestionType.TextArea && <QuestionTextArea /> }
-      { type === QuestionType.YesNo && <QuestionYesNo id={id} /> }
+      {type === QuestionType.Text && <QuestionText />}
+      {type === QuestionType.TextArea && <QuestionTextArea />}
+      {type === QuestionType.YesNo && <QuestionYesNo id={id} />}
+      {type === QuestionType.Url && <QuestionUrl />}
       { type === QuestionType.Number && <QuestionNumber /> }
       { type === QuestionType.Email && <QuestionEmail /> }
       {type === QuestionType.Url && <QuestionUrl />}
