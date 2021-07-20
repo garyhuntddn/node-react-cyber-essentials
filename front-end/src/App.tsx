@@ -1,18 +1,24 @@
-import logo from "./logo.svg";
 import "./App.scss";
+import Question from "./components/Question";
+
+const questions = [
+  { text: "Our first question", required: true, type: "undefined" },
+  { text: "Our fourth question", required: true, type: "undefined" },
+  { text: "Our third question", required: true, type: "undefined" },
+  { text: "Our fourth question", required: true, type: "undefined" }
+];
 
 const App = () =>
 (
   <div className="App">
-    <header className="App-header">
-      <img src={ logo } className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Learn React
-      </a>
+    <header>
+      <h1>Cyber Essentials Questionnaire</h1>
     </header>
+    <section>
+      {
+        questions.map( m => <Question text={ m.text } required={ m.required } type={ m.type } /> )
+      }
+    </section>
   </div>
 );
 
