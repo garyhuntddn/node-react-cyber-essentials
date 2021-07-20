@@ -1,4 +1,4 @@
-const QuestionText = ({ id, placeHolder, helpText }: { id: string; helpText?: string; placeHolder?: string }) => {
+const QuestionYesNo = ({ id, placeHolder, helpText }: { id: string; helpText?: string; placeHolder?: string }) => {
   const name = `selection_${id}`;
 
   return (
@@ -15,4 +15,4 @@ const QuestionText = ({ id, placeHolder, helpText }: { id: string; helpText?: st
   );
 };
 
-export default QuestionText;
+export default QuestionYesNo;
