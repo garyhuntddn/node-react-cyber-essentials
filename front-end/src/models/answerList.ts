@@ -11,6 +11,11 @@ export const answers: Answers = {
   "A1.8": true,
   "A1.9": "Because...",
   "A1.10": false,
-
-
+  "A2.1": true,
+  "A2.2": "Whatever",
+  "A2.5": "Cardiff",
+  "A2.8": [
+    { name: "TNCAP", location: "Cardiff", purpose: "General use" },
+    { name: "BT02", location: "Cardiff", purpose: "General use" }
+  ],
 };
