@@ -11,12 +11,12 @@ import { Software } from "./models/Software";
 const App = () => {
   const [ answersState, setAnswers ] = useState( answers );
 
-  const updateAnswer = ( id: string|number, value: Answer ): void => {
+  const updateAnswer = ( id: string, value: Answer ): void => {
     const newAnswers = { ...answersState, [ id ]: value };
     setAnswers( newAnswers );
   };
 
-  const updateRowAnswer = ( id: string|number, index: number, value: Hardware | Software | Network ): void => {
+  const updateRowAnswer = ( id: string, index: number, value: Hardware | Software | Network ): void => {
     const existingArray: Array<Hardware | Software | Network> = answersState[ id ] as Array<Hardware | Software | Network>;
     const newArray = [ ...existingArray ];
     newArray[ index ] = { ...value };
@@ -24,7 +24,7 @@ const App = () => {
     setAnswers( newAnswers );
   };
 
-  const deleteRowAnswer = ( id: string|number, index: number ): void => {
+  const deleteRowAnswer = ( id: string, index: number ): void => {
     const existingArray: Array<Hardware | Software | Network> = answersState[ id ] as Array<Hardware | Software | Network>;
     const newArray = [ ...existingArray ];
     newArray.splice( index, 1 );
