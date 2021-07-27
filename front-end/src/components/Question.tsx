@@ -24,7 +24,7 @@ const Question = ({ id, text, type, subType, placeHolder, helpText, answer, upda
       {type === QuestionType.YesNo && <QuestionYesNo updateAnswer={updateAnswer} id={id} answer={answer} placeHolder={placeHolder} helpText={helpText} />}
       {type === QuestionType.Url && <QuestionUrl id={id} updateAnswer={updateAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />}
       {type === QuestionType.Number && <QuestionNumber answer={answer} placeHolder={placeHolder} helpText={helpText} />}
-      {type === QuestionType.Email && <QuestionEmail answer={answer} placeHolder={placeHolder} helpText={helpText} />}
+      {type === QuestionType.Email && <QuestionEmail id={id} updateAnswer={updateAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />}
       {type === QuestionType.NetworkDeviceList && <QuestionNetwork answer={answer} placeHolder={placeHolder} helpText={helpText} />}
       {type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
       {type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
