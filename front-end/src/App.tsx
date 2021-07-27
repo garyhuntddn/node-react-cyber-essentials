@@ -32,7 +32,6 @@ const App = () => {
     setAnswers( newAnswers );
   };
 
-  // TODO: ability to delete a row answer
   // TODO: ability to add a row answer
 
   return (
