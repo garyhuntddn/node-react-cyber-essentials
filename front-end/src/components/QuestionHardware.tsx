@@ -34,9 +34,9 @@ const QuestionHardware = ( { id, updateRowAnswer, deleteRowAnswer, answer, type,
               <td><input type="text" placeholder="os" title="OS" value={ m.os }onChange={ e => updateRowAnswer( id, i, { ...m, os: e.currentTarget.value } ) } /></td>
               <td><input type="text" placeholder="version" title="Version" value={ m.featureVersion } onChange={ e => updateRowAnswer( id, i, { ...m, featureVersion: e.currentTarget.value } ) }/></td>
               <td><input type="text" placeholder="location" title="Location" value={ m.location }  onChange={ e => updateRowAnswer( id, i, { ...m, location: e.currentTarget.value } ) } /></td>
-              <td><input type="number" placeholder="quantity" title="Quantity" value={ m.quantity } onChange={ e => updateRowAnswer( id, i, { ...m, quantity: e.currentTarget.value } ) }/></td>
+              <td><input type="number" placeholder="quantity" title="Quantity" value={ m.quantity } onChange={ e => updateRowAnswer( id, i, { ...m, quantity: e.currentTarget.valueAsNumber } ) }/></td>
               <td><input type="text" placeholder="purpose" title="Purpose" value={ m.purpose } onChange={ e => updateRowAnswer( id, i, { ...m, purpose: e.currentTarget.value } ) } /></td>
-              { type === HardwareType.Server && <td><input type="text" placeholder="number of virtuals" title="No of virtuals" value={ m.numberOfVirtuals } onChange={ e => updateRowAnswer( id, i, { ...m, numberOfVirtuals: e.currentTarget.value } ) } /></td> }
+              { type === HardwareType.Server && <td><input type="text" placeholder="number of virtuals" title="No of virtuals" value={ m.numberOfVirtuals } onChange={ e => updateRowAnswer( id, i, { ...m, numberOfVirtuals: e.currentTarget.valueAsNumber } ) } /></td> }
             </tr> ) }
           <tr>
             <td></td>
