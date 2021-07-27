@@ -24,8 +24,8 @@ const QuestionNetwork = ( { id, updateRowAnswer, deleteRowAnswer, answer, placeH
               <tr key={ i }>
                 <td><button onClick={ () => deleteRowAnswer( id, i ) }>X</button></td>
                 <td><input type="text" placeholder="name" title="Name of device" value={ m.name } onChange={ e => updateRowAnswer( id, i, { ...m, name: e.currentTarget.value } ) } /></td>
-                <td><input type="text" placeholder="location" title="Location" value={ m.location } /></td>
-                <td><input type="text" placeholder="purpose" title="Purpose" value={ m.purpose } /></td>
+                <td><input type="text" placeholder="location" title="Location" value={ m.location } onChange={ e => updateRowAnswer( id, i, { ...m, location: e.currentTarget.value } ) } /></td>
+                <td><input type="text" placeholder="purpose" title="Purpose" value={ m.purpose } onChange={ e => updateRowAnswer( id, i, { ...m, purpose: e.currentTarget.value } ) }/></td>
               </tr>
             )
           }

@@ -11,9 +11,9 @@ export type Hardware = {
   model: string;
   os: string;
   featureVersion: string;
-  numberOfVirtuals?: number;
+  numberOfVirtuals?: number|string;
   location: string;
-  quantity: number;
+  quantity: number|string;
   purpose: string;
   type: HardwareType;
 };
