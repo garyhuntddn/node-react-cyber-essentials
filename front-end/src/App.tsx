@@ -1,5 +1,6 @@
 import "./App.scss";
 import Question from "./components/Question";
+import { answers } from "./models/answerList";
 import { questions } from "./models/questions";
 
 const App = () =>
@@ -10,7 +11,7 @@ const App = () =>
     </header>
     <section>
       {
-        questions.map( m => <Question placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } /> )
+        questions.map( m => <Question placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ answers[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } /> )
       }
     </section>
   </div>

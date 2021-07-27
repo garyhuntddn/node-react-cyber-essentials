@@ -1,4 +1,6 @@
-const QuestionNetwork = ( { placeHolder, helpText }: { helpText?: string, placeHolder?: string } ) => (
+import { Answer } from "../models/Answer";
+
+const QuestionNetwork = ( { answer, placeHolder, helpText }: { answer?: Answer, helpText?: string, placeHolder?: string } ) => (
   <>
     { placeHolder && <div>{ placeHolder }</div> }
     <table>

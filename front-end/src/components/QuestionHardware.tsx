@@ -1,6 +1,7 @@
+import { Answer } from "../models/Answer";
 import { HardwareType } from "../models/Hardware";
 
-const QuestionHardware = ( { type, placeHolder, helpText }: { type: HardwareType, helpText?: string, placeHolder?: string } ) => (
+const QuestionHardware = ( { answer, type, placeHolder, helpText }: { answer?: Answer, type: HardwareType, helpText?: string, placeHolder?: string } ) => (
   <>
     { placeHolder && <div>{ placeHolder }</div> }
     <table>

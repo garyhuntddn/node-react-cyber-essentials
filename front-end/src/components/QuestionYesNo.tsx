@@ -1,4 +1,6 @@
-const QuestionYesNo = ( { id, placeHolder, helpText }: { id: string; helpText?: string; placeHolder?: string } ) => {
+import { Answer } from "../models/Answer";
+
+const QuestionYesNo = ( { answer, id, placeHolder, helpText }: { answer?: Answer, id: string; helpText?: string; placeHolder?: string } ) => {
   const name = `selection_${ id }`;
 
   return (
