@@ -1,5 +1,12 @@
 import { Answers } from "./Answers";
+import { Software, SoftwareType } from "./Software";
 
+const s1: Software = {
+  name: "Microsoft Bob", version: "2.1.1", type: SoftwareType.Firewall
+};
+const s2: Software = {
+  name: "Microsoft Henry", version: "2.1.2", type: SoftwareType.Firewall
+};
 export const answers: Answers = {
   "A1.1": "Safe Space One",
   "A1.2": "12345678",
@@ -18,4 +25,5 @@ export const answers: Answers = {
     { name: "TNCAP", location: "Cardiff", purpose: "General use" },
     { name: "BT02", location: "Cardiff", purpose: "General use" }
   ],
+  "A4.12": [s1, s2]
 };
