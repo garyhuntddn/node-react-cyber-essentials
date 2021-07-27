@@ -11,4 +11,3 @@ export type Software = {
   version: string;
   type: SoftwareType;
 };
-
