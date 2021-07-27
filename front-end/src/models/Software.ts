@@ -7,16 +7,8 @@ export enum SoftwareType {
 }
 
 export type Software = {
-  OS: string;
-  Editions: string;
-  Versions: string;
-  Firmware: string;
-  Browsers: string;
-  ProtectionMethod: string;
-  EmailApps: string;
-  OfficeApps: string;
-  IsSupplierSupported: string;
-  SoftwareLicensed: string;
+  name: string;
+  version: string;
   type: SoftwareType;
 };
 

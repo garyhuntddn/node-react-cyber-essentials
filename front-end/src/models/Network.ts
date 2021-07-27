@@ -1,5 +1,5 @@
 
-export type Software = {
+export type Network = {
   name: string;
   location: string;   
   purpose: string;
