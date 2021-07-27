@@ -1,7 +1,9 @@
 /* questions */
 
+import { HardwareType } from "./Hardware";
 import { Question } from "./Question";
 import { QuestionType } from "./QuestionType";
+import { SoftwareType } from "./Software";
 
 export const questions: Array<Question> = [
   { id: "A1.1", type: QuestionType.Text, prompt:"company name", question: "What is your organisation's name (for companies: as registered with Companies House)?" },
@@ -17,11 +19,11 @@ export const questions: Array<Question> = [
   { id: "A2.1", type: QuestionType.YesNo, question: "Does the scope of this assessment cover your whole organisation? Please note: Your organisation is only eligible for free Cyber Insurance if your assessment covers your whole company, if you answer 'No' to this question you will not be invited to apply for insurance. " },
   { id: "A2.2", type: QuestionType.Text, prompt:"Scope description?", question: "If it is not the whole organisation, then what scope description would you like to appear on your certificate and website?" },
   { id: "A2.5", type: QuestionType.Text, prompt:"Geographical location?", question: "Please describe the geographical locations of your business which are in the scope of this assessment." },
-  { id: "A2.6", type: QuestionType.HardwareList, question: "Please list the quantities of laptops, computers and virtual desktops within the scope of this assessment. You must include model and operating system version for all devices.  For Windows 10 devices the Edition and Feature version are also required.   " },
-  { id: "A2.6.1", type: QuestionType.HardwareList, question: "Please list the quantities of servers, virtual servers and virtual server hosts (hypervisor). You must include the operating system." },
-  { id: "A2.7", type: QuestionType.HardwareList, question: "Please list the quantities of tablets and mobile devices within the scope of this assessment. You must include model and operating system versions for all devices." },
+  { id: "A2.6", type: QuestionType.HardwareList, subType: HardwareType.DesktopAndLaptop, question: "Please list the quantities of laptops, computers and virtual desktops within the scope of this assessment. You must include model and operating system version for all devices.  For Windows 10 devices the Edition and Feature version are also required.   " },
+  { id: "A2.6.1", type: QuestionType.HardwareList, subType: HardwareType.Server, question: "Please list the quantities of servers, virtual servers and virtual server hosts (hypervisor). You must include the operating system." },
+  { id: "A2.7", type: QuestionType.HardwareList, subType: HardwareType.TabletAndMobile, question: "Please list the quantities of tablets and mobile devices within the scope of this assessment. You must include model and operating system versions for all devices." },
   { id: "A2.8", type: QuestionType.NetworkDeviceList, question: "Please provide a list of the networks that will be in the scope for this assessment" },
-  { id: "A2.9", type: QuestionType.HardwareList, question: "Please provide a list of network equipment that will be in scope for this assessment (including firewalls and routers). You must include make and model of each device listed.  " },
+  { id: "A2.9", type: QuestionType.HardwareList, subType: HardwareType.FilewallAndRouter, question: "Please provide a list of network equipment that will be in scope for this assessment (including firewalls and routers). You must include make and model of each device listed.  " },
   { id: "A2.10", type: QuestionType.Text, question: "Please provide the name and role of the person who is responsible for managing the information systems in the scope of this assessment?" },
   { id: "A3.1", type: QuestionType.YesNo, question: "Is your head office domiciled in the UK and is your gross annual turnover less than £20m?" },
   { id: "A3.2", type: QuestionType.YesNo, optional: true, question: "If you have answered 'yes' to the last question then your company is eligible for the included cyber insurance if you gain certification. If you do not want this insurance element please opt out here. " },
@@ -40,7 +42,7 @@ export const questions: Array<Question> = [
   { id: "A4.9", type: QuestionType.YesNo, optional: true, question: "If yes, is there a documented business requirement for this access?" },
   { id: "A4.10", type: QuestionType.YesNo, optional: true, question: "If yes, is the access to the settings protected by either two-factor authentication or by only allowing trusted IP addresses to access the settings? List which option is used." },
   { id: "A4.11", type: QuestionType.YesNo, question: "Do you have software firewalls enabled on all of your computers, laptops and servers? " },
-  { id: "A4.12", type: QuestionType.SoftwareList, optional: true, question: "If no, is this because software firewalls are not commonly available for the operating system you are using? Please list the operating systems." },
+  { id: "A4.12", type: QuestionType.SoftwareList, subType: SoftwareType.Firewall, optional: true, question: "If no, is this because software firewalls are not commonly available for the operating system you are using? Please list the operating systems." },
   { id: "A5.1", type: QuestionType.TextArea, question: "Where you are able to do so, have you removed or disabled all the software that you do not use on your laptops, computers, servers, tablets and mobile phones? Describe how you achieve this." },
   { id: "A5.2", type: QuestionType.YesNo, question: "Have you ensured that all your laptops, computers, servers, tablets and mobile devices only contain necessary user accounts that are regularly used in the course of your business?" },
   { id: "A5.3", type: QuestionType.YesNo, question: "Have you changed the default password for all user and administrator accounts on all your laptops, computers, servers, tablets and smartphones to a non-guessable password of 8 characters or more?" },
@@ -53,10 +55,10 @@ export const questions: Array<Question> = [
   { id: "A5.10", type: QuestionType.YesNo, question: "Is 'auto-run' or 'auto-play' disabled on all of your systems?" },
   { id: "A6.1", type: QuestionType.YesNo, question: "Are all operating systems and firmware on your devices supported by a supplier that produces regular fixes for any security problems? " },
   { id: "A6.2", type: QuestionType.YesNo, question: "Are all applications on your devices supported by a supplier that produces regular fixes for any security problems? " },
-  { id: "A6.2.1", type: QuestionType.SoftwareList, question: "Please list your Internet Browser/s" },
-  { id: "A6.2.2", type: QuestionType.SoftwareList, question: "Please list your Malware Protection" },
-  { id: "A6.2.3", type: QuestionType.SoftwareList, question: "Please list your Email Applications installed on end user devices and server." },
-  { id: "A6.2.4", type: QuestionType.SoftwareList, question: "Please list all Office Applications that are used to create organisational data. " },
+  { id: "A6.2.1", type: QuestionType.SoftwareList, subType: SoftwareType.Browser, question: "Please list your Internet Browser/s" },
+  { id: "A6.2.2", type: QuestionType.SoftwareList, subType: SoftwareType.MalwareProtection, question: "Please list your Malware Protection" },
+  { id: "A6.2.3", type: QuestionType.SoftwareList, subType: SoftwareType.Email, question: "Please list your Email Applications installed on end user devices and server." },
+  { id: "A6.2.4", type: QuestionType.SoftwareList, subType: SoftwareType.Office, question: "Please list all Office Applications that are used to create organisational data. " },
   { id: "A6.3", type: QuestionType.YesNo, question: "Is all software licensed in accordance with the publisher’s recommendations?" },
   { id: "A6.4", type: QuestionType.YesNo, question: "Are all high-risk or critical security updates for operating systems and firmware installed within 14 days of release?" },
   { id: "A6.4.1", type: QuestionType.YesNo, question: "Are all updates applied for operating systems by enabling auto updates ?" },

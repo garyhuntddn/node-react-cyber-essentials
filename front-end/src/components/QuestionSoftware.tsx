@@ -1,4 +1,6 @@
-const QuestionSoftware = ( { placeHolder, helpText }: { helpText?: string, placeHolder?: string } ) => (
+import { SoftwareType } from "../models/Software";
+
+const QuestionSoftware = ( { type, placeHolder, helpText }: { type: SoftwareType, helpText?: string, placeHolder?: string } ) => (
   <>
     { placeHolder && <div>{ placeHolder }</div> }
     <table>
@@ -6,14 +8,12 @@ const QuestionSoftware = ( { placeHolder, helpText }: { helpText?: string, place
         <tr>
           <th>Name</th>
           <th>Version</th>
-          <th>Type</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><input type="text" placeholder="name" title="Name of device" /></td>
           <td><input type="text" placeholder="version" title="Version" /></td>
-          <td><input type="text" placeholder="type" title="Type" /></td>
         </tr>
       </tbody>
     </table>
