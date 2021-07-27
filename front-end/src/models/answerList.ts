@@ -37,4 +37,12 @@ export const answers: Answers = {
       type: HardwareType.TabletAndMobile,
     },
   ],
+
+  "A2.1": true,
+  "A2.2": "Whatever",
+  "A2.5": "Cardiff",
+  "A2.8": [
+    { name: "TNCAP", location: "Cardiff", purpose: "General use" },
+    { name: "BT02", location: "Cardiff", purpose: "General use" }
+  ],
 };
