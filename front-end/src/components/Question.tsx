@@ -9,12 +9,13 @@ import QuestionYesNo from "./QuestionYesNo";
 import QuestionNetwork from "./QuestionNetwork";
 import QuestionHardware from "./QuestionHardware";
 import QuestionSoftware from "./QuestionSoftware";
-import { HardwareType } from "../models/Hardware";
-import { SoftwareType } from "../models/Software";
+import { Hardware, HardwareType } from "../models/Hardware";
+import { Software, SoftwareType } from "../models/Software";
 import { Answer } from "../models/Answer";
+import { Network } from "../models/Network";
 
 // TODO: not yet using the required prop
-const Question = ( { id, text, type, subType, placeHolder, helpText, answer, updateAnswer }: { answer?: Answer; subType?: HardwareType | SoftwareType; helpText?: string; placeHolder?: string; id: string; text: string; required: boolean; type: QuestionType; updateAnswer: ( id: string, value: Answer ) => void } ) => (
+const Question = ( { id, text, type, subType, placeHolder, helpText, answer, updateAnswer, updateRowAnswer, deleteRowAnswer }: { answer?: Answer; subType?: HardwareType | SoftwareType; helpText?: string; placeHolder?: string; id: string; text: string; required: boolean; type: QuestionType; updateAnswer: ( id: string, value: Answer ) => void, updateRowAnswer: ( id: string, index: number, value: Network | Hardware | Software ) => void, deleteRowAnswer: ( id: string, index: number ) => void } ) => (
   <div className={ styles.Question }>
     <span className={ styles.id }>{ id }</span>
     <label className={ styles.text }>{ text }</label>
@@ -25,11 +26,11 @@ const Question = ( { id, text, type, subType, placeHolder, helpText, answer, upd
       { type === QuestionType.Url && <QuestionUrl id={ id } updateAnswer={ updateAnswer } answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
       { type === QuestionType.Number && <QuestionNumber id={ id } updateAnswer={ updateAnswer } answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
       { type === QuestionType.Email && <QuestionEmail id={ id } updateAnswer={ updateAnswer } answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
-      { type === QuestionType.NetworkDeviceList && <QuestionNetwork answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.NetworkDeviceList && <QuestionNetwork id={ id } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
       { type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong> }
       { type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong> }
-      { type === QuestionType.HardwareList && subType && <QuestionHardware answer={ answer } type={ subType as HardwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
-      { type === QuestionType.SoftwareList && subType && <QuestionSoftware answer={ answer } type={ subType as SoftwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.HardwareList && subType && <QuestionHardware id={ id } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } answer={ answer } type={ subType as HardwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.SoftwareList && subType && <QuestionSoftware id={ id } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } answer={ answer } type={ subType as SoftwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
     </div>
   </div>
 );
