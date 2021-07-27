@@ -8,5 +8,9 @@ export const answers: Answers = {
   "A1.5": "https://www.safespaceone.com",
   "A1.6": 16253,
   "A1.7": 1623,
+  "A1.8": true,
   "A1.9": "Because...",
+  "A1.10": false,
+
+
 };
