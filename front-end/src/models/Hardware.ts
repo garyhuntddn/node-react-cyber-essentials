@@ -1,7 +1,6 @@
 export enum HardwareType {
   Server = "server",
   DesktopAndLaptop = "desktopOrLaptop",
-  Printer = "printer",
   TabletAndMobile = "tabletOrMobile",
   FilewallAndRouter = "firewallOrRouter"
 }
