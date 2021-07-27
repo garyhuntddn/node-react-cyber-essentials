@@ -1,5 +1,5 @@
 import { Answers } from "./Answers";
-import { Hardware, HardwareType } from "./Hardware";
+import { HardwareType } from "./Hardware";
 
 export const answers: Answers = {
   "A1.1": "Safe Space One",
@@ -24,7 +24,7 @@ export const answers: Answers = {
       purpose: "coffemaking",
       type: HardwareType.TabletAndMobile,
     },
-    
+
     {
       name: "duddad",
       make: "hp",
@@ -43,6 +43,6 @@ export const answers: Answers = {
   "A2.5": "Cardiff",
   "A2.8": [
     { name: "TNCAP", location: "Cardiff", purpose: "General use" },
-    { name: "BT02", location: "Cardiff", purpose: "General use" }
+    { name: "BT02", location: "Cardiff", purpose: "General use" },
   ],
 };
