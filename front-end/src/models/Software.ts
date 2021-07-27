@@ -1,9 +1,9 @@
 export enum SoftwareType {
-  Server = "server",
-  Tablet = "tablet",
-  Mobile = "mobile",
-  Router = "router",
   Firewall = "firewall",
+  Browser = "browser",
+  MalwareProtection = "malwareProtection",
+  Email = "email",
+  Office = "office",
 }
 
 export type Software = {
@@ -11,4 +11,3 @@ export type Software = {
   version: string;
   type: SoftwareType;
 };
-

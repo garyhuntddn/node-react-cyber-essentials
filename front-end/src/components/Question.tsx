@@ -6,20 +6,30 @@ import QuestionText from "./QuestionText";
 import QuestionTextArea from "./QuestionTextArea";
 import QuestionUrl from "./QuestionUrl";
 import QuestionYesNo from "./QuestionYesNo";
+import QuestionNetwork from "./QuestionNetwork";
+import QuestionHardware from "./QuestionHardware";
+import QuestionSoftware from "./QuestionSoftware";
+import { HardwareType } from "../models/Hardware";
+import { SoftwareType } from "../models/Software";
 
 // TODO: not yet using the required prop
-const Question = ({ id, text, type, placeHolder, helpText }: { helpText?: string; placeHolder?: string; id: string; text: string; required: boolean; type: QuestionType }) => (
-  <div className={styles.Question}>
-    <span className={styles.id}>{id}</span>
-    <label className={styles.text}>{text}</label>
+const Question = ( { id, text, type, subType, placeHolder, helpText }: { subType?: HardwareType | SoftwareType, helpText?: string; placeHolder?: string; id: string; text: string; required: boolean; type: QuestionType } ) => (
+  <div className={ styles.Question }>
+    <span className={ styles.id }>{ id }</span>
+    <label className={ styles.text }>{ text }</label>
     <div>
-      {type === QuestionType.Text && <QuestionText placeHolder={placeHolder} helpText={helpText} />}
-      {type === QuestionType.TextArea && <QuestionTextArea />}
-      {type === QuestionType.YesNo && <QuestionYesNo id={id} />}
-      {type === QuestionType.Url && <QuestionUrl />}
-      {type === QuestionType.Number && <QuestionNumber />}
-      {type === QuestionType.Email && <QuestionEmail />}
-      {type === QuestionType.Url && <QuestionUrl />}
+      { type === QuestionType.Text && <QuestionText placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.TextArea && <QuestionTextArea placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.YesNo && <QuestionYesNo id={ id } placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.Url && <QuestionUrl placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.Number && <QuestionNumber placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.Email && <QuestionEmail placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.Url && <QuestionUrl placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.NetworkDeviceList && <QuestionNetwork placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong> }
+      { type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong> }
+      { type === QuestionType.HardwareList && subType && <QuestionHardware type={ subType as HardwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.SoftwareList && subType && <QuestionSoftware type={ subType as SoftwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
     </div>
   </div>
 );

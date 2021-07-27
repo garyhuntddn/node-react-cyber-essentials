@@ -5,5 +5,7 @@ export enum QuestionType {
   Number = "number",
   Url = "url",
   Email = "email",
-  Other = "other"
+  NetworkDeviceList = "networkDeviceList",
+  HardwareList = "hardwareList",
+  SoftwareList = "softwareList"
 }

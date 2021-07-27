@@ -10,7 +10,7 @@ const App = () =>
     </header>
     <section>
       {
-        questions.map( m => <Question placeHolder={m.prompt} helpText={m.tooltip} id={m.id} text={ m.question } required={ !!!m.optional } type={ m.type } /> )
+        questions.map( m => <Question placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } /> )
       }
     </section>
   </div>
