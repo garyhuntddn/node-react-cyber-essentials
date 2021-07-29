@@ -29,7 +29,7 @@ const Question = ({ id, text, type, subType, placeHolder, helpText, answer, upda
       {type === QuestionType.NetworkDeviceList && <QuestionNetwork id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />}
       {type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
       {type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
-      {type === QuestionType.HardwareList && subType && <QuestionHardware id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} answer={answer} type={subType as HardwareType} placeHolder={placeHolder} helpText={helpText} />}
+      {type === QuestionType.HardwareList && subType && <QuestionHardware id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} answer={answer} type={subType as HardwareType} placeHolder={placeHolder} helpText={helpText} />}
       {type === QuestionType.SoftwareList && subType && <QuestionSoftware id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} answer={answer} type={subType as SoftwareType} placeHolder={placeHolder} helpText={helpText} />}
     </div>
   </div>

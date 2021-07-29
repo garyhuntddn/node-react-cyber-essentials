@@ -1,6 +1,7 @@
 import { Answers } from "./Answers";
 import { SoftwareType } from "./Software";
 import { HardwareType } from "./Hardware";
+import { nodeModuleNameResolver } from "typescript";
 
 export const answers: Answers = {
   "A1.1": "Safe Space One",
@@ -38,7 +39,18 @@ export const answers: Answers = {
       type: HardwareType.TabletAndMobile,
     },
   ],
-
+  "A.2.6.1":[{
+    name: "saleman",
+    make: "hp",
+    model: "omen",
+    os: "windows",
+    featureVersion: "0.1.1",
+    location: "cafetteria",
+    quantity: 3,
+    purpose: "coffemaking",
+    numberOfVirtuals:5,
+    type: HardwareType.TabletAndMobile
+  }],
   "A2.1": true,
   "A2.2": "Whatever",
   "A2.5": "Cardiff",

@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Answer } from "../models/Answer";
 import { Hardware, HardwareType } from "../models/Hardware";
 import { Network } from "../models/Network";
 import { Software } from "../models/Software";
 
-const QuestionHardware = ( { id, updateRowAnswer, deleteRowAnswer, answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: HardwareType, helpText?: string, placeHolder?: string, updateRowAnswer: ( id: string, index: number, value: Network | Hardware | Software ) => void, deleteRowAnswer: ( id: string, index: number ) => void } ) => {
+const QuestionHardware = ( { id, updateRowAnswer, deleteRowAnswer,addRowAnswer, answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: HardwareType, helpText?: string, placeHolder?: string, updateRowAnswer: ( id: string, index: number, value: Network | Hardware | Software ) => void, deleteRowAnswer: ( id: string, index: number ) => void,addRowAnswer: (id: string, answer: Network) => void },  ) => {
+  const [newRowState, setNewRowState] = useState({ name: "",make:"",model:"",os:"",featureVersion:"", location: "",quantity:"", purpose: "",numberOfVirtuals:"" });
   const hardwareAnswers = answer as Array<Hardware> || [];
 
   return (
@@ -39,16 +41,25 @@ const QuestionHardware = ( { id, updateRowAnswer, deleteRowAnswer, answer, type,
               { type === HardwareType.Server && <td><input type="text" placeholder="number of virtuals" title="No of virtuals" value={ m.numberOfVirtuals } onChange={ e => updateRowAnswer( id, i, { ...m, numberOfVirtuals: e.currentTarget.valueAsNumber } ) } /></td> }
             </tr> ) }
           <tr>
-            <td></td>
-            <td><input type="text" placeholder="name" title="Name of device" /></td>
-            <td><input type="text" placeholder="make" title="Make" /></td>
-            <td><input type="text" placeholder="model" title="Model" /></td>
-            <td><input type="text" placeholder="os" title="OS" /></td>
-            <td><input type="text" placeholder="version" title="Version" /></td>
-            <td><input type="text" placeholder="location" title="Location" /></td>
-            <td><input type="number" placeholder="quantity" title="Quantity" /></td>
-            <td><input type="text" placeholder="purpose" title="Purpose" /></td>
-            { type === HardwareType.Server && <td><input type="text" placeholder="number of virtuals" title="No of virtuals" /></td> }
+            <td>
+              <button
+                onClick={() => {
+                  addRowAnswer(id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose });
+                  setNewRowState({ name: "",make:"",model:"",os:"",featureVersion:"", location: "",quantity:"", purpose: "",numberOfVirtuals:"" });
+                }}>
+                +
+              </button>
+              </td>
+            <td><input type="text" placeholder="name" title="Name of device" onChange={e => setNewRowState({ ...newRowState, name: e.currentTarget.value })}/></td>
+            <td><input type="text" placeholder="make" title="Make"onChange={e => setNewRowState({ ...newRowState, make: e.currentTarget.value })}/></td>
+            <td><input type="text" placeholder="model" title="Model"onChange={e => setNewRowState({ ...newRowState, model: e.currentTarget.value })} /></td>
+            <td><input type="text" placeholder="os" title="OS" onChange={e => setNewRowState({ ...newRowState, os: e.currentTarget.value })}/></td>
+            <td><input type="text" placeholder="version" title="Version" onChange={e => setNewRowState({ ...newRowState, featureVersion: e.currentTarget.value })}/></td>
+            <td><input type="text" placeholder="location" title="Location" onChange={e => setNewRowState({ ...newRowState, location: e.currentTarget.value })}/></td>
+            <td><input type="number" placeholder="quantity" title="Quantity" onChange={e => setNewRowState({ ...newRowState, quantity: e.currentTarget.value })}/></td>
+            <td><input type="text" placeholder="purpose" title="Purpose"onChange={e => setNewRowState({ ...newRowState, purpose: e.currentTarget.value })} /></td>
+            { type === HardwareType.Server && <td><input type="text" placeholder="number of virtuals" title="No of virtuals" onChange={e => setNewRowState({ ...newRowState, 
+              numberOfVirtuals: e.currentTarget.value })}/></td> }
           </tr>
         </tbody>
       </table>
