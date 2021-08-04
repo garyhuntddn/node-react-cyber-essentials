@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Answer } from "../models/Answer";
-import { Hardware } from "../models/Hardware";
-import { Network } from "../models/Network";
-import { Software } from "../models/Software";
+import { Answer } from "../../models/Answer";
+import { Hardware } from "../../models/Hardware";
+import { Network } from "../../models/Network";
+import { Software } from "../../models/Software";
 
 const QuestionNetwork = ({ id, updateRowAnswer, deleteRowAnswer, addRowAnswer, answer, placeHolder, helpText }: { id: string; answer?: Answer; helpText?: string; placeHolder?: string; updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void; deleteRowAnswer: (id: string, index: number) => void; addRowAnswer: (id: string, answer: Network) => void }) => {
   const [newRowState, setNewRowState] = useState({ name: "", location: "", purpose: "" });

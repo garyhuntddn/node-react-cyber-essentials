@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.scss";
-import Question from "./components/Question";
+import Question from "./components/Editor/Question";
+import ReadOnlyQuestion from "./components/ReadOnly/ReadOnlyQuestion";
 import { Answer } from "./models/Answer";
 import { answers } from "./models/answerList";
 import { Hardware } from "./models/Hardware";
@@ -40,14 +41,28 @@ const App = () => {
     setAnswers(newAnswers);
   };
 
+  enum ViewConstants {
+    Editable,
+    ReadOnly
+  }
+
+  const [view, setView] = useState(ViewConstants.Editable);
+
   return (
     <div className="App">
       <header>
         <h1>Cyber Essentials Questionnaire</h1>
       </header>
       <section>
-        {questions.map(m => (
+        <div>
+          <label><input type="radio" checked={view === ViewConstants.Editable} radioGroup="view" onChange={() => setView(ViewConstants.Editable)} />Editor</label>
+          <label><input type="radio" checked={view === ViewConstants.ReadOnly} radioGroup="view" onChange={() => setView(ViewConstants.ReadOnly)} />Viewer</label>
+        </div>
+        {view === ViewConstants.Editable && questions.map(m => (
           <Question key={m.id} updateAnswer={updateAnswer} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={answersState[m.id]} text={m.question} required={!!!m.optional} type={m.type} subType={m.subType} />
+        ))}
+        {view === ViewConstants.ReadOnly && questions.map(m => (
+          <ReadOnlyQuestion key={m.id} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={answersState[m.id]} text={m.question} type={m.type} subType={m.subType} />
         ))}
       </section>
     </div>

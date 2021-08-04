@@ -1,4 +1,4 @@
-import { Answer } from "../models/Answer";
+import { Answer } from "../../models/Answer";
 
 const QuestionYesNo = ({ updateAnswer, answer, id, placeHolder, helpText }: { answer?: Answer; id: string; helpText?: string; placeHolder?: string; updateAnswer: ( id: string, value: Answer ) => void }) => {
   const name = `selection_${id}`;
