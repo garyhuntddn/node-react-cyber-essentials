@@ -4,7 +4,7 @@ import { Hardware, HardwareType } from "../models/Hardware";
 import { Network } from "../models/Network";
 import { Software } from "../models/Software";
 
-const QuestionHardware = ({ id, updateRowAnswer, deleteRowAnswer, addRowAnswer, answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: HardwareType, helpText?: string, placeHolder?: string, updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void, deleteRowAnswer: (id: string, index: number) => void, addRowAnswer: (id: string, answer: Network) => void },) => {
+const QuestionHardware = ({ id, updateRowAnswer, deleteRowAnswer, addRowAnswer, answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: HardwareType, helpText?: string, placeHolder?: string, updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void, deleteRowAnswer: (id: string, index: number) => void, addRowAnswer: (id: string, answer: Hardware) => void },) => {
   const [newRowState, setNewRowState] = useState({ name: "", make: "", model: "", os: "", featureVersion: "", location: "", quantity: "", purpose: "", numberOfVirtuals: "" });
   const hardwareAnswers = answer as Array<Hardware> || [];
 
@@ -44,7 +44,7 @@ const QuestionHardware = ({ id, updateRowAnswer, deleteRowAnswer, addRowAnswer, 
             <td>
               <button
                 onClick={() => {
-                  addRowAnswer(id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose });
+                  addRowAnswer(id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose, make: newRowState.make, model: newRowState.model, os: newRowState.os, featureVersion: newRowState.featureVersion, quantity: parseInt(newRowState.quantity), numberOfVirtuals: newRowState.numberOfVirtuals === "" ? undefined : parseInt(newRowState.numberOfVirtuals), type: type });
                   setNewRowState({ name: "", make: "", model: "", os: "", featureVersion: "", location: "", quantity: "", purpose: "", numberOfVirtuals: "" });
                 }}>
                 +
