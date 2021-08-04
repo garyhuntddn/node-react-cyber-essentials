@@ -17,7 +17,7 @@ const App = () => {
   };
 
   const updateRowAnswer = (id: string, index: number, value: Hardware | Software | Network): void => {
-    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network>;
+    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network> || [];
     const newArray = [...existingArray];
     newArray[index] = { ...value };
     const newAnswers = { ...answersState, [id]: newArray as Answer };
@@ -25,7 +25,7 @@ const App = () => {
   };
 
   const deleteRowAnswer = (id: string, index: number): void => {
-    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network>;
+    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network> || [];
     const newArray = [...existingArray];
     newArray.splice(index, 1);
     const newAnswers = { ...answersState, [id]: newArray as Answer };
@@ -33,7 +33,7 @@ const App = () => {
   };
 
   const addRowAnswer = (id: string, value: Hardware | Software | Network): void => {
-    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network>;
+    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network> || [];
     const newArray = [...existingArray];
     newArray.push(value);
     const newAnswers = { ...answersState, [id]: newArray as Answer };
