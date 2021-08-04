@@ -1,7 +1,6 @@
 import { Answers } from "./Answers";
 import { SoftwareType } from "./Software";
 import { HardwareType } from "./Hardware";
-import { nodeModuleNameResolver } from "typescript";
 
 export const answers: Answers = {
   "A1.1": "Safe Space One",
