@@ -33,7 +33,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - run: |
+        cd ./front-end
+        npm ci
     - run: |
         cd ./front-end
         npm run build --if-present
