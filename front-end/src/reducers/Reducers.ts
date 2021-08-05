@@ -1,5 +1,6 @@
 import { Action } from "redux";
 import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
+import { DeleteRowAnswerAction, DeleteRowAnswerMessage } from "../actions/DeleteRowAnswerAction";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
 import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/UpdateRowAnswerAction";
 import { Answer } from "../models/Answer";
@@ -25,6 +26,16 @@ const reducers = (model: Model, action: Action): Model => {
       const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
       const newArray = [...existingArray];
       newArray[a.index] = { ...a.value };
+      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
+
+      return { ...model, answers: newAnswers };
+    }
+
+    case DeleteRowAnswerMessage: {
+      const a = action as DeleteRowAnswerAction;
+      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
+      const newArray = [...existingArray];
+      newArray.splice(a.index, 1);
       const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
