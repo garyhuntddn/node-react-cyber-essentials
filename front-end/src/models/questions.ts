@@ -1,5 +1,3 @@
-/* questions */
-
 import { HardwareType } from "./Hardware";
 import { Question } from "./Question";
 import { QuestionType } from "./QuestionType";

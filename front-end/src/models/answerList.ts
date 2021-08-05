@@ -38,7 +38,7 @@ export const answers: Answers = {
       type: HardwareType.TabletAndMobile,
     },
   ],
-  "A.2.6.1":[{
+  "A.2.6.1": [ {
     name: "saleman",
     make: "hp",
     model: "omen",
@@ -47,9 +47,9 @@ export const answers: Answers = {
     location: "cafetteria",
     quantity: 3,
     purpose: "coffemaking",
-    numberOfVirtuals:5,
+    numberOfVirtuals: 5,
     type: HardwareType.TabletAndMobile
-  }],
+  } ],
   "A2.1": true,
   "A2.2": "Whatever",
   "A2.5": "Cardiff",
@@ -87,39 +87,39 @@ export const answers: Answers = {
   "A5.10": false,
   "A6.1": false,
   "A6.2": false,
-  "A6.2.1": [{ name: "Chrome", version: "1.1.2", type: SoftwareType.Browser}, {name: "AskJeevs", version: "0.0.8", type: SoftwareType.Browser}],
-  "A6.2.2": [{ name: "Avira", version: "4.2", type: SoftwareType.MalwareProtection}, {name: "Norton", version: "2.3.2", type: SoftwareType.MalwareProtection}],
-  "A6.2.3": [{ name: "Outlook", version: "2.0", type: SoftwareType.Email}, {name: "G-mail", version: "1.4", type: SoftwareType.Email}],
-  "A6.2.4": [{ name: "Excel", version: "5.1", type: SoftwareType.Browser}, {name: "Word", version: "6.2", type: SoftwareType.Browser}],
+  "A6.2.1": [ { name: "Chrome", version: "1.1.2", type: SoftwareType.Browser }, { name: "AskJeevs", version: "0.0.8", type: SoftwareType.Browser } ],
+  "A6.2.2": [ { name: "Avira", version: "4.2", type: SoftwareType.MalwareProtection }, { name: "Norton", version: "2.3.2", type: SoftwareType.MalwareProtection } ],
+  "A6.2.3": [ { name: "Outlook", version: "2.0", type: SoftwareType.Email }, { name: "G-mail", version: "1.4", type: SoftwareType.Email } ],
+  "A6.2.4": [ { name: "Excel", version: "5.1", type: SoftwareType.Browser }, { name: "Word", version: "6.2", type: SoftwareType.Browser } ],
   "A6.3": false,
   "A6.4": true,
   "A6.4.1": true,
   "A6.4.2": true,
-  "6.5":true,
+  "6.5": true,
   "A6.5.1": true,
-  "A6.5.2":"lelele",
-  "A6.6":true,
-  "A7.1":"lello",
-  "A7.2":true,
-  "A7.3":"meh",
-  "A7.4":"turpe",
-  "A7.5":"leolo",
-  "A7.6":"porter",
-  "A7.7":"insigne",
-  "A7.8":true,
-  "A7.9":true,
-  "A7.10":false,
+  "A6.5.2": "lelele",
+  "A6.6": true,
+  "A7.1": "lello",
+  "A7.2": true,
+  "A7.3": "meh",
+  "A7.4": "turpe",
+  "A7.5": "leolo",
+  "A7.6": "porter",
+  "A7.7": "insigne",
+  "A7.8": true,
+  "A7.9": true,
+  "A7.10": false,
   "A7.11": true,
   "A8.1": true,
-  "A8.2":true,
-  "A8.3":true,
-  "A8.4":true,
+  "A8.2": true,
+  "A8.3": true,
+  "A8.4": true,
   "A8.5": "yes it is ",
   "A8.6": "tulip",
 
- 
-  
-  
-  
+
+
+
+
 
 };
