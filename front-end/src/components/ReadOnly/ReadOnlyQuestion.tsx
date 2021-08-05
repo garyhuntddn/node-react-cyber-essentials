@@ -9,7 +9,19 @@ const ReadOnlyQuestion = ({ id, text, type, subType, placeHolder, helpText, answ
   <div className={styles.Question}>
     <span className={styles.id}>{id}</span>
     <label className={styles.text}>{text}</label>
-    <div>{type === QuestionType.Text && <ReadOnlyQuestionText answer={answer} />}</div>
+    <div>
+      {type === QuestionType.Text && <ReadOnlyQuestionText answer={answer} />}
+      {type === QuestionType.TextArea /*&& <ReadOnlyQuestionTextArea id={id} updateAnswer={updateAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />*/}
+      {type === QuestionType.YesNo/* &&  <ReadOnlyQuestionYesNo updateAnswer={updateAnswer} id={id} answer={answer} placeHolder={placeHolder} helpText={helpText} />*/} 
+      {type === QuestionType.Url /*&& <ReadOnlyQuestionUrl id={id} updateAnswer={updateAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />*/}
+      {type === QuestionType.Number /* && <ReadOnlyQuestionNumber id={id} updateAnswer={updateAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />*/}
+      {type === QuestionType.Email /*&& <ReadOnlyQuestionEmail id={id} updateAnswer={updateAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} />*/}
+      {type === QuestionType.NetworkDeviceList /* && <ReadOnlyQuestionNetwork id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} answer={answer} placeHolder={placeHolder} helpText={helpText} /> */}
+      {type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
+      {type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
+      {type === QuestionType.HardwareList && subType /*&& <ReadOnlyQuestionHardware id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} answer={answer} type={subType as HardwareType} placeHolder={placeHolder} helpText={helpText} />*/}
+      {type === QuestionType.SoftwareList && subType/* && <ReadOnlyQuestionSoftware id={id} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} answer={answer} type={subType as SoftwareType} placeHolder={placeHolder} helpText={helpText} />*/}
+    </div>
   </div>
 );
 
