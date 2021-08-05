@@ -8,8 +8,10 @@ import { createStore } from "redux";
 import { answers } from "./models/answerList";
 import { Provider } from "react-redux";
 import reducers from "./reducers/Reducers";
+import { Model } from "./models/Model";
 
-const store = createStore( reducers as any, answers, composeWithDevTools() );
+const initialModel: Model = { answers };
+const store = createStore( reducers as any, initialModel, composeWithDevTools() );
 
 ReactDOM.render(
   <React.StrictMode>

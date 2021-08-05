@@ -5,14 +5,15 @@ import Question from "./components/Editor/Question";
 import ReadOnlyQuestion from "./components/ReadOnly/ReadOnlyQuestion";
 //import { Answer } from "./models/Answer";
 //import { answers } from "./models/answerList";
-import { Answers } from "./models/Answers";
+//import { Answers } from "./models/Answers";
 //import { Hardware } from "./models/Hardware";
 //import { Network } from "./models/Network";
 import { questions } from "./models/questions";
 //import { Software } from "./models/Software";
 import { connect } from "react-redux";
+import { Model } from "./models/Model";
 
-const mapStateToProps = ( state: Answers ) => {
+const mapStateToProps = ( state: Model ) => {
   return state;
 };
 
@@ -73,10 +74,10 @@ const App = ( model: Props ) => {
           <label><input type="radio" checked={ view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => setView( ViewConstants.ReadOnly ) } />Viewer</label>
         </div>
         { view === ViewConstants.Editable && questions.map( m => (
-          <Question key={ m.id } /*updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ model[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />
+          <Question key={ m.id } /*updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ model.answers[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />
         ) ) }
         { view === ViewConstants.ReadOnly && questions.map( m => (
-          <ReadOnlyQuestion key={ m.id } id={ m.id } answer={ model[ m.id ] } text={ m.question } type={ m.type } subType={ m.subType } />
+          <ReadOnlyQuestion key={ m.id } id={ m.id } answer={ model.answers[ m.id ] } text={ m.question } type={ m.type } subType={ m.subType } />
         ) ) }
       </section>
     </div>
