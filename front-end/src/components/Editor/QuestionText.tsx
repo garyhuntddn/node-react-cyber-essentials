@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { UpdateAnswer } from "../../actions/UpdateAnswerAction";
 import { Answer } from "../../models/Answer";
 
-const QuestionText = ({ id, /*updateAnswer,*/ answer, placeHolder, helpText }: { id: string, answer?: Answer, helpText?: string, placeHolder?: string/*, updateAnswer: ( id: string, value: Answer ) => void */ }) => {
+const QuestionText = ({ id, answer, placeHolder, helpText }: { id: string, answer?: Answer, helpText?: string, placeHolder?: string }) => {
   const stringAnswer = answer as string || "";
   const dispatch = useDispatch();
 
