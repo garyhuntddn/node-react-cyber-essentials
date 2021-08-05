@@ -1,4 +1,3 @@
-
 import { Answer } from "../../models/Answer";
 
 const QuestionNumber = ( { id, updateAnswer, answer, placeHolder, helpText }: { id: string, answer?: Answer, helpText?: string, placeHolder?: string, updateAnswer: ( id: string, value: Answer ) => void } ) => {

@@ -17,4 +17,3 @@ export type Hardware = {
   purpose: string;
   type: HardwareType;
 };
-

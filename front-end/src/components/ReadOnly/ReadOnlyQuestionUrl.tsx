@@ -1,11 +1,11 @@
 import { Answer } from "../../models/Answer";
 
-const ReadOnlyQuestionUrl = ({ answer }: { answer?: Answer }) => {
-    const stringAnswer = answer as string || "";
+const ReadOnlyQuestionUrl = ( { answer }: { answer?: Answer } ) => {
+  const stringAnswer = answer as string || "";
 
-    return (
-        <span>{stringAnswer}</span>
-    );
+  return (
+    <span>{ stringAnswer }</span>
+  );
 };
 
 export default ReadOnlyQuestionUrl;

@@ -10,35 +10,35 @@ import { questions } from "./models/questions";
 import { Software } from "./models/Software";
 
 const App = () => {
-  const [answersState, setAnswers] = useState(answers);
+  const [ answersState, setAnswers ] = useState( answers );
 
-  const updateAnswer = (id: string, value: Answer): void => {
-    const newAnswers = { ...answersState, [id]: value };
-    setAnswers(newAnswers);
+  const updateAnswer = ( id: string, value: Answer ): void => {
+    const newAnswers = { ...answersState, [ id ]: value };
+    setAnswers( newAnswers );
   };
 
-  const updateRowAnswer = (id: string, index: number, value: Hardware | Software | Network): void => {
-    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network> || [];
-    const newArray = [...existingArray];
-    newArray[index] = { ...value };
-    const newAnswers = { ...answersState, [id]: newArray as Answer };
-    setAnswers(newAnswers);
+  const updateRowAnswer = ( id: string, index: number, value: Hardware | Software | Network ): void => {
+    const existingArray: Array<Hardware | Software | Network> = answersState[ id ] as Array<Hardware | Software | Network> || [];
+    const newArray = [ ...existingArray ];
+    newArray[ index ] = { ...value };
+    const newAnswers = { ...answersState, [ id ]: newArray as Answer };
+    setAnswers( newAnswers );
   };
 
-  const deleteRowAnswer = (id: string, index: number): void => {
-    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network> || [];
-    const newArray = [...existingArray];
-    newArray.splice(index, 1);
-    const newAnswers = { ...answersState, [id]: newArray as Answer };
-    setAnswers(newAnswers);
+  const deleteRowAnswer = ( id: string, index: number ): void => {
+    const existingArray: Array<Hardware | Software | Network> = answersState[ id ] as Array<Hardware | Software | Network> || [];
+    const newArray = [ ...existingArray ];
+    newArray.splice( index, 1 );
+    const newAnswers = { ...answersState, [ id ]: newArray as Answer };
+    setAnswers( newAnswers );
   };
 
-  const addRowAnswer = (id: string, value: Hardware | Software | Network): void => {
-    const existingArray: Array<Hardware | Software | Network> = answersState[id] as Array<Hardware | Software | Network> || [];
-    const newArray = [...existingArray];
-    newArray.push(value);
-    const newAnswers = { ...answersState, [id]: newArray as Answer };
-    setAnswers(newAnswers);
+  const addRowAnswer = ( id: string, value: Hardware | Software | Network ): void => {
+    const existingArray: Array<Hardware | Software | Network> = answersState[ id ] as Array<Hardware | Software | Network> || [];
+    const newArray = [ ...existingArray ];
+    newArray.push( value );
+    const newAnswers = { ...answersState, [ id ]: newArray as Answer };
+    setAnswers( newAnswers );
   };
 
   enum ViewConstants {
@@ -46,7 +46,7 @@ const App = () => {
     ReadOnly
   }
 
-  const [view, setView] = useState(ViewConstants.Editable);
+  const [ view, setView ] = useState( ViewConstants.Editable );
 
   return (
     <div className="App">
@@ -55,15 +55,15 @@ const App = () => {
       </header>
       <section>
         <div>
-          <label><input type="radio" checked={view === ViewConstants.Editable} radioGroup="view" onChange={() => setView(ViewConstants.Editable)} />Editor</label>
-          <label><input type="radio" checked={view === ViewConstants.ReadOnly} radioGroup="view" onChange={() => setView(ViewConstants.ReadOnly)} />Viewer</label>
+          <label><input type="radio" checked={ view === ViewConstants.Editable } radioGroup="view" onChange={ () => setView( ViewConstants.Editable ) } />Editor</label>
+          <label><input type="radio" checked={ view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => setView( ViewConstants.ReadOnly ) } />Viewer</label>
         </div>
-        {view === ViewConstants.Editable && questions.map(m => (
-          <Question key={m.id} updateAnswer={updateAnswer} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={answersState[m.id]} text={m.question} required={!!!m.optional} type={m.type} subType={m.subType} />
-        ))}
-        {view === ViewConstants.ReadOnly && questions.map(m => (
-          <ReadOnlyQuestion key={m.id} id={m.id} answer={answersState[m.id]} text={m.question} type={m.type} subType={m.subType} />
-        ))}
+        { view === ViewConstants.Editable && questions.map( m => (
+          <Question key={ m.id } updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer } placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ answersState[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />
+        ) ) }
+        { view === ViewConstants.ReadOnly && questions.map( m => (
+          <ReadOnlyQuestion key={ m.id } id={ m.id } answer={ answersState[ m.id ] } text={ m.question } type={ m.type } subType={ m.subType } />
+        ) ) }
       </section>
     </div>
   );
