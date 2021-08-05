@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import "./App.scss";
 import { Action } from "redux";
 import Question from "./components/Editor/Question";
@@ -10,7 +9,7 @@ import ReadOnlyQuestion from "./components/ReadOnly/ReadOnlyQuestion";
 //import { Network } from "./models/Network";
 import { questions } from "./models/questions";
 //import { Software } from "./models/Software";
-import { connect, useDispatch /*, useStore*/ } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Model, ViewConstants } from "./models/Model";
 import { ChangeView } from "./actions/ChangeViewAction";
 
@@ -24,7 +23,6 @@ const mapDispatchToProps = ( dispatch: ( action: Action ) => unknown ) => ( {
 type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 const App = ( model: Props ) => {
-  //  const model = useStore().getState() as Model;
   /*
   const [ answersState, setAnswers ] = useState( answers );
 
