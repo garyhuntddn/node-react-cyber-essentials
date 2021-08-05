@@ -1,4 +1,4 @@
-import { useState } from "react";
+//import { useState } from "react";
 import "./App.scss";
 import { Action } from "redux";
 import Question from "./components/Editor/Question";
@@ -10,8 +10,9 @@ import ReadOnlyQuestion from "./components/ReadOnly/ReadOnlyQuestion";
 //import { Network } from "./models/Network";
 import { questions } from "./models/questions";
 //import { Software } from "./models/Software";
-import { connect } from "react-redux";
+import { connect, useDispatch /*, useStore*/ } from "react-redux";
 import { Model, ViewConstants } from "./models/Model";
+import { ChangeView } from "./actions/ChangeViewAction";
 
 const mapStateToProps = ( state: Model ) => {
   return state;
@@ -23,6 +24,7 @@ const mapDispatchToProps = ( dispatch: ( action: Action ) => unknown ) => ( {
 type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 const App = ( model: Props ) => {
+  //  const model = useStore().getState() as Model;
   /*
   const [ answersState, setAnswers ] = useState( answers );
 
@@ -56,6 +58,8 @@ const App = ( model: Props ) => {
   };
 */
 
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
       <header>
@@ -63,8 +67,8 @@ const App = ( model: Props ) => {
       </header>
       <section>
         <div>
-          <label><input type="radio" checked={ model.view === ViewConstants.Editable } radioGroup="view" onChange={ () => { } /*setView( ViewConstants.Editable )*/ } />Editor</label>
-          <label><input type="radio" checked={ model.view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => { } /*setView( ViewConstants.ReadOnly )*/ } />Viewer</label>
+          <label><input type="radio" checked={ model.view === ViewConstants.Editable } radioGroup="view" onChange={ () => { dispatch( ChangeView( ViewConstants.Editable ) ) } } />Editor</label>
+          <label><input type="radio" checked={ model.view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => { dispatch( ChangeView( ViewConstants.ReadOnly ) ) } } />Viewer</label>
         </div>
         { model.view === ViewConstants.Editable && questions.map( m => (
           <Question key={ m.id } /*updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ model.answers[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />

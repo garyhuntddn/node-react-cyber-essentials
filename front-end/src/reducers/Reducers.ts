@@ -1,9 +1,15 @@
 import { Action } from "redux";
-import { Answers } from "../models/Answers";
+import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
+import { Model } from "../models/Model";
 
-const reducers = ( model: Answers, action: Action ): Answers => {
+const reducers = ( model: Model, action: Action ): Model => {
+  switch ( action.type ) {
+    case ChangeViewMessage: {
+      const a = action as ChangeViewAction;
+      return { ...model, view: a.view };
+    }
+  }
 
-  
   return model;
 }
 
