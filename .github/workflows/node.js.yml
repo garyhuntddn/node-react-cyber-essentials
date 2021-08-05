@@ -29,20 +29,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup npm package
-      run: |
-        cd ./front-end
-        npm init -y && npm install
+      run: npm init -y && npm install
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: |
-        cd ./front-end
-        npm ci
-    - run: |
-        cd ./front-end
-        npm run build --if-present
-    - run: |
-        cd ./front-end
-        npm test -- --watchAll=false
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test -- --watchAll=false
