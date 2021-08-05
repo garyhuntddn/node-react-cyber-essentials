@@ -1,4 +1,5 @@
 import { Action } from "redux";
+import { AddRowAnswer, AddRowAnswerAction, AddRowAnswerMessage } from "../actions/AddRowAnswerAction";
 import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
 import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/UpdateRowAnswerAction";
@@ -20,6 +21,7 @@ const reducers = (model: Model, action: Action): Model => {
       const a = action as UpdateAnswerAction;
       return { ...model, answers: { ...model.answers, [a.id]: a.value } };
     }
+
     case UpdateRowAnswerMessage: {
       const a = action as UpdateRowAnswerAction;
       const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
@@ -27,6 +29,16 @@ const reducers = (model: Model, action: Action): Model => {
       newArray[a.index] = { ...a.value };
       const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
 
+      return { ...model, answers: newAnswers };
+    }
+
+    case AddRowAnswerMessage: {
+      const a = action as AddRowAnswerAction;
+      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
+      const newArray = [...existingArray];
+      newArray.push(a.value);
+      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
+      
       return { ...model, answers: newAnswers };
     }
   }
