@@ -26,7 +26,7 @@ const Question = ( { id, text, type, subType, placeHolder, helpText, answer/*, u
       { type === QuestionType.Url && <QuestionUrl id={ id } /*updateAnswer={ updateAnswer }*/ answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
       { type === QuestionType.Number && <QuestionNumber id={ id } /*updateAnswer={ updateAnswer }*/ answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
       { type === QuestionType.Email && <QuestionEmail id={ id } /*updateAnswer={ updateAnswer }*/ answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
-      { type === QuestionType.NetworkDeviceList && <QuestionNetwork /*updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
+      { type === QuestionType.NetworkDeviceList && <QuestionNetwork id={id}/*updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ answer={ answer } placeHolder={ placeHolder } helpText={ helpText } /> }
       { type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong> }
       { type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong> }
       { type === QuestionType.HardwareList && subType && <QuestionHardware id={ id } /*updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ answer={ answer } type={ subType as HardwareType } placeHolder={ placeHolder } helpText={ helpText } /> }
