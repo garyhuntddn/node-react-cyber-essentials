@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AddRowAnswer } from "../../actions/AddRowAnswerAction";
+import { DeleteRowAnswer } from "../../actions/DeleteRowAnswerAction";
+import { UpdateRowAnswer } from "../../actions/UpdateRowAnswerAction";
 import { Answer } from "../../models/Answer";
-//import { Hardware } from "../../models/Hardware";
-//import { Network } from "../../models/Network";
 import { Software, SoftwareType } from "../../models/Software";
 
 const QuestionRow = ({ software, onChange }: { software: Software, onChange: (updated: Software) => void }) => {
@@ -15,7 +15,7 @@ const QuestionRow = ({ software, onChange }: { software: Software, onChange: (up
   );
 }
 
-const QuestionSoftware = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer,*/ answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: SoftwareType, helpText?: string, placeHolder?: string, /*updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void, deleteRowAnswer: (id: string, index: number) => void, addRowAnswer: (id: string, answer: Software) => void */ }) => {
+const QuestionSoftware = ({ id, answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: SoftwareType, helpText?: string, placeHolder?: string }) => {
   const [newRowState, setNewRowState] = useState({ name: "", version: "" });
   const softwareAnswers = answer as Array<Software> || [];
 
@@ -37,9 +37,9 @@ const QuestionSoftware = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer
             softwareAnswers.map((m, i) =>
               <tr key={i}>
                 <td><
-                  button onClick={() => /*deleteRowAnswer( id, i )*/ { }}>X</button>
+                  button onClick={() => dispatch(DeleteRowAnswer(id, i))}>X</button>
                 </td>
-                <QuestionRow software={m} onChange={software =>/* updateRowAnswer( id, i, software )*/ { }} />
+                <QuestionRow software={m} onChange={software => dispatch(UpdateRowAnswer(id, i, software))} />
               </tr>
             )
           }
@@ -61,3 +61,5 @@ const QuestionSoftware = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer
 };
 
 export default QuestionSoftware;
+
+
