@@ -1,7 +1,7 @@
 import { Answer } from "../../models/Answer";
 import { Network } from "../../models/Network";
 
-const ReadOnlyQuestionNetwork = ({ answer }: { id: string; answer?: Answer; helpText?: string; placeHolder?: string }) => {
+const ReadOnlyQuestionNetwork = ({ answer }: { answer?: Answer }) => {
   const networkAnswers = (answer as Array<Network>) || [];
   return (
     <>
