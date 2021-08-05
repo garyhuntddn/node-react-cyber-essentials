@@ -62,7 +62,7 @@ const App = () => {
           <Question key={m.id} updateAnswer={updateAnswer} updateRowAnswer={updateRowAnswer} deleteRowAnswer={deleteRowAnswer} addRowAnswer={addRowAnswer} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={answersState[m.id]} text={m.question} required={!!!m.optional} type={m.type} subType={m.subType} />
         ))}
         {view === ViewConstants.ReadOnly && questions.map(m => (
-          <ReadOnlyQuestion key={m.id} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={answersState[m.id]} text={m.question} type={m.type} subType={m.subType} />
+          <ReadOnlyQuestion key={m.id} id={m.id} answer={answersState[m.id]} text={m.question} type={m.type} subType={m.subType} />
         ))}
       </section>
     </div>
