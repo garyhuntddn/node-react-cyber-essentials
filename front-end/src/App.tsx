@@ -48,7 +48,7 @@ const App = (model: Props) => {
             Viewer
           </label>
         </div>
-        {model.view === ViewConstants.Editable && questions.map(m => <Question key={m.id} /*updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={model.answers[m.id]} text={m.question} required={!!!m.optional} type={m.type} subType={m.subType} />)}
+        {model.view === ViewConstants.Editable && questions.map(m => <Question key={m.id} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={model.answers[m.id]} text={m.question} required={!!!m.optional} type={m.type} subType={m.subType} />)}
         {model.view === ViewConstants.ReadOnly && questions.map(m => <ReadOnlyQuestion key={m.id} id={m.id} answer={model.answers[m.id]} text={m.question} type={m.type} subType={m.subType} />)}
       </section>
     </div>
