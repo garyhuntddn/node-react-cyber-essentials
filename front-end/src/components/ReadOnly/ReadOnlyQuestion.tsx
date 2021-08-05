@@ -14,7 +14,7 @@ import ReadOnlyQuestionYesNo from "./ReadOnlyQuestionYesNo";
 import ReadOnlyQuestionNumber from "./ReadOnlyQuestionNumber";
 
 const ReadOnlyQuestion = ({ id, text, type, subType, answer }: { answer?: Answer; subType?: HardwareType | SoftwareType; id: string; text: string; type: QuestionType }) => (
-    <div className={styles.Question}>
+    <div className={styles.ReadOnlyQuestion}>
         <span className={styles.id}>{id}</span>
         <label className={styles.text}>{text}</label>
         <div>
