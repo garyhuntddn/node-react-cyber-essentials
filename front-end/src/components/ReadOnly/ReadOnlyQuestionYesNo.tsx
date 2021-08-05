@@ -1,18 +1,10 @@
 import { Answer } from "../../models/Answer";
 
-const ReadOnlyQuestionYesNo = ({ answer, id, placeHolder, helpText }: { answer?: Answer; id: string; helpText?: string; placeHolder?: string;  }) => {
-  const name = `selection_${id}`;
-
-  return (
+const ReadOnlyQuestionYesNo = ({ answer}: { answer?: Answer}) => {
+ return (
     <>
-      <label>
-        <input type="radio" checked={answer === true} name={name} placeholder={placeHolder} title={helpText} />
-        Yes
-      </label>
-      <label>
-        <input type="radio" checked={answer === false} name={name} placeholder={placeHolder} title={helpText}/>
-        No
-      </label>
+      {answer === true && <span>Yes</span>}
+      {answer === false && <span>No</span>}
     </>
   );
 };
