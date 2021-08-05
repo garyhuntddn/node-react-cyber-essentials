@@ -5,8 +5,6 @@ import { DeleteRowAnswer } from "../../actions/DeleteRowAnswerAction";
 import { UpdateRowAnswer } from "../../actions/UpdateRowAnswerAction";
 import { Answer } from "../../models/Answer";
 import { Hardware, HardwareType } from "../../models/Hardware";
-//import { Network } from "../../models/Network";
-//import { Software } from "../../models/Software";
 
 const QuestionRow = ({ hardware, type, onChange }: { hardware: Hardware; type: HardwareType; onChange: (updated: Hardware) => void }) => {
   return (
@@ -44,7 +42,7 @@ const QuestionRow = ({ hardware, type, onChange }: { hardware: Hardware; type: H
   );
 };
 
-const QuestionHardware = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer, */ answer, type, placeHolder, helpText }: { id: string; answer?: Answer; type: HardwareType; helpText?: string; placeHolder?: string /*updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void; deleteRowAnswer: (id: string, index: number) => void; addRowAnswer: (id: string, answer: Hardware) => void*/ }) => {
+const QuestionHardware = ({ id, answer, type, placeHolder, helpText }: { id: string; answer?: Answer; type: HardwareType; helpText?: string; placeHolder?: string }) => {
   const [newRowState, setNewRowState] = useState<Hardware>({ name: "", make: "", model: "", os: "", featureVersion: "", location: "", quantity: 1, purpose: "", numberOfVirtuals: undefined, type: type });
   const hardwareAnswers = (answer as Array<Hardware>) || [];
   const dispatch = useDispatch();

@@ -1,12 +1,11 @@
 import { Action } from "redux";
-import { AddRowAnswer, AddRowAnswerAction, AddRowAnswerMessage } from "../actions/AddRowAnswerAction";
+import { AddRowAnswerAction, AddRowAnswerMessage } from "../actions/AddRowAnswerAction";
 import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
 import { DeleteRowAnswerAction, DeleteRowAnswerMessage } from "../actions/DeleteRowAnswerAction";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
 import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/UpdateRowAnswerAction";
 import { Answer } from "../models/Answer";
 import { Hardware } from "../models/Hardware";
-
 import { Model } from "../models/Model";
 import { Network } from "../models/Network";
 import { Software } from "../models/Software";
