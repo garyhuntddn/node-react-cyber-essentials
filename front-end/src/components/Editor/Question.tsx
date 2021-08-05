@@ -1,4 +1,4 @@
-import { QuestionType } from "../models/QuestionType";
+import { QuestionType } from "../../models/QuestionType";
 import styles from "./Question.module.scss";
 import QuestionNumber from "./QuestionNumber";
 import QuestionEmail from "./QuestionEmail";
@@ -9,10 +9,10 @@ import QuestionYesNo from "./QuestionYesNo";
 import QuestionNetwork from "./QuestionNetwork";
 import QuestionHardware from "./QuestionHardware";
 import QuestionSoftware from "./QuestionSoftware";
-import { Hardware, HardwareType } from "../models/Hardware";
-import { Software, SoftwareType } from "../models/Software";
-import { Answer } from "../models/Answer";
-import { Network } from "../models/Network";
+import { Hardware, HardwareType } from "../../models/Hardware";
+import { Software, SoftwareType } from "../../models/Software";
+import { Answer } from "../../models/Answer";
+import { Network } from "../../models/Network";
 
 // TODO: not yet using the required prop
 const Question = ({ id, text, type, subType, placeHolder, helpText, answer, updateAnswer, updateRowAnswer, deleteRowAnswer, addRowAnswer }: { answer?: Answer; subType?: HardwareType | SoftwareType; helpText?: string; placeHolder?: string; id: string; text: string; required: boolean; type: QuestionType; updateAnswer: (id: string, value: Answer) => void; updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void; deleteRowAnswer: (id: string, index: number) => void; addRowAnswer: (id: string, answer: Network | Software | Hardware) => void }) => (

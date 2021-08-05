@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Answer } from "../models/Answer";
-import { Hardware, HardwareType } from "../models/Hardware";
-import { Network } from "../models/Network";
-import { Software } from "../models/Software";
+import { Answer } from "../../models/Answer";
+import { Hardware, HardwareType } from "../../models/Hardware";
+import { Network } from "../../models/Network";
+import { Software } from "../../models/Software";
 
 const QuestionHardware = ({ id, updateRowAnswer, deleteRowAnswer, addRowAnswer, answer, type, placeHolder, helpText }: { id: string, answer?: Answer, type: HardwareType, helpText?: string, placeHolder?: string, updateRowAnswer: (id: string, index: number, value: Network | Hardware | Software) => void, deleteRowAnswer: (id: string, index: number) => void, addRowAnswer: (id: string, answer: Hardware) => void },) => {
   const [newRowState, setNewRowState] = useState({ name: "", make: "", model: "", os: "", featureVersion: "", location: "", quantity: "", purpose: "", numberOfVirtuals: "" });

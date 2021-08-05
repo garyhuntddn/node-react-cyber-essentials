@@ -1,4 +1,4 @@
-import { Answer } from "../models/Answer";
+import { Answer } from "../../models/Answer";
 
 const QuestionTextArea = ({ updateAnswer, answer, placeHolder, helpText, id }: { id: string; answer?: Answer; helpText?: string; placeHolder?: string; updateAnswer: (id: string, value: Answer) => void }) => {
   const stringAnswer = (answer as string) || "";
