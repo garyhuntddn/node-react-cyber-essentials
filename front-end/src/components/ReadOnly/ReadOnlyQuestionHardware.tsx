@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Answer } from "../../models/Answer";
 import { Hardware, HardwareType } from "../../models/Hardware";
 
 const ReadOnlyQuestionHardware = ({ id, answer, type, }: { id: string, answer?: Answer, type: HardwareType, },) => {
-    const [newRowState, setNewRowState] = useState({ name: "", make: "", model: "", os: "", featureVersion: "", location: "", quantity: "", purpose: "", numberOfVirtuals: "" });
     const hardwareAnswers = answer as Array<Hardware> || [];
 
     return (
