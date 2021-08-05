@@ -1,11 +1,11 @@
 
 import { Answer } from "../../models/Answer";
 
-const ReadOnlyQuestionNumber = ( {  answer, }: { id: string, answer?: Answer, helpText?: string, } ) => {
+const ReadOnlyQuestionNumber = ({ answer, }: { answer?: Answer, }) => {
   const numberAnswer = answer as number || "";
 
   return (
-    <input type="number" value={ numberAnswer }  />
+    <span>{numberAnswer}</span>
   );
 };
 

@@ -1,7 +1,7 @@
 import { Answer } from "../../models/Answer";
 import { Hardware, HardwareType } from "../../models/Hardware";
 
-const ReadOnlyQuestionHardware = ({ id, answer, type, }: { id: string, answer?: Answer, type: HardwareType, },) => {
+const ReadOnlyQuestionHardware = ({ answer, type, }: { answer?: Answer, type: HardwareType }) => {
     const hardwareAnswers = answer as Array<Hardware> || [];
 
     return (
@@ -9,7 +9,6 @@ const ReadOnlyQuestionHardware = ({ id, answer, type, }: { id: string, answer?: 
             <table>
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Name</th>
                         <th>Make</th>
                         <th>Model</th>
@@ -24,7 +23,6 @@ const ReadOnlyQuestionHardware = ({ id, answer, type, }: { id: string, answer?: 
                 <tbody>
                     {hardwareAnswers.map((m, i) =>
                         <tr key={i}>
-                            <td></td>
                             <td><span>{m.name}</span></td>
                             <td><span>{m.make}</span></td>
                             <td><span>{m.model}</span></td>

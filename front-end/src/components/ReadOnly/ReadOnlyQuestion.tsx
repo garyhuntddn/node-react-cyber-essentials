@@ -22,12 +22,12 @@ const ReadOnlyQuestion = ({ id, text, type, subType, placeHolder, helpText, answ
             {type === QuestionType.TextArea && <ReadOnlyQuestionTextArea answer={answer} />}
             {type === QuestionType.YesNo && <ReadOnlyQuestionYesNo id={id} answer={answer} placeHolder={placeHolder} helpText={helpText} />}
             {type === QuestionType.Url && <ReadOnlyQuestionUrl answer={answer} />}
-            {type === QuestionType.Number && <ReadOnlyQuestionNumber id={id} answer={answer} helpText={helpText} />}
+            {type === QuestionType.Number && <ReadOnlyQuestionNumber answer={answer} />}
             {type === QuestionType.Email && <ReadOnlyQuestionEmail answer={answer} />}
             {type === QuestionType.NetworkDeviceList && <ReadOnlyQuestionNetwork id={id} answer={answer} placeHolder={placeHolder} helpText={helpText} />}
             {type === QuestionType.HardwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
             {type === QuestionType.SoftwareList && !subType && <strong>Configuration error - a hardware list without a type</strong>}
-            {type === QuestionType.HardwareList && subType && <ReadOnlyQuestionHardware id={id} type={subType as HardwareType} answer={answer} />}
+            {type === QuestionType.HardwareList && subType && <ReadOnlyQuestionHardware type={subType as HardwareType} answer={answer} />}
             {type === QuestionType.SoftwareList && subType && <ReadOnlyQuestionSoftware answer={answer} />}
         </div>
     </div>
