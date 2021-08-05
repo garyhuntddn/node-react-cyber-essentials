@@ -11,7 +11,7 @@ import ReadOnlyQuestion from "./components/ReadOnly/ReadOnlyQuestion";
 import { questions } from "./models/questions";
 //import { Software } from "./models/Software";
 import { connect } from "react-redux";
-import { Model } from "./models/Model";
+import { Model, ViewConstants } from "./models/Model";
 
 const mapStateToProps = ( state: Model ) => {
   return state;
@@ -56,13 +56,6 @@ const App = ( model: Props ) => {
   };
 */
 
-  enum ViewConstants {
-    Editable,
-    ReadOnly
-  }
-
-  const [ view, setView ] = useState( ViewConstants.Editable );
-
   return (
     <div className="App">
       <header>
@@ -70,13 +63,13 @@ const App = ( model: Props ) => {
       </header>
       <section>
         <div>
-          <label><input type="radio" checked={ view === ViewConstants.Editable } radioGroup="view" onChange={ () => setView( ViewConstants.Editable ) } />Editor</label>
-          <label><input type="radio" checked={ view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => setView( ViewConstants.ReadOnly ) } />Viewer</label>
+          <label><input type="radio" checked={ model.view === ViewConstants.Editable } radioGroup="view" onChange={ () => { } /*setView( ViewConstants.Editable )*/ } />Editor</label>
+          <label><input type="radio" checked={ model.view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => { } /*setView( ViewConstants.ReadOnly )*/ } />Viewer</label>
         </div>
-        { view === ViewConstants.Editable && questions.map( m => (
+        { model.view === ViewConstants.Editable && questions.map( m => (
           <Question key={ m.id } /*updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ model.answers[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />
         ) ) }
-        { view === ViewConstants.ReadOnly && questions.map( m => (
+        { model.view === ViewConstants.ReadOnly && questions.map( m => (
           <ReadOnlyQuestion key={ m.id } id={ m.id } answer={ model.answers[ m.id ] } text={ m.question } type={ m.type } subType={ m.subType } />
         ) ) }
       </section>
