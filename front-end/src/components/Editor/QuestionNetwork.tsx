@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { AddRowAnswer } from "../../actions/AddRowAnswerAction";
+import { DeleteRowAnswer } from "../../actions/DeleteRowAnswerAction";
 import { UpdateRowAnswer } from "../../actions/UpdateRowAnswerAction";
 import { Answer } from "../../models/Answer";
-//import { Hardware } from "../../models/Hardware";
 import { Network } from "../../models/Network";
-//import { Software } from "../../models/Software";
 
 const QuestionRow = ({ network, onChange }: { network: Network; onChange: (updated: Network) => void }) => {
   return (
@@ -22,7 +22,7 @@ const QuestionRow = ({ network, onChange }: { network: Network; onChange: (updat
   );
 };
 
-const QuestionNetwork = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer,*/ answer, placeHolder, helpText }: { id: string; answer?: Answer; helpText?: string; placeHolder?: string /*updateRowAnswer: ( id: string, index: number, value: Network | Hardware | Software ) => void; deleteRowAnswer: ( id: string, index: number ) => void; addRowAnswer: ( id: string, answer: Network ) => void*/ }) => {
+const QuestionNetwork = ({ id, answer, placeHolder, helpText }: { id: string; answer?: Answer; helpText?: string; placeHolder?: string }) => {
   const [newRowState, setNewRowState] = useState({ name: "", location: "", purpose: "" });
   const networkAnswers = (answer as Array<Network>) || [];
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const QuestionNetwork = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer,
           {networkAnswers.map((m, i) => (
             <tr key={i}>
               <td>
-                <button onClick={() => /*deleteRowAnswer( id, i )*/ {}}>X</button>
+                <button onClick={() => dispatch(DeleteRowAnswer(id, i))}>X</button>
               </td>
               <QuestionRow network={m} onChange={network => dispatch(UpdateRowAnswer(id, i, network))} />
             </tr>
@@ -52,7 +52,7 @@ const QuestionNetwork = ({ id, /*updateRowAnswer, deleteRowAnswer, addRowAnswer,
             <td>
               <button
                 onClick={() => {
-                  /*addRowAnswer( id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose } );*/
+                  dispatch(AddRowAnswer(id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose }));
                   setNewRowState({ name: "", location: "", purpose: "" });
                 }}>
                 +
