@@ -1,15 +1,28 @@
 import { useState } from "react";
 import "./App.scss";
+import { Action } from "redux";
 import Question from "./components/Editor/Question";
 import ReadOnlyQuestion from "./components/ReadOnly/ReadOnlyQuestion";
-import { Answer } from "./models/Answer";
-import { answers } from "./models/answerList";
-import { Hardware } from "./models/Hardware";
-import { Network } from "./models/Network";
+//import { Answer } from "./models/Answer";
+//import { answers } from "./models/answerList";
+import { Answers } from "./models/Answers";
+//import { Hardware } from "./models/Hardware";
+//import { Network } from "./models/Network";
 import { questions } from "./models/questions";
-import { Software } from "./models/Software";
+//import { Software } from "./models/Software";
+import { connect } from "react-redux";
 
-const App = () => {
+const mapStateToProps = ( state: Answers ) => {
+  return state;
+};
+
+const mapDispatchToProps = ( dispatch: ( action: Action ) => unknown ) => ( {
+} );
+
+type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+
+const App = ( model: Props ) => {
+  /*
   const [ answersState, setAnswers ] = useState( answers );
 
   const updateAnswer = ( id: string, value: Answer ): void => {
@@ -40,6 +53,7 @@ const App = () => {
     const newAnswers = { ...answersState, [ id ]: newArray as Answer };
     setAnswers( newAnswers );
   };
+*/
 
   enum ViewConstants {
     Editable,
@@ -59,14 +73,14 @@ const App = () => {
           <label><input type="radio" checked={ view === ViewConstants.ReadOnly } radioGroup="view" onChange={ () => setView( ViewConstants.ReadOnly ) } />Viewer</label>
         </div>
         { view === ViewConstants.Editable && questions.map( m => (
-          <Question key={ m.id } updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer } placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ answersState[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />
+          <Question key={ m.id } /*updateAnswer={ updateAnswer } updateRowAnswer={ updateRowAnswer } deleteRowAnswer={ deleteRowAnswer } addRowAnswer={ addRowAnswer }*/ placeHolder={ m.prompt } helpText={ m.tooltip } id={ m.id } answer={ model[ m.id ] } text={ m.question } required={ !!!m.optional } type={ m.type } subType={ m.subType } />
         ) ) }
         { view === ViewConstants.ReadOnly && questions.map( m => (
-          <ReadOnlyQuestion key={ m.id } id={ m.id } answer={ answersState[ m.id ] } text={ m.question } type={ m.type } subType={ m.subType } />
+          <ReadOnlyQuestion key={ m.id } id={ m.id } answer={ model[ m.id ] } text={ m.question } type={ m.type } subType={ m.subType } />
         ) ) }
       </section>
     </div>
   );
 };
 
-export default App;
+export default connect( mapStateToProps, mapDispatchToProps )( App );

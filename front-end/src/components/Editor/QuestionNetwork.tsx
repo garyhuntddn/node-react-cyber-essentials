@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Answer } from "../../models/Answer";
-import { Hardware } from "../../models/Hardware";
+//import { Hardware } from "../../models/Hardware";
 import { Network } from "../../models/Network";
-import { Software } from "../../models/Software";
+//import { Software } from "../../models/Software";
 
 const QuestionRow = ( { network, onChange }: { network: Network, onChange: ( updated: Network ) => void } ) => {
   return (
@@ -14,7 +14,7 @@ const QuestionRow = ( { network, onChange }: { network: Network, onChange: ( upd
   );
 }
 
-const QuestionNetwork = ( { id, updateRowAnswer, deleteRowAnswer, addRowAnswer, answer, placeHolder, helpText }: { id: string; answer?: Answer; helpText?: string; placeHolder?: string; updateRowAnswer: ( id: string, index: number, value: Network | Hardware | Software ) => void; deleteRowAnswer: ( id: string, index: number ) => void; addRowAnswer: ( id: string, answer: Network ) => void } ) => {
+const QuestionNetwork = ( { /*updateRowAnswer, deleteRowAnswer, addRowAnswer,*/ answer, placeHolder, helpText }: { answer?: Answer; helpText?: string; placeHolder?: string; /*updateRowAnswer: ( id: string, index: number, value: Network | Hardware | Software ) => void; deleteRowAnswer: ( id: string, index: number ) => void; addRowAnswer: ( id: string, answer: Network ) => void*/ } ) => {
   const [ newRowState, setNewRowState ] = useState( { name: "", location: "", purpose: "" } );
   const networkAnswers = ( answer as Array<Network> ) || [];
 
@@ -34,16 +34,16 @@ const QuestionNetwork = ( { id, updateRowAnswer, deleteRowAnswer, addRowAnswer, 
           { networkAnswers.map( ( m, i ) => (
             <tr key={ i }>
               <td>
-                <button onClick={ () => deleteRowAnswer( id, i ) }>X</button>
+                <button onClick={ () => /*deleteRowAnswer( id, i )*/ { } }>X</button>
               </td>
-              <QuestionRow network={ m } onChange={ network => updateRowAnswer( id, i, network ) } />
+              <QuestionRow network={ m } onChange={ network => /*updateRowAnswer( id, i, network )*/ { } } />
             </tr>
           ) ) }
           <tr>
             <td>
               <button
                 onClick={ () => {
-                  addRowAnswer( id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose } );
+                  /*addRowAnswer( id, { name: newRowState.name, location: newRowState.location, purpose: newRowState.purpose } );*/
                   setNewRowState( { name: "", location: "", purpose: "" } );
                 } }>
                 +
