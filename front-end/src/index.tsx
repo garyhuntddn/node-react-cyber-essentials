@@ -13,33 +13,33 @@ import reducers from "./reducers/Reducers";
 import { Model, ViewConstants } from "./models/Model";
 import { persistanceMiddleware } from "./middleware/Persistence";
 
-const initialModel: Model = {
-  answers,
-  view: ViewConstants.Editable
-};
-
-const store = createStore( reducers as any, initialModel, composeWithDevTools( applyMiddleware( persistanceMiddleware ) ) );
-
-const url = "http://localhost:2999/answers";
-
 const getAnswers = async () => {
-  const response = await fetch( url, { headers: { "Accept": "application/json" } } );
+  let model: Model = {
+    answers,
+    view: ViewConstants.Editable
+  };
+
+  const url = "http://localhost:2999/answers";
+
+  const response = await fetch(url, { headers: { "Accept": "application/json" } });
   const json = await response.json() as Array<Action>;
 
-  for ( const action of json ) {
-    store.dispatch( action );
+  for (const action of json) {
+    model = reducers(model,action);
   }
+
+  const store = createStore(reducers as any, model, composeWithDevTools(applyMiddleware(persistanceMiddleware)));
+
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
 }
 
 getAnswers();
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={ store }>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById( "root" )
-);
 
 reportWebVitals();
