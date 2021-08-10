@@ -1,4 +1,5 @@
 import React from "react";
+import { Action } from "redux";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
@@ -18,6 +19,19 @@ const initialModel: Model = {
 };
 
 const store = createStore( reducers as any, initialModel, composeWithDevTools( applyMiddleware( persistanceMiddleware ) ) );
+
+const url = "http://localhost:2999/answers";
+
+const getAnswers = async () => {
+  const response = await fetch( url, { headers: { "Accept": "application/json" } } );
+  const json = await response.json() as Array<Action>;
+
+  for ( const action of json ) {
+    store.dispatch( action );
+  }
+}
+
+getAnswers();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -16,7 +16,6 @@
 			"**/build": true,
 			"**/.github": true,
 			"**/.vscode": true
-		},
-		"folders"
+		}
 	}
 }
