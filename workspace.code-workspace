@@ -5,6 +5,18 @@
 		}
 	],
 	"settings": {
-		"prettier.singleQuote": false
+		"prettier.singleQuote": false,
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/node_modules": true,
+			"**/build": true,
+			"**/.github": true,
+			"**/.vscode": true
+		},
+		"folders"
 	}
 }
