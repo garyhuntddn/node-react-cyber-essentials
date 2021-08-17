@@ -6,6 +6,7 @@ import { questions } from "./models/questions";
 import { connect, useDispatch } from "react-redux";
 import { Model, ViewConstants } from "./models/Model";
 import { ChangeView } from "./actions/ChangeViewAction";
+import { SetGroup } from "./actions/SetGroup";
 
 const mapStateToProps = (state: Model) => {
   return state;
@@ -22,6 +23,9 @@ const App = (model: Props) => {
     <div className="App">
       <header>
         <h1>Cyber Essentials Questionnaire</h1>
+        <div>
+          <label>Group <input type="text" value={model.group}onChange={e=>dispatch(SetGroup(e.currentTarget.value))}></input> </label>
+        </div>
       </header>
       <section>
         <div>

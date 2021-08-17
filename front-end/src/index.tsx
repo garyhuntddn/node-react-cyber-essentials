@@ -16,7 +16,8 @@ import { persistanceMiddleware } from "./middleware/Persistence";
 const getAnswers = async () => {
   let model: Model = {
     answers,
-    view: ViewConstants.Editable
+    view: ViewConstants.Editable,
+    group:""
   };
 
   const url = "http://localhost:2999/answers";
