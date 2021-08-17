@@ -4,8 +4,8 @@ import cors from "cors";
 const server = express();
 server.use( express.json() );
 server.use( cors() );
-
-const messages: Array<unknown> = [];
+const messagesPerGroup :{[ group:string] :Array<unknown>}={};
+//const messages: Array<unknown> = [];
 
 /*
 server.get( "/", ( req: any, res: any ) => {
@@ -18,6 +18,9 @@ server.get( "/", ( req: any, res: any ) => {
 
 server.get( "/answers", ( req: any, res: any ) => {
   const request = req as Request;
+  const group =req.query.g;
+  console.log(`group ${group}`);
+  const messages = messagesPerGroup[group] || [];
   console.log( `sending ${ messages.length }` );
   res.set( "Content-Type", "application/json; charset=utf-8" );
   res.send( JSON.stringify( messages ) );
@@ -26,7 +29,10 @@ server.get( "/answers", ( req: any, res: any ) => {
 server.post( "/messages", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body;
-
+  const group= req.query.g;
+  console.log(`group ${group}`);
+  const messages =  messagesPerGroup[group] ||[];
+  messagesPerGroup[group] = messages;
   messages.push( json );
 
   console.log( `message count is now ${ messages.length }` )
