@@ -52,7 +52,6 @@ const reducers = (model: Model, action: Action): Model => {
       return { ...model, answers: newAnswers };
     }
   }
-
   return model;
 };
 
