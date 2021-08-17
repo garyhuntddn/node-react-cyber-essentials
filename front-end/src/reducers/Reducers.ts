@@ -2,7 +2,7 @@ import { Action } from "redux";
 import { AddRowAnswerAction, AddRowAnswerMessage } from "../actions/AddRowAnswerAction";
 import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
 import { DeleteRowAnswerAction, DeleteRowAnswerMessage } from "../actions/DeleteRowAnswerAction";
-import { SetGroup, SetGroupAction, SetGroupMessage } from "../actions/SetGroup";
+import {  SetGroupAction, SetGroupMessage } from "../actions/SetGroup";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
 import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/UpdateRowAnswerAction";
 import { Answer } from "../models/Answer";

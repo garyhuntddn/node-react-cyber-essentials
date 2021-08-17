@@ -20,7 +20,7 @@ const getAnswers = async () => {
     group:""
   };
 
-  const url = "http://localhost:2999/answers";
+  const url = `http://localhost:2999/answers?g=${model.group}`;
 
   const response = await fetch(url, { headers: { "Accept": "application/json" } });
   const json = await response.json() as Array<Action>;
