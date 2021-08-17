@@ -49,6 +49,69 @@ server.post("/messages", (req: any, res: any) => {
   res.send("done\r\n");
 });
 
+server.get("/dump", (req: any, res: any) => {
+  res.set("Content-Type", "application/json; charset=utf-8");
+  res.send(JSON.stringify(messagesPerGroup));
+});
+
+server.post("/users", (req: any, res: any) => {
+  const request = req as Request;
+  const json = request.body as any as { name: string };
+  const groupName = req.query.g;
+  console.log(`group ${groupName}`);
+
+  const userName = req.header("X-UserName") as string;
+  console.log(`user ${userName}`);
+
+  const group = messagesPerGroup[groupName];
+  if (!group) {
+    throw new Error("Nope!");
+  }
+
+  if (userName !== group.users[0]) {
+    throw new Error("Nope!");
+  }
+
+  group.users.push(json.name);
+
+  console.log(`user count is now ${group.users.length}`);
+
+  res.send("done\r\n");
+});
+
+server.delete("/users", (req: any, res: any) => {
+  const request = req as Request;
+  const json = request.body as any as { name: string };
+  const groupName = req.query.g;
+  console.log(`group ${groupName}`);
+
+  const userName = req.header("X-UserName") as string;
+  console.log(`user ${userName}`);
+
+  const group = messagesPerGroup[groupName];
+  if (!group) {
+    console.log("group does not exist");
+    throw new Error("Nope!");
+  }
+
+  if (userName !== group.users[0]) {
+    console.log("user is not owner of group");
+    throw new Error("Nope!");
+  }
+
+  const index = group.users.findIndex(m => m === json.name);
+  if (index < 0) {
+    console.log("user is not in group");
+    throw new Error("Nope!");
+  }
+
+  group.users.splice(index, 1);
+
+  console.log(`user count is now ${group.users.length}`);
+
+  res.send("done\r\n");
+});
+
 const port = 2999;
 console.log(`starting web server on ${port}`);
 
