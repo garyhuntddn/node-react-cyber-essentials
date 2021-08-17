@@ -5,11 +5,17 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
+type User = {
+  name: string;
+  password: string;
+};
+
 type Group = {
   users: Array<string>;
   answers: Array<unknown>;
 };
 
+const users: Array<User> = [];
 const messagesPerGroup: { [group: string]: Group } = {};
 
 /*
@@ -72,11 +78,11 @@ server.get("/dump", (req: any, res: any) => {
     </html>`);
   } else {
     res.set("Content-Type", "application/json; charset=utf-8");
-    res.send(JSON.stringify(messagesPerGroup));
+    res.send(JSON.stringify({ messagesPerGroup, users }));
   }
 });
 
-server.post("/users", (req: any, res: any) => {
+server.post("/groupUsers", (req: any, res: any) => {
   const request = req as Request;
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
@@ -101,7 +107,7 @@ server.post("/users", (req: any, res: any) => {
   res.send("done\r\n");
 });
 
-server.delete("/users", (req: any, res: any) => {
+server.delete("/groupUsers", (req: any, res: any) => {
   const request = req as Request;
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
@@ -130,6 +136,42 @@ server.delete("/users", (req: any, res: any) => {
   group.users.splice(index, 1);
 
   console.log(`user count is now ${group.users.length}`);
+
+  res.send("done\r\n");
+});
+
+server.post("/users", (req: any, res: any) => {
+  const request = req as Request;
+  const json = request.body as any as User;
+
+  users.push(json);
+
+  console.log(`user count is now ${users.length}`);
+
+  res.send("done\r\n");
+});
+
+server.delete("/users", (req: any, res: any) => {
+  const request = req as Request;
+  const json = request.body as any as User;
+
+  const userName = req.header("X-UserName") as string;
+  console.log(`user ${userName}`);
+
+  if (userName !== json.name) {
+    console.log("user attempting to delete someone else");
+    throw new Error("Nope!");
+  }
+
+  const index = users.findIndex(m => m.name === json.name);
+  if (index < 0) {
+    console.log("user is not in list");
+    throw new Error("Nope!");
+  }
+
+  users.splice(index, 1);
+
+  console.log(`user count is now ${users.length}`);
 
   res.send("done\r\n");
 });
