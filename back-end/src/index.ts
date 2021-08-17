@@ -25,7 +25,7 @@ server.get("/answers", (req: any, res: any) => {
   const request = req as Request;
   const groupName = req.query.g;
   console.log(`group ${groupName}`);
-  const group = messagesPerGroup[groupName] || { users:[],answers:[]};
+  const group = messagesPerGroup[groupName] || { users: [], answers: [] };
   console.log(`sending ${group.answers.length}`);
   res.set("Content-Type", "application/json; charset=utf-8");
   res.send(JSON.stringify(group.answers));
@@ -36,7 +36,11 @@ server.post("/messages", (req: any, res: any) => {
   const json = request.body;
   const groupName = req.query.g;
   console.log(`group ${groupName}`);
-  const group = messagesPerGroup[groupName] || { users:[],answers:[]};
+
+  const userName = req.header("X-UserName") as string;
+  console.log(`user ${userName}`);
+
+  const group = messagesPerGroup[groupName] || { users: [userName], answers: [] };
   messagesPerGroup[groupName] = group;
   group.answers.push(json);
 
