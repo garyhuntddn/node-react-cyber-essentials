@@ -24,7 +24,7 @@ const App = (model: Props) => {
       <header>
         <h1>Cyber Essentials Questionnaire</h1>
         <div>
-          <label>Group <input type="text" value={model.group}onChange={e=>dispatch(SetGroup(e.currentTarget.value))}></input> </label>
+          <label>Group <input type="text" value={model.group} onChange={e => dispatch(SetGroup(e.currentTarget.value))}></input> </label>
         </div>
       </header>
       <section>
