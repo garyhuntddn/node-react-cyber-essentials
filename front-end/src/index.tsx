@@ -22,6 +22,7 @@ const getAnswers = async () => {
     answers,
     view: ViewConstants.Editable,
     group: group,
+    password: ""
   };
 
   const url = `http://localhost:2999/answers?g=${model.group}`;
