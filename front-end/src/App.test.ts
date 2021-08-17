@@ -41,6 +41,9 @@ describe("reducer tests", () => {
 
   it("should change the password to 123", () => {
     expect(Reducers({ answers, view: ViewConstants.Editable, group: "", password: "" ,userName: ""}, ChangePassword("123"))).toHaveProperty("password", "123");
+  });
 
+  it("should change the username to luca", () => {
+    expect(Reducers({ answers, view: ViewConstants.Editable, group: "", password: "" ,userName: ""}, ChangeUserName("luca"))).toHaveProperty("userName", "luca");
   });
 });
