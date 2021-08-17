@@ -2,6 +2,7 @@ import { Action } from "redux";
 import { AddRowAnswerAction, AddRowAnswerMessage } from "../actions/AddRowAnswerAction";
 import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
 import { DeleteRowAnswerAction, DeleteRowAnswerMessage } from "../actions/DeleteRowAnswerAction";
+import { SetGroup, SetGroupAction, SetGroupMessage } from "../actions/SetGroup";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
 import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/UpdateRowAnswerAction";
 import { Answer } from "../models/Answer";
@@ -51,8 +52,12 @@ const reducers = (model: Model, action: Action): Model => {
 
       return { ...model, answers: newAnswers };
     }
+  
+    case SetGroupMessage:{
+      const a = action as SetGroupAction;
+      return { ...model, group:a.group };
+    }
   }
-
   return model;
 };
 
