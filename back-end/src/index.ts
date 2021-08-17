@@ -4,8 +4,13 @@ import cors from "cors";
 const server = express();
 server.use(express.json());
 server.use(cors());
-const messagesPerGroup: { [group: string]: Array<unknown> } = {};
-//const messages: Array<unknown> = [];
+
+type Group = {
+  users: Array<string>;
+  answers: Array<unknown>;
+};
+
+const messagesPerGroup: { [group: string]: Group } = {};
 
 /*
 server.get( "/", ( req: any, res: any ) => {
@@ -18,24 +23,24 @@ server.get( "/", ( req: any, res: any ) => {
 
 server.get("/answers", (req: any, res: any) => {
   const request = req as Request;
-  const group = req.query.g;
-  console.log(`group ${group}`);
-  const messages = messagesPerGroup[group] || [];
-  console.log(`sending ${messages.length}`);
+  const groupName = req.query.g;
+  console.log(`group ${groupName}`);
+  const group = messagesPerGroup[groupName] || { users:[],answers:[]};
+  console.log(`sending ${group.answers.length}`);
   res.set("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(messages));
+  res.send(JSON.stringify(group.answers));
 });
 
 server.post("/messages", (req: any, res: any) => {
   const request = req as Request;
   const json = request.body;
-  const group = req.query.g;
-  console.log(`group ${group}`);
-  const messages = messagesPerGroup[group] || [];
-  messagesPerGroup[group] = messages;
-  messages.push(json);
+  const groupName = req.query.g;
+  console.log(`group ${groupName}`);
+  const group = messagesPerGroup[groupName] || { users:[],answers:[]};
+  messagesPerGroup[groupName] = group;
+  group.answers.push(json);
 
-  console.log(`message count is now ${messages.length}`);
+  console.log(`message count is now ${group.answers.length}`);
 
   res.send("done\r\n");
 });
