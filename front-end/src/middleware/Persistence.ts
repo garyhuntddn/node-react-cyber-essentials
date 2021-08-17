@@ -11,6 +11,8 @@ export const persistanceMiddleware = (store: any) => (next: any) => async (actio
     cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
+      "X-UserName": model.userName,
+      "X-Password": model.password
     },
     body: JSON.stringify(action),
   });
