@@ -1,5 +1,6 @@
 import { Action } from "redux";
 import { AddRowAnswerAction, AddRowAnswerMessage } from "../actions/AddRowAnswerAction";
+import { ChangePasswordAction, ChangePasswordMessage } from "../actions/ChangePasswordAction";
 import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction";
 import { DeleteRowAnswerAction, DeleteRowAnswerMessage } from "../actions/DeleteRowAnswerAction";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
@@ -52,9 +53,17 @@ const reducers = (model: Model, action: Action): Model => {
 
       return { ...model, answers: newAnswers };
     }
+
     case ChangeUserNameMessage: {
       const a = action as ChangeUserNameAction;
       return { ...model, userName:a.userName};
+    }
+
+    case ChangePasswordMessage: {
+      const a = action as ChangePasswordAction;
+      return { ...model, password: a.password};
+    }
+
   }
 }
   return model;

@@ -10,4 +10,5 @@ export type Model = {
   view: ViewConstants;
   group: string;
   userName:string;
+  password: string;
 };

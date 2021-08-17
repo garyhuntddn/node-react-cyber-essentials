@@ -6,7 +6,11 @@ import { questions } from "./models/questions";
 import { connect, useDispatch } from "react-redux";
 import { Model, ViewConstants } from "./models/Model";
 import { ChangeView } from "./actions/ChangeViewAction";
+
 import { ChangeUserName } from "./actions/ChangeUserName";
+
+import { ChangePassword } from "./actions/ChangePasswordAction";
+
 
 const mapStateToProps = (state: Model) => {
   return state;
@@ -24,9 +28,15 @@ const App = (model: Props) => {
       <header>
         <h1>Cyber Essentials Questionnaire</h1>
         <div>
+
           <input type="text" placeholder="Username" onChange={(e)=>{dispatch(ChangeUserName(e.currentTarget.value))}} ></input><br/>
-          <input type="password" placeholder="Password" ></input><br/>
-          <button>Sign in </button>
+         
+          
+
+          <input type="password" placeholder="Password" id="password" onChange={e =>
+            dispatch(ChangePassword(e.currentTarget.value))} />
+        <button>Sign in </button>
+
         </div>
       </header>
       <section>
@@ -57,7 +67,7 @@ const App = (model: Props) => {
         {model.view === ViewConstants.Editable && questions.map(m => <Question key={m.id} placeHolder={m.prompt} helpText={m.tooltip} id={m.id} answer={model.answers[m.id]} text={m.question} required={!!!m.optional} type={m.type} subType={m.subType} />)}
         {model.view === ViewConstants.ReadOnly && questions.map(m => <ReadOnlyQuestion key={m.id} id={m.id} answer={model.answers[m.id]} text={m.question} type={m.type} subType={m.subType} />)}
       </section>
-    </div>
+    </div >
   );
 };
 
