@@ -1,5 +1,4 @@
 import { ChangeView } from "./actions/ChangeViewAction";
-import { SetGroup } from "./actions/SetGroup";
 import { UpdateAnswer } from "./actions/UpdateAnswerAction";
 import { answers } from "./models/answerList";
 import { ViewConstants } from "./models/Model";
@@ -32,13 +31,5 @@ describe("reducer tests", () => {
 
   it("should add an answer for A", () => {
     expect(Reducers({ answers, view: ViewConstants.Editable, group: "" }, UpdateAnswer("A", "some text"))).toHaveProperty("answers.A", "some text");
-  });
-
-  it("should change the group to luca", () => {
-    expect(Reducers({ answers, view: ViewConstants.Editable, group: "" }, SetGroup("luca"))).toHaveProperty("group", "luca");
-  });
-
-  it("should change the group to gary", () => {
-    expect(Reducers({ answers, view: ViewConstants.Editable, group: "" }, SetGroup("gary"))).toHaveProperty("group", "gary");
   });
 });
