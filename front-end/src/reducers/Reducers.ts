@@ -64,7 +64,7 @@ const reducers = (model: Model, action: Action): Model => {
       return { ...model, password: a.password};
     }
 
-  }
+  
 }
   return model;
 };
