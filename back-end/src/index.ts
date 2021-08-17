@@ -50,8 +50,30 @@ server.post("/messages", (req: any, res: any) => {
 });
 
 server.get("/dump", (req: any, res: any) => {
-  res.set("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(messagesPerGroup));
+  const request = req as Request;
+
+  const token = req.header("X-Token") as string;
+  console.log(`token: ${token}`);
+
+  if (token !== "uhfierhgiu") {
+    res.statusCode = 404;
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="utf-8">
+      <title>Error</title>
+    </head>
+    
+    <body>
+      <pre>Cannot GET /dump2</pre>
+    </body>
+    
+    </html>`);
+  } else {
+    res.set("Content-Type", "application/json; charset=utf-8");
+    res.send(JSON.stringify(messagesPerGroup));
+  }
 });
 
 server.post("/users", (req: any, res: any) => {
