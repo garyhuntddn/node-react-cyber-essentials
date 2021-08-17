@@ -9,4 +9,5 @@ export type Model = {
   answers: Answers;
   view: ViewConstants;
   group: string;
+  userName:string;
 };

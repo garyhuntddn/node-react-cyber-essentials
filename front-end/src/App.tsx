@@ -6,6 +6,7 @@ import { questions } from "./models/questions";
 import { connect, useDispatch } from "react-redux";
 import { Model, ViewConstants } from "./models/Model";
 import { ChangeView } from "./actions/ChangeViewAction";
+import { ChangeUserName } from "./actions/ChangeUserName";
 
 const mapStateToProps = (state: Model) => {
   return state;
@@ -22,6 +23,11 @@ const App = (model: Props) => {
     <div className="App">
       <header>
         <h1>Cyber Essentials Questionnaire</h1>
+        <div>
+          <input type="text" placeholder="Username" onChange={(e)=>{dispatch(ChangeUserName(e.currentTarget.value))}} ></input><br/>
+          <input type="password" placeholder="Password" ></input><br/>
+          <button>Sign in </button>
+        </div>
       </header>
       <section>
         <div>
