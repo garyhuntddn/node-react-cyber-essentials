@@ -5,6 +5,7 @@ import { ChangeViewAction, ChangeViewMessage } from "../actions/ChangeViewAction
 import { DeleteRowAnswerAction, DeleteRowAnswerMessage } from "../actions/DeleteRowAnswerAction";
 import { UpdateAnswerAction, UpdateAnswerMessage } from "../actions/UpdateAnswerAction";
 import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/UpdateRowAnswerAction";
+import { ChangeUserNameAction, ChangeUserNameMessage } from "../actions/ChangeUserName";
 import { Answer } from "../models/Answer";
 import { Hardware } from "../models/Hardware";
 import { Model } from "../models/Model";
@@ -53,11 +54,18 @@ const reducers = (model: Model, action: Action): Model => {
       return { ...model, answers: newAnswers };
     }
 
+    case ChangeUserNameMessage: {
+      const a = action as ChangeUserNameAction;
+      return { ...model, userName:a.userName};
+    }
+
     case ChangePasswordMessage: {
       const a = action as ChangePasswordAction;
       return { ...model, password: a.password};
     }
-  }
+
+  
+}
   return model;
 };
 
