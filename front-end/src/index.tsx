@@ -22,7 +22,7 @@ const getAnswers = async () => {
     view: ViewConstants.Editable,
     group:group,
     userName:"",   
-    password: ""
+    password: "",
 
   };
 
