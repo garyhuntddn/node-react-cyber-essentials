@@ -56,16 +56,14 @@ const reducers = (model: Model, action: Action): Model => {
 
     case ChangeUserNameMessage: {
       const a = action as ChangeUserNameAction;
-      return { ...model, userName:a.userName};
+      return { ...model, userName: a.userName };
     }
 
     case ChangePasswordMessage: {
       const a = action as ChangePasswordAction;
-      return { ...model, password: a.password};
+      return { ...model, password: a.password };
     }
-
-  
-}
+  }
   return model;
 };
 
