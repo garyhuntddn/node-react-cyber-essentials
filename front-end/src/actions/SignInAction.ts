@@ -3,6 +3,7 @@ import { Model } from "../models/Model";
 import { SignInResult } from "./SignInResultAction";
 import { ThunkAction } from "redux-thunk";
 import { RootStateOrAny } from "react-redux";
+import { RetrieveAnswers } from "./RetrieveAnswersAction";
 
 export const SignInMessage = "SignInAction";
 
@@ -29,7 +30,11 @@ export const SignIn = (): ThunkAction<void, RootStateOrAny, unknown, Action<stri
 
       console.log( `response from authentication: ${ text }` );
 
-      dispatch( SignInResult( text === "ok" ) );
+      if ( text === "ok" ) {
+        dispatch( RetrieveAnswers() );
+      } else {
+        dispatch( SignInResult( false ) );
+      }
     }
     catch ( e ) {
       console.log( "error occurred authenticating" );
