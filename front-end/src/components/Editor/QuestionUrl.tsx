@@ -7,7 +7,7 @@ const QuestionUrl = ( { id, answer, placeHolder, helpText }: { id: string, answe
   const dispatch = useDispatch();
 
   return (
-    <input type="url" placeholder={ placeHolder } title={ helpText } value={ stringAnswer } onChange={ e => dispatch(UpdateAnswer(id, e.currentTarget.value))} />
+    <input type="url" placeholder={ placeHolder } title={ helpText } value={ stringAnswer } onChange={ e => dispatch( UpdateAnswer( id, e.currentTarget.value ) ) } />
   );
 }
 
