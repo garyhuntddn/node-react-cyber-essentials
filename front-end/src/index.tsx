@@ -27,15 +27,6 @@ let model: Model = {
   isAuthenticated: false
 };
 
-//const url = `http://localhost:2999/answers?g=${ model.group }`;
-
-//const response = await fetch( url, { headers: { "Accept": "application/json" } } );
-//const json = await response.json() as Array<Action>;
-//
-//for ( const action of json ) {
-//  model = reducers( model, action );
-//}
-
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );
 
 ReactDOM.render(
