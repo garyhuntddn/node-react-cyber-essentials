@@ -4,6 +4,7 @@ import cors from "cors";
 import pino from "pino";
 import { createHash } from "crypto";
 import { v4 } from "uuid";
+import { MongoClient } from "mongodb";
 
 const logger = pino( {
   name: "node-react-cyber-essentials",
@@ -28,17 +29,36 @@ type Group = {
 };
 
 const key = "fdsfsfsadfdsa";
-const users: Array<User> = [];
+//const users: Array<User> = [];
 const messagesPerGroup: { [ group: string ]: Group } = {};
 
-const isUserAndPasswordValid = ( userName: string, password: string ) => {
+const connectToMongo = async () => {
+  logger.debug( "connecting to mongo" );
+  const client = new MongoClient( "mongodb://localhost" );
+  const cn = await client.connect();
+  logger.debug( "connecting to database" );
+  const db = cn.db( "node-react-cyber-essentials" );
+  return db;
+}
+
+const isUserAndPasswordValid = async ( userName: string, password: string ): Promise<boolean> => {
   const lowerCaseName = userName.toLocaleLowerCase();
-  const user = users.find( m => m.name.toLocaleLowerCase() === lowerCaseName );
-  if ( !user ) {
+
+  const db = await connectToMongo();
+  const users = db.collection( "users" );
+
+  const matchingUsers = await users.find( { lowerCaseName } ).toArray();
+  if ( matchingUsers.length === 0 ) {
     logger.debug( `cannot find user with name: ${ userName }` );
     return false;
   }
 
+  if ( matchingUsers.length !== 1 ) {
+    logger.debug( `multiple users with name: ${ userName }` );
+    return false;
+  }
+
+  const user = matchingUsers[ 0 ];
   logger.debug( `testing password for user ${ userName } and salt ${ user.salt }` );
   const sha256 = createHash( "sha256" );
   const passwordHash = sha256.update( key ).update( user.salt ).update( password ).digest( "base64" );
@@ -49,20 +69,20 @@ const isUserAndPasswordValid = ( userName: string, password: string ) => {
   return ok;
 }
 
-const authenticate = ( req: { header: ( name: string ) => any } ) => {
+const authenticate = async ( req: { header: ( name: string ) => any } ): Promise<boolean> => {
   const userName = req.header( "X-UserName" ) as string;
   const password = req.header( "X-Password" ) as string;
 
   logger.debug( { userName, password } );
 
-  if ( isUserAndPasswordValid( userName, password ) ) return true;
+  if ( await isUserAndPasswordValid( userName, password ) ) return true;
 
   logger.debug( `failed to authenticate ${ userName }` );
   throw new Error( "Not authenticated" );
 }
 
-server.get( "/answers", ( req: any, res: any ) => {
-  authenticate( req );
+server.get( "/answers", async ( req: any, res: any ) => {
+  await authenticate( req );
 
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
@@ -72,13 +92,13 @@ server.get( "/answers", ( req: any, res: any ) => {
   res.send( JSON.stringify( group.answers ) );
 } );
 
-server.post( "/messages", ( req: any, res: any ) => {
+server.post( "/messages", async ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body;
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
 
-  authenticate( req );
+  await authenticate( req );
 
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
@@ -113,17 +133,17 @@ server.get( "/dump", ( req: any, res: any ) => {
     </html>`);
   } else {
     res.set( "Content-Type", "application/json; charset=utf-8" );
-    res.send( JSON.stringify( { messagesPerGroup, users } ) );
+    res.send( JSON.stringify( { messagesPerGroup } ) );
   }
 } );
 
-server.post( "/groupUsers", ( req: any, res: any ) => {
+server.post( "/groupUsers", async ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
 
-  authenticate( req );
+  await authenticate( req );
 
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
@@ -144,13 +164,13 @@ server.post( "/groupUsers", ( req: any, res: any ) => {
   res.send( "done\r\n" );
 } );
 
-server.delete( "/groupUsers", ( req: any, res: any ) => {
+server.delete( "/groupUsers", async ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
 
-  authenticate( req );
+  await authenticate( req );
 
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
@@ -179,7 +199,7 @@ server.delete( "/groupUsers", ( req: any, res: any ) => {
   res.send( "done\r\n" );
 } );
 
-server.post( "/users", ( req: any, res: any ) => {
+server.post( "/users", async ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any;
 
@@ -191,22 +211,26 @@ server.post( "/users", ( req: any, res: any ) => {
   delete json.password;
   json.passwordHash = passwordHash;
   json.salt = salt;
+  json.lowerCaseName = json.name.toLocaleLowerCase();
 
   logger.debug( "creating user" );
   logger.debug( { body: JSON.stringify( json ), username: json.name, password, key, salt, passwordHash } );
 
-  users.push( json );
+  const db = await connectToMongo();
+  const users = db.collection( "users" );
 
-  logger.debug( `user count is now ${ users.length }` );
+  await users.insertOne( json );
+
+  logger.debug( `user count is now ${ await users.countDocuments() }` );
 
   res.send( "done\r\n" );
 } );
 
-server.delete( "/users", ( req: any, res: any ) => {
+server.delete( "/users", async ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as User;
 
-  authenticate( req );
+  await authenticate( req );
 
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
@@ -216,24 +240,21 @@ server.delete( "/users", ( req: any, res: any ) => {
     throw new Error( "Nope!" );
   }
 
-  const index = users.findIndex( m => m.name === json.name );
-  if ( index < 0 ) {
-    logger.debug( "user is not in list" );
-    throw new Error( "Nope!" );
-  }
+  const db = await connectToMongo();
+  const users = db.collection( "users" );
 
-  users.splice( index, 1 );
+  await users.deleteOne( { lowerCaseName: json.name.toLocaleLowerCase() } );
 
-  logger.debug( `user count is now ${ users.length }` );
+  logger.debug( `user count is now ${ await users.countDocuments() }` );
 
   res.send( "done\r\n" );
 } );
 
-server.post( "/authenticate", ( req: any, res: any ) => {
+server.post( "/authenticate", async ( req: any, res: any ) => {
   res.set( "Content-Type", "text/plain; charset=utf-8" );
   try {
     logger.debug( `authenticating ${ req.header( "X-UserName" ) }` );
-    authenticate( req );
+    await authenticate( req );
 
     logger.debug( `authenticating ${ req.header( "X-UserName" ) } is good` );
     res.send( "ok" );
