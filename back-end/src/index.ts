@@ -1,9 +1,18 @@
 import express from "express";
+import expressPinoLogger from "express-pino-logger";
 import cors from "cors";
+import pino from "pino";
+
+const logger = pino( {
+  name: "node-react-cyber-essentials",
+  prettyPrint: true,
+  level: "debug"
+} );
 
 const server = express();
-server.use(express.json());
-server.use(cors());
+server.use( express.json() );
+server.use( cors() );
+server.use( expressPinoLogger( { logger: logger } ) );
 
 type User = {
   name: string;
@@ -18,42 +27,33 @@ type Group = {
 const users: Array<User> = [];
 const messagesPerGroup: { [group: string]: Group } = {};
 
-/*
-server.get( "/", ( req: any, res: any ) => {
-  const request = req as Request;
-  const response = res as Response;
-
-  console.log( "got a request for /" );
-} );
-*/
-
-server.get("/answers", (req: any, res: any) => {
+server.get( "/answers", ( req: any, res: any ) => {
   const request = req as Request;
   const groupName = req.query.g;
-  console.log(`group ${groupName}`);
-  const group = messagesPerGroup[groupName] || { users: [], answers: [] };
-  console.log(`sending ${group.answers.length}`);
-  res.set("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(group.answers));
-});
+  logger.debug( `group ${ groupName }` );
+  const group = messagesPerGroup[ groupName ] || { users: [], answers: [] };
+  logger.debug( `sending ${ group.answers.length }` );
+  res.set( "Content-Type", "application/json; charset=utf-8" );
+  res.send( JSON.stringify( group.answers ) );
+} );
 
-server.post("/messages", (req: any, res: any) => {
+server.post( "/messages", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body;
   const groupName = req.query.g;
-  console.log(`group ${groupName}`);
+  logger.debug( `group ${ groupName }` );
 
   const userName = req.header("X-UserName") as string;
-  console.log(`user ${userName}`);
+  logger.debug(`user ${userName}`);
 
-  const group = messagesPerGroup[groupName] || { users: [userName], answers: [] };
-  messagesPerGroup[groupName] = group;
-  group.answers.push(json);
+  const group = messagesPerGroup[ groupName ] || { users: [userName], answers: [] };
+  messagesPerGroup[ groupName ] = group;
+  group.answers.push( json );
 
-  console.log(`message count is now ${group.answers.length}`);
+  logger.debug( `message count is now ${ group.answers.length }` );
 
-  res.send("done\r\n");
-});
+  res.send( "done\r\n" );
+} );
 
 server.get("/dump", (req: any, res: any) => {
   const request = req as Request;
@@ -177,6 +177,6 @@ server.delete("/users", (req: any, res: any) => {
 });
 
 const port = 2999;
-console.log(`starting web server on ${port}`);
+logger.info( `starting web server on ${ port }` );
 
-server.listen(port, "localhost");
+server.listen( port, "localhost" );

@@ -8,6 +8,7 @@ import { Model, ViewConstants } from "./models/Model";
 import { ChangeView } from "./actions/ChangeViewAction";
 import { ChangeUserName } from "./actions/ChangeUserName";
 import { ChangePassword } from "./actions/ChangePasswordAction";
+import { SignIn } from "./actions/SignInAction";
 
 const mapStateToProps = (state: Model) => {
   return state;
@@ -25,9 +26,9 @@ const App = (model: Props) => {
       <header>
         <h1>Cyber Essentials Questionnaire</h1>
         <div>
-          <div><label>Username <input type="text" placeholder="Username" onChange={(e)=>{dispatch(ChangeUserName(e.currentTarget.value))}} value={model.userName} /></label></div> 
-          <div><label>Password <input type="password" placeholder="Password" id="password" onChange={e =>dispatch(ChangePassword(e.currentTarget.value))} value={model.password}/></label></div>
-          <div><button>Sign in</button></div>
+          <div><label>Username <input type="text" placeholder="Username" onChange={(e) => { dispatch(ChangeUserName(e.currentTarget.value)) }} value={model.userName} /></label></div>
+          <div><label>Password <input type="password" placeholder="Password" id="password" onChange={e => dispatch(ChangePassword(e.currentTarget.value))} value={model.password} /></label></div>
+          <div><button onClick={() => dispatch(SignIn())}>Sign in </button></div>
         </div>
       </header>
       <section>
@@ -63,3 +64,7 @@ const App = (model: Props) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+function SignInAction(value: string): any {
+  throw new Error("Function not implemented.");
+}
+

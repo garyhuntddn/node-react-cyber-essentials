@@ -11,6 +11,7 @@ import { Hardware } from "../models/Hardware";
 import { Model } from "../models/Model";
 import { Network } from "../models/Network";
 import { Software } from "../models/Software";
+import { SignInAction, SignInMessage } from "../actions/SignInAction";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -62,6 +63,11 @@ const reducers = (model: Model, action: Action): Model => {
     case ChangePasswordMessage: {
       const a = action as ChangePasswordAction;
       return { ...model, password: a.password };
+    }
+      
+    case SignInMessage: {
+      const a = action as SignInAction;
+      return { ...model };
     }
   }
   return model;
