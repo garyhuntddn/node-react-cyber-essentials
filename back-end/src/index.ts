@@ -1,9 +1,17 @@
 import express from "express";
+import expressPinoLogger from "express-pino-logger";
 import cors from "cors";
+import pino from "pino";
+
+const logger = pino({
+  name: 'app-name',
+  level: 'debug'
+});
 
 const server = express();
 server.use(express.json());
 server.use(cors());
+server.use(expressPinoLogger({ logger: logger }));
 
 type Group = {
   users: Array<string>;
