@@ -2,6 +2,8 @@ import express from "express";
 import expressPinoLogger from "express-pino-logger";
 import cors from "cors";
 import pino from "pino";
+import { createHash } from "crypto";
+import { v4 } from "uuid";
 
 const logger = pino( {
   name: "node-react-cyber-essentials",
@@ -16,7 +18,8 @@ server.use( expressPinoLogger( { logger: logger } ) );
 
 type User = {
   name: string;
-  password: string;
+  salt: string;
+  passwordHash: string;
 };
 
 type Group = {
@@ -24,11 +27,31 @@ type Group = {
   answers: Array<unknown>;
 };
 
+const key = "fdsfsfsadfdsa";
 const users: Array<User> = [];
 const messagesPerGroup: { [ group: string ]: Group } = {};
 
+const isUserAndPasswordValid = ( userName: string, password: string ) => {
+  const user = users.find( m => m.name === userName );
+  if ( !user ) return false;
+
+  const sha256 = createHash( "sha256" );
+  const passwordHash = sha256.update( key ).update( user.salt ).update( password ).digest( "base64" );
+
+  return user.passwordHash === passwordHash;
+}
+
+const authenticate = ( req: { header: ( name: string ) => any } ) => {
+  const userName = req.header( "X-UserName" ) as string;
+  const password = req.header( "X-Password" ) as string;
+  if ( isUserAndPasswordValid( userName, password ) ) return true;
+
+  throw new Error( "Not authenticated" );
+}
+
 server.get( "/answers", ( req: any, res: any ) => {
-  const request = req as Request;
+  authenticate( req );
+
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
   const group = messagesPerGroup[ groupName ] || { users: [], answers: [] };
@@ -43,6 +66,8 @@ server.post( "/messages", ( req: any, res: any ) => {
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
 
+  authenticate( req );
+
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
 
@@ -56,8 +81,6 @@ server.post( "/messages", ( req: any, res: any ) => {
 } );
 
 server.get( "/dump", ( req: any, res: any ) => {
-  const request = req as Request;
-
   const token = req.header( "X-Token" ) as string;
   logger.debug( `token: ${ token }` );
 
@@ -88,6 +111,8 @@ server.post( "/groupUsers", ( req: any, res: any ) => {
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
 
+  authenticate( req );
+
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
 
@@ -112,6 +137,8 @@ server.delete( "/groupUsers", ( req: any, res: any ) => {
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
+
+  authenticate( req );
 
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
@@ -142,7 +169,18 @@ server.delete( "/groupUsers", ( req: any, res: any ) => {
 
 server.post( "/users", ( req: any, res: any ) => {
   const request = req as Request;
-  const json = request.body as any as User;
+  const json = request.body as any;
+
+  const salt = v4();
+
+  const sha256 = createHash( "sha256" );
+  const password = json.password;
+  const passwordHash = sha256.update( key ).update( salt ).update( password ).digest( "base64" );
+  delete json.password;
+  json.passwordHash = passwordHash;
+
+  logger.debug( "creating user" );
+  logger.debug( { body: JSON.stringify( json ), username: json.name, password, key, salt, passwordHash } );
 
   users.push( json );
 
@@ -154,6 +192,8 @@ server.post( "/users", ( req: any, res: any ) => {
 server.delete( "/users", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as User;
+
+  authenticate( req );
 
   const userName = req.header( "X-UserName" ) as string;
   logger.debug( `user ${ userName }` );
@@ -175,6 +215,13 @@ server.delete( "/users", ( req: any, res: any ) => {
 
   res.send( "done\r\n" );
 } );
+
+/*
+server.post( "/authenticate", (req: any, res: any) => {
+  const request = req as Request;
+  const json = request.body as any as User;
+} );
+*/
 
 const port = 2999;
 logger.info( `starting web server on ${ port }` );
