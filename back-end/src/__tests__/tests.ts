@@ -1,9 +1,17 @@
 import "@testing-library/jest-dom";
 import { MongoClient } from "mongodb";
+import pino from "pino";
+
+const logger = pino( {
+  name: 'node-react-cyber-essentials',
+  level: 'debug'
+} );
 
 const connectToMongo = async () => {
+  logger.debug( "connecting to mongo" );
   const client = new MongoClient( "mongodb://localhost" );
   const cn = await client.connect();
+  logger.debug( "connecting to database" );
   const db = cn.db( "node-react-cyber-essentials" );
   return db;
 }
@@ -40,7 +48,7 @@ describe( "mongo tests", () => {
       await users.insertOne( { "username": "jane", "password": "123 " } );
       const found = await users.find( { "username": "jane" } ).toArray();
       if ( found.length === 1 ) {
-        console.log( found );
+        logger.debug( found );
       }
       return found.length;
     };
