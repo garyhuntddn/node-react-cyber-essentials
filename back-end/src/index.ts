@@ -25,7 +25,7 @@ type Group = {
 };
 
 const users: Array<User> = [];
-const messagesPerGroup: { [group: string]: Group } = {};
+const messagesPerGroup: { [ group: string ]: Group } = {};
 
 server.get( "/answers", ( req: any, res: any ) => {
   const request = req as Request;
@@ -43,10 +43,10 @@ server.post( "/messages", ( req: any, res: any ) => {
   const groupName = req.query.g;
   logger.debug( `group ${ groupName }` );
 
-  const userName = req.header("X-UserName") as string;
-  logger.debug(`user ${userName}`);
+  const userName = req.header( "X-UserName" ) as string;
+  logger.debug( `user ${ userName }` );
 
-  const group = messagesPerGroup[ groupName ] || { users: [userName], answers: [] };
+  const group = messagesPerGroup[ groupName ] || { users: [ userName ], answers: [] };
   messagesPerGroup[ groupName ] = group;
   group.answers.push( json );
 
@@ -55,15 +55,15 @@ server.post( "/messages", ( req: any, res: any ) => {
   res.send( "done\r\n" );
 } );
 
-server.get("/dump", (req: any, res: any) => {
+server.get( "/dump", ( req: any, res: any ) => {
   const request = req as Request;
 
-  const token = req.header("X-Token") as string;
-  console.log(`token: ${token}`);
+  const token = req.header( "X-Token" ) as string;
+  logger.debug( `token: ${ token }` );
 
-  if (token !== "uhfierhgiu") {
+  if ( token !== "uhfierhgiu" ) {
     res.statusCode = 404;
-    res.send(`<!DOCTYPE html>
+    res.send( `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -77,104 +77,104 @@ server.get("/dump", (req: any, res: any) => {
     
     </html>`);
   } else {
-    res.set("Content-Type", "application/json; charset=utf-8");
-    res.send(JSON.stringify({ messagesPerGroup, users }));
+    res.set( "Content-Type", "application/json; charset=utf-8" );
+    res.send( JSON.stringify( { messagesPerGroup, users } ) );
   }
-});
+} );
 
-server.post("/groupUsers", (req: any, res: any) => {
+server.post( "/groupUsers", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
-  console.log(`group ${groupName}`);
+  logger.debug( `group ${ groupName }` );
 
-  const userName = req.header("X-UserName") as string;
-  console.log(`user ${userName}`);
+  const userName = req.header( "X-UserName" ) as string;
+  logger.debug( `user ${ userName }` );
 
-  const group = messagesPerGroup[groupName];
-  if (!group) {
-    throw new Error("Nope!");
+  const group = messagesPerGroup[ groupName ];
+  if ( !group ) {
+    throw new Error( "Nope!" );
   }
 
-  if (userName !== group.users[0]) {
-    throw new Error("Nope!");
+  if ( userName !== group.users[ 0 ] ) {
+    throw new Error( "Nope!" );
   }
 
-  group.users.push(json.name);
+  group.users.push( json.name );
 
-  console.log(`user count is now ${group.users.length}`);
+  logger.debug( `user count is now ${ group.users.length }` );
 
-  res.send("done\r\n");
-});
+  res.send( "done\r\n" );
+} );
 
-server.delete("/groupUsers", (req: any, res: any) => {
+server.delete( "/groupUsers", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as { name: string };
   const groupName = req.query.g;
-  console.log(`group ${groupName}`);
+  logger.debug( `group ${ groupName }` );
 
-  const userName = req.header("X-UserName") as string;
-  console.log(`user ${userName}`);
+  const userName = req.header( "X-UserName" ) as string;
+  logger.debug( `user ${ userName }` );
 
-  const group = messagesPerGroup[groupName];
-  if (!group) {
-    console.log("group does not exist");
-    throw new Error("Nope!");
+  const group = messagesPerGroup[ groupName ];
+  if ( !group ) {
+    logger.debug( "group does not exist" );
+    throw new Error( "Nope!" );
   }
 
-  if (userName !== group.users[0]) {
-    console.log("user is not owner of group");
-    throw new Error("Nope!");
+  if ( userName !== group.users[ 0 ] ) {
+    logger.debug( "user is not owner of group" );
+    throw new Error( "Nope!" );
   }
 
-  const index = group.users.findIndex(m => m === json.name);
-  if (index < 0) {
-    console.log("user is not in group");
-    throw new Error("Nope!");
+  const index = group.users.findIndex( m => m === json.name );
+  if ( index < 0 ) {
+    logger.debug( "user is not in group" );
+    throw new Error( "Nope!" );
   }
 
-  group.users.splice(index, 1);
+  group.users.splice( index, 1 );
 
-  console.log(`user count is now ${group.users.length}`);
+  logger.debug( `user count is now ${ group.users.length }` );
 
-  res.send("done\r\n");
-});
+  res.send( "done\r\n" );
+} );
 
-server.post("/users", (req: any, res: any) => {
+server.post( "/users", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as User;
 
-  users.push(json);
+  users.push( json );
 
-  console.log(`user count is now ${users.length}`);
+  logger.debug( `user count is now ${ users.length }` );
 
-  res.send("done\r\n");
-});
+  res.send( "done\r\n" );
+} );
 
-server.delete("/users", (req: any, res: any) => {
+server.delete( "/users", ( req: any, res: any ) => {
   const request = req as Request;
   const json = request.body as any as User;
 
-  const userName = req.header("X-UserName") as string;
-  console.log(`user ${userName}`);
+  const userName = req.header( "X-UserName" ) as string;
+  logger.debug( `user ${ userName }` );
 
-  if (userName !== json.name) {
-    console.log("user attempting to delete someone else");
-    throw new Error("Nope!");
+  if ( userName !== json.name ) {
+    logger.debug( "user attempting to delete someone else" );
+    throw new Error( "Nope!" );
   }
 
-  const index = users.findIndex(m => m.name === json.name);
-  if (index < 0) {
-    console.log("user is not in list");
-    throw new Error("Nope!");
+  const index = users.findIndex( m => m.name === json.name );
+  if ( index < 0 ) {
+    logger.debug( "user is not in list" );
+    throw new Error( "Nope!" );
   }
 
-  users.splice(index, 1);
+  users.splice( index, 1 );
 
-  console.log(`user count is now ${users.length}`);
+  logger.debug( `user count is now ${ users.length }` );
 
-  res.send("done\r\n");
-});
+  res.send( "done\r\n" );
+} );
 
 const port = 2999;
 logger.info( `starting web server on ${ port }` );
