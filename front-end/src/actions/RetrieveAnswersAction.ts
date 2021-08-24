@@ -12,9 +12,9 @@ export const RetrieveAnswers = (): ThunkAction<void, RootStateOrAny, unknown, Ac
 
     const url = `http://localhost:2999/answers?g=${ model.group }`;
 
-    const response = await fetch( url, { headers: { "Accept": "application/json" } } );
+    const response = await fetch( url, { headers: { "Accept": "application/json", "X-UserName": model.userName, "X-Password": model.password } } );
     const json = await response.json() as Array<Action>;
-    
+
     for ( const action of json ) {
       dispatch( action );
     }

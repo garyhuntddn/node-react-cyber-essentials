@@ -31,7 +31,7 @@ export const SignIn = (): ThunkAction<void, RootStateOrAny, unknown, Action<stri
       console.log( `response from authentication: ${ text }` );
 
       if ( text === "ok" ) {
-        dispatch( RetrieveAnswers() );
+        dispatch( RetrieveAnswers() as any as Action );
       } else {
         dispatch( SignInResult( false ) );
       }
