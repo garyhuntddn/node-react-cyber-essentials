@@ -32,20 +32,32 @@ const users: Array<User> = [];
 const messagesPerGroup: { [ group: string ]: Group } = {};
 
 const isUserAndPasswordValid = ( userName: string, password: string ) => {
-  const user = users.find( m => m.name === userName );
-  if ( !user ) return false;
+  const lowerCaseName = userName.toLocaleLowerCase();
+  const user = users.find( m => m.name.toLocaleLowerCase() === lowerCaseName );
+  if ( !user ) {
+    logger.debug( `cannot find user with name: ${ userName }` );
+    return false;
+  }
 
+  logger.debug( `testing password for user ${ userName } and salt ${ user.salt }` );
   const sha256 = createHash( "sha256" );
   const passwordHash = sha256.update( key ).update( user.salt ).update( password ).digest( "base64" );
 
-  return user.passwordHash === passwordHash;
+  const ok = user.passwordHash === passwordHash;
+  if ( !ok ) logger.debug( `password is not ${ password } for user ${ userName }` );
+
+  return ok;
 }
 
 const authenticate = ( req: { header: ( name: string ) => any } ) => {
   const userName = req.header( "X-UserName" ) as string;
   const password = req.header( "X-Password" ) as string;
+
+  logger.debug( { userName, password } );
+
   if ( isUserAndPasswordValid( userName, password ) ) return true;
 
+  logger.debug( `failed to authenticate ${ userName }` );
   throw new Error( "Not authenticated" );
 }
 
@@ -178,6 +190,7 @@ server.post( "/users", ( req: any, res: any ) => {
   const passwordHash = sha256.update( key ).update( salt ).update( password ).digest( "base64" );
   delete json.password;
   json.passwordHash = passwordHash;
+  json.salt = salt;
 
   logger.debug( "creating user" );
   logger.debug( { body: JSON.stringify( json ), username: json.name, password, key, salt, passwordHash } );
@@ -216,12 +229,20 @@ server.delete( "/users", ( req: any, res: any ) => {
   res.send( "done\r\n" );
 } );
 
-/*
-server.post( "/authenticate", (req: any, res: any) => {
-  const request = req as Request;
-  const json = request.body as any as User;
+server.post( "/authenticate", ( req: any, res: any ) => {
+  res.set( "Content-Type", "text/plain; charset=utf-8" );
+  try {
+    logger.debug( `authenticating ${ req.header( "X-UserName" ) }` );
+    authenticate( req );
+
+    logger.debug( `authenticating ${ req.header( "X-UserName" ) } is good` );
+    res.send( "ok" );
+  }
+  catch ( e ) {
+    logger.debug( `authenticating ${ req.header( "X-UserName" ) } is bad ${ JSON.stringify( e ) }` );
+    res.send( "failed" );
+  }
 } );
-*/
 
 const port = 2999;
 logger.info( `starting web server on ${ port }` );

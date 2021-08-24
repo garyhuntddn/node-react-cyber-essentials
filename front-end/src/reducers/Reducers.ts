@@ -8,10 +8,11 @@ import { UpdateRowAnswerAction, UpdateRowAnswerMessage } from "../actions/Update
 import { ChangeUserNameAction, ChangeUserNameMessage } from "../actions/ChangeUserName";
 import { Answer } from "../models/Answer";
 import { Hardware } from "../models/Hardware";
-import { Model } from "../models/Model";
+import { Model, PanelConstants } from "../models/Model";
 import { Network } from "../models/Network";
 import { Software } from "../models/Software";
-import { SignInAction, SignInMessage } from "../actions/SignInAction";
+import { SignInResultAction, SignInResultMessage } from "../actions/SignInResultAction";
+import { SwitchPanelAction, SwitchPanelMessage } from "../actions/SwitchPanel";
 
 const reducers = ( model: Model, action: Action ): Model => {
   switch ( action.type ) {
@@ -65,9 +66,14 @@ const reducers = ( model: Model, action: Action ): Model => {
       return { ...model, password: a.password };
     }
 
-    case SignInMessage: {
-      const a = action as SignInAction;
-      return { ...model };
+    case SignInResultMessage: {
+      const a = action as SignInResultAction;
+      return { ...model, isAuthenticated: a.wasSuccessful, panel: a.wasSuccessful ? PanelConstants.Questionnaire : PanelConstants.FailedLogin };
+    }
+
+    case SwitchPanelMessage: {
+      const a = action as SwitchPanelAction;
+      return { ...model, panel: a.panel };
     }
   }
   return model;
