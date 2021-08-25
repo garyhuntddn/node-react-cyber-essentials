@@ -1,4 +1,4 @@
-import CreateGroupMessage from "../components/CreateGroup";
+export const CreateGroupMessage = "CreateGroupAction";
 
 export const CreateGroup = ( name: string ) => ( {
   type: CreateGroupMessage,

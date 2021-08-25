@@ -32,3 +32,7 @@ const App = (model: Props) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+function dispatch(arg0: JSX.Element): void {
+  throw new Error("Function not implemented.");
+}
+

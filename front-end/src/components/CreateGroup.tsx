@@ -7,7 +7,7 @@ const CreateGroupPage = ( model: Model ) => {
   
     return (
       <div>
-        <div><label>Change group <input type="text" placeholder="Email" onChange={ ( e ) => { dispatch( CreateGroup( e.currentTarget.value ) ); } } value={ model.name } /></label></div>
+        <div><label>Change group <input type="text" placeholder="Name" onChange={ ( e ) => { dispatch( CreateGroup( e.currentTarget.value ) ); } } value={ model.name } /></label></div>
         <div></div>
         <div></div>
       </div>
