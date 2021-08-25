@@ -3,7 +3,8 @@ import { Answers } from "./Answers";
 export enum PanelConstants {
   Login,
   FailedLogin,
-  Questionnaire
+  Questionnaire,
+  CreateGroup
 }
 
 export enum ViewConstants {
@@ -18,5 +19,6 @@ export type Model = {
   group: string;
   userName: string;
   password: string;
+  name: string;
   isAuthenticated: boolean;
 };
