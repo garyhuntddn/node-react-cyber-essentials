@@ -4,7 +4,8 @@ export enum PanelConstants {
   Login,
   FailedLogin,
   Questionnaire,
-  CreateGroup
+  CreateGroup,
+  OptionsPanel
 }
 
 export enum ViewConstants {

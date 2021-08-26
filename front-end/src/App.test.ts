@@ -65,6 +65,10 @@ describe("reducer tests", () => {
     expect(Reducers(createInitialModel(), SwitchPanel(PanelConstants.Questionnaire))).toEqual(expect.objectContaining({ panel: PanelConstants.Questionnaire }));
   });
 
+  it("should switch the panel to Options", () => {
+    expect(Reducers(createInitialModel(), SwitchPanel(PanelConstants.OptionsPanel))).toEqual(expect.objectContaining({ panel: PanelConstants.OptionsPanel }));
+  });
+
   it("should set authentication to false and remove password", () => {
     expect(Reducers({ ...createInitialModel(), userName: "jax", password: "123", isAuthenticated: true, answers: { A: "" } }, SwitchPanel(PanelConstants.Login))).toEqual(expect.objectContaining({ isAuthenticated: false, password: "", answers: {} }));
   });
