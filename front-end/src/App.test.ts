@@ -57,11 +57,11 @@ describe("reducer tests", () => {
     expect(Reducers({ ...createInitialModel(), panel: PanelConstants.Questionnaire }, SwitchPanel(PanelConstants.Login))).toEqual(expect.objectContaining({ panel: PanelConstants.Login }));
   });
 
-  it("should change the login result to FailedLogin", () => {
+  it("should switch the panel to FailedLogin", () => {
     expect(Reducers(createInitialModel(), SwitchPanel(PanelConstants.FailedLogin))).toEqual(expect.objectContaining({ panel: PanelConstants.FailedLogin }));
   });
 
-  it("should change the login result to Questionnaire", () => {
+  it("should switch the panel to Questionnaire", () => {
     expect(Reducers(createInitialModel(), SwitchPanel(PanelConstants.Questionnaire))).toEqual(expect.objectContaining({ panel: PanelConstants.Questionnaire }));
   });
 
