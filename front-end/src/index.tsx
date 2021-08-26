@@ -24,6 +24,7 @@ let model: Model = {
   group: group,
   userName: "",
   password: "",
+  name: "", 
   isAuthenticated: false
 };
 

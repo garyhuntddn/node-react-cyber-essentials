@@ -13,6 +13,7 @@ import { Network } from "../models/Network";
 import { Software } from "../models/Software";
 import { SignInResultAction, SignInResultMessage } from "../actions/SignInResultAction";
 import { SwitchPanelAction, SwitchPanelMessage } from "../actions/SwitchPanel";
+import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAction";
 
 const reducers = ( model: Model, action: Action ): Model => {
   switch ( action.type ) {
@@ -73,7 +74,17 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case SwitchPanelMessage: {
       const a = action as SwitchPanelAction;
+
+      if ( a.panel === PanelConstants.Login ) {
+        return { ...model, panel: a.panel, password: "", isAuthenticated: false, answers: {} };
+      }
+
       return { ...model, panel: a.panel };
+    }
+
+    case CreateGroupMessage: {
+      const a = action as CreateGroupAction;
+      return { ...model, };
     }
   }
   return model;
