@@ -13,7 +13,7 @@ const Questionnaire = (model: Model) => {
     <>
       <div>
 
-        <div><button onClick={() => dispatch(SwitchPanel(PanelConstants.CreateGroup))}>Create Group</button></div>
+        <div style={{ marginBottom: "15px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.CreateGroup))}>Create Group</button></div>
 
       </div>
 

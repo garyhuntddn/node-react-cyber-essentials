@@ -9,13 +9,13 @@ import { SignInResult } from "./actions/SignInResultAction";
 import { SwitchPanel } from "./actions/SwitchPanel";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 }
 
 describe( "reducer tests", () => {
   it( "should return the initial state", () => {
 
-    expect( Reducers( createInitialModel(), {} as any ) ).toEqual( { answers, view: ViewConstants.Editable, group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false } );
+    expect( Reducers( createInitialModel(), {} as any ) ).toEqual( { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false } );
   } );
 
   it( "should update the view to ReadOnly", () => {
