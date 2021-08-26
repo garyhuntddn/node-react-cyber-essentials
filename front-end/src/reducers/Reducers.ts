@@ -74,6 +74,11 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case SwitchPanelMessage: {
       const a = action as SwitchPanelAction;
+
+      if ( a.panel === PanelConstants.Login ) {
+        return { ...model, panel: a.panel, password: "", isAuthenticated: false, answers: {} };
+      }
+
       return { ...model, panel: a.panel };
     }
 
