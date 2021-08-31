@@ -25,4 +25,5 @@ export type Model = {
   isAuthenticated: boolean;
   enable2FA: boolean;
   cityOfOrigin: string;
+  color: string;
 };

@@ -17,6 +17,7 @@ import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAct
 import { ChangeEmailAction, ChangeEmailMessage } from "../actions/ChangeEmailAction";
 import { ChangeEnable2FAAction, ChangeEnable2FAMessage } from "../actions/ChangeEnable2FAAction";
 import { ChangeCityOfOriginAction, ChangeCityOfOriginMessage } from "../actions/ChangeCityOfOriginAction";
+import { ChangeColorAction, ChangeColorMessage } from "../actions/ChangeColorAction";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -103,6 +104,11 @@ const reducers = (model: Model, action: Action): Model => {
     case ChangeCityOfOriginMessage: {
       const a = action as ChangeCityOfOriginAction;
       return { ...model, cityOfOrigin: a.cityOfOrigin };
+    }
+
+    case ChangeColorMessage: {
+      const a = action as ChangeColorAction;
+      return { ...model, color: a.color };
     }
   }
   return model;

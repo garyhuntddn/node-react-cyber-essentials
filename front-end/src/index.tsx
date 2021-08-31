@@ -28,7 +28,8 @@ let model: Model = {
   email: "",
   isAuthenticated: false,
   enable2FA: false,
-  cityOfOrigin: ""
+  cityOfOrigin: "",
+  color: ""
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );

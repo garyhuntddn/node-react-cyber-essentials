@@ -10,14 +10,15 @@ import { SwitchPanel } from "./actions/SwitchPanel";
 import { ChangeEmail } from "./actions/ChangeEmailAction";
 import { ChangeEnable2FA } from "./actions/ChangeEnable2FAAction";
 import { ChangeCityOfOrigin } from "./actions/ChangeCityOfOriginAction";
+import { ChangeColor } from "./actions/ChangeColorAction";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, enable2FA: false, cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, enable2FA: false, color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 };
 
 describe("reducer tests", () => {
   it("should return the initial state", () => {
-    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
+    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
   });
 
   it("should update the view to ReadOnly", () => {
@@ -90,5 +91,9 @@ describe("reducer tests", () => {
 
   it("should update the city of origin to Shanghi", () => {
     expect(Reducers(createInitialModel(), ChangeCityOfOrigin("Shanghi"))).toEqual(expect.objectContaining({ cityOfOrigin: "Shanghi" }));
+  });
+
+  it("should update the color to Black", () => {
+    expect(Reducers(createInitialModel(), ChangeColor("Black"))).toEqual(expect.objectContaining({ color: "Black" }));
   });
 });
