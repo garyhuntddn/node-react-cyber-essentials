@@ -18,6 +18,7 @@ export type Model = {
   panel: PanelConstants;
   view: ViewConstants;
   group: string;
+  email: string;
   userName: string;
   password: string;
   name: string;

@@ -25,6 +25,7 @@ let model: Model = {
   userName: "",
   password: "",
   name: "", 
+  email: "",
   isAuthenticated: false,
   enable2FA: false
 };

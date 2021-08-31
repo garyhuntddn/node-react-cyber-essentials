@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { ChangeEmail } from "../actions/ChangeEmailAction";
 import { Enable2FA } from "../actions/Enable2FAAction";
 import { SwitchPanel } from "../actions/SwitchPanel";
 import { Model, PanelConstants } from "../models/Model";
@@ -9,7 +10,7 @@ const OptionsPanel = (model: Model) => {
   return (
     <div>
       <div style={{ marginBottom: "25px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.Questionnaire))}>Back</button></div>
-      <div><label>Email Address <input type="text" placeholder="johnsmith@outlook.com" /></label></div>
+      <div><label>Email Address <input type="text" placeholder="johnsmith@outlook.com" onChange={ ( e ) => { dispatch( ChangeEmail( e.currentTarget.value ) ); } } value={ model.email }/></label></div>
       <div>Enable 2FA</div>
       <div>
         <label>
