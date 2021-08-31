@@ -15,9 +15,10 @@ import { SignInResultAction, SignInResultMessage } from "../actions/SignInResult
 import { SwitchPanelAction, SwitchPanelMessage } from "../actions/SwitchPanel";
 import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAction";
 import { Enable2FAAction, Enable2FAMessage } from "../actions/Enable2FAAction";
+import { ChangeEmailAction, ChangeEmailMessage } from "../actions/ChangeEmailAction";
 
-const reducers = ( model: Model, action: Action ): Model => {
-  switch ( action.type ) {
+const reducers = (model: Model, action: Action): Model => {
+  switch (action.type) {
     case ChangeViewMessage: {
       const a = action as ChangeViewAction;
       return { ...model, view: a.view };
@@ -25,35 +26,35 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case UpdateAnswerMessage: {
       const a = action as UpdateAnswerAction;
-      return { ...model, answers: { ...model.answers, [ a.id ]: a.value } };
+      return { ...model, answers: { ...model.answers, [a.id]: a.value } };
     }
 
     case UpdateRowAnswerMessage: {
       const a = action as UpdateRowAnswerAction;
-      const existingArray: Array<Hardware | Software | Network> = ( model.answers[ a.id ] as Array<Hardware | Software | Network> ) || [];
-      const newArray = [ ...existingArray ];
-      newArray[ a.index ] = { ...a.value };
-      const newAnswers = { ...model.answers, [ a.id ]: newArray as Answer };
+      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
+      const newArray = [...existingArray];
+      newArray[a.index] = { ...a.value };
+      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
     }
 
     case DeleteRowAnswerMessage: {
       const a = action as DeleteRowAnswerAction;
-      const existingArray: Array<Hardware | Software | Network> = ( model.answers[ a.id ] as Array<Hardware | Software | Network> ) || [];
-      const newArray = [ ...existingArray ];
-      newArray.splice( a.index, 1 );
-      const newAnswers = { ...model.answers, [ a.id ]: newArray as Answer };
+      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
+      const newArray = [...existingArray];
+      newArray.splice(a.index, 1);
+      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
     }
 
     case AddRowAnswerMessage: {
       const a = action as AddRowAnswerAction;
-      const existingArray: Array<Hardware | Software | Network> = ( model.answers[ a.id ] as Array<Hardware | Software | Network> ) || [];
-      const newArray = [ ...existingArray ];
-      newArray.push( a.value );
-      const newAnswers = { ...model.answers, [ a.id ]: newArray as Answer };
+      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
+      const newArray = [...existingArray];
+      newArray.push(a.value);
+      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
     }
@@ -76,7 +77,7 @@ const reducers = ( model: Model, action: Action ): Model => {
     case SwitchPanelMessage: {
       const a = action as SwitchPanelAction;
 
-      if ( a.panel === PanelConstants.Login ) {
+      if (a.panel === PanelConstants.Login) {
         return { ...model, panel: a.panel, password: "", isAuthenticated: false, answers: {} };
       }
 
@@ -85,16 +86,20 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case CreateGroupMessage: {
       const a = action as CreateGroupAction;
-      return { ...model, };
+      return { ...model };
     }
 
     case Enable2FAMessage: {
       const a = action as Enable2FAAction;
-      return { ...model, enable2FA: a.enable2FA  };
+      return { ...model, enable2FA: a.enable2FA };
+    }
+
+    case ChangeEmailMessage: {
+      const a = action as ChangeEmailAction;
+      return { ...model, email: a.email };
     }
   }
   return model;
-  
 };
 
 export default reducers;
