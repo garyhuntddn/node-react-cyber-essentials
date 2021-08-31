@@ -14,8 +14,8 @@ import { Software } from "../models/Software";
 import { SignInResultAction, SignInResultMessage } from "../actions/SignInResultAction";
 import { SwitchPanelAction, SwitchPanelMessage } from "../actions/SwitchPanel";
 import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAction";
-import { Enable2FAAction, Enable2FAMessage } from "../actions/Enable2FAAction";
 import { ChangeEmailAction, ChangeEmailMessage } from "../actions/ChangeEmailAction";
+import { ChangeEnable2FAAction, ChangeEnable2FAMessage } from "../actions/ChangeEnable2FAAction";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -89,8 +89,8 @@ const reducers = (model: Model, action: Action): Model => {
       return { ...model };
     }
 
-    case Enable2FAMessage: {
-      const a = action as Enable2FAAction;
+    case ChangeEnable2FAMessage: {
+      const a = action as ChangeEnable2FAAction;
       return { ...model, enable2FA: a.enable2FA };
     }
 
