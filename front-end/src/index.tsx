@@ -25,7 +25,8 @@ let model: Model = {
   userName: "",
   password: "",
   name: "", 
-  isAuthenticated: false
+  isAuthenticated: false,
+  enable2FA: false
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );

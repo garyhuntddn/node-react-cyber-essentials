@@ -22,4 +22,5 @@ export type Model = {
   password: string;
   name: string;
   isAuthenticated: boolean;
+  enable2FA: boolean;
 };

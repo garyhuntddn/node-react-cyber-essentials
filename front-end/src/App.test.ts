@@ -7,14 +7,15 @@ import { PanelConstants, ViewConstants } from "./models/Model";
 import Reducers from "./reducers/Reducers";
 import { SignInResult } from "./actions/SignInResultAction";
 import { SwitchPanel } from "./actions/SwitchPanel";
+import { Enable2FA } from "./actions/Enable2FAAction";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, enable2FA: false, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 };
 
 describe("reducer tests", () => {
   it("should return the initial state", () => {
-    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
+    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
   });
 
   it("should update the view to ReadOnly", () => {
@@ -71,5 +72,13 @@ describe("reducer tests", () => {
 
   it("should set authentication to false and remove password", () => {
     expect(Reducers({ ...createInitialModel(), userName: "jax", password: "123", isAuthenticated: true, answers: { A: "" } }, SwitchPanel(PanelConstants.Login))).toEqual(expect.objectContaining({ isAuthenticated: false, password: "", answers: {} }));
+  });
+
+  it("should update the enable 2FA to true", () => {
+    expect(Reducers(createInitialModel(), Enable2FA(true))).toEqual(expect.objectContaining({ enable2FA: true }));
+  });
+
+  it("should update the enable 2FA to false", () => {
+    expect(Reducers(createInitialModel(), Enable2FA(false))).toEqual(expect.objectContaining({ enable2FA: false }));
   });
 });
