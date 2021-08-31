@@ -29,11 +29,11 @@ const OptionsPanel = (model: Model) => {
       <div style={{ marginBottom: "25px" }}>
         <label htmlFor="None">City of Origin </label>
         <select name="numbers" value={model.cityOfOrigin} onChange={(e) => { dispatch(ChangeCityOfOrigin(e.currentTarget.value)); }}>
-          <option value="1">London</option>
-          <option value="2">New York</option>
-          <option value="3">Shanghi</option>
-          <option value="4">Tokyo</option>
-          <option value="5">Los Angeles</option>
+          <option value="London">London</option>
+          <option value="New York">New York</option>
+          <option value="Shanghi">Shanghi</option>
+          <option value="Tokyo">Tokyo</option>
+          <option value="Los Angeles">Los Angeles</option>
         </select>
       </div>
 
