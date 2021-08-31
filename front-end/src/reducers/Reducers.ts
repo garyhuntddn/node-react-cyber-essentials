@@ -16,6 +16,7 @@ import { SwitchPanelAction, SwitchPanelMessage } from "../actions/SwitchPanel";
 import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAction";
 import { ChangeEmailAction, ChangeEmailMessage } from "../actions/ChangeEmailAction";
 import { ChangeEnable2FAAction, ChangeEnable2FAMessage } from "../actions/ChangeEnable2FAAction";
+import { ChangeCityOfOriginAction, ChangeCityOfOriginMessage } from "../actions/ChangeCityOfOriginAction";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -97,6 +98,11 @@ const reducers = (model: Model, action: Action): Model => {
     case ChangeEmailMessage: {
       const a = action as ChangeEmailAction;
       return { ...model, email: a.email };
+    }
+
+    case ChangeCityOfOriginMessage: {
+      const a = action as ChangeCityOfOriginAction;
+      return { ...model, cityOfOrigin: a.cityOfOrigin };
     }
   }
   return model;

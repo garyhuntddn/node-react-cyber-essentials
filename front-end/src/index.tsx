@@ -27,7 +27,8 @@ let model: Model = {
   name: "", 
   email: "",
   isAuthenticated: false,
-  enable2FA: false
+  enable2FA: false,
+  cityOfOrigin: ""
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );

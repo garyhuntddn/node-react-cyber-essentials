@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { ChangeCityOfOrigin } from "../actions/ChangeCityOfOriginAction";
 import { ChangeEmail } from "../actions/ChangeEmailAction";
 import { ChangeEnable2FA } from "../actions/ChangeEnable2FAAction";
 import { SwitchPanel } from "../actions/SwitchPanel";
@@ -25,7 +26,7 @@ const OptionsPanel = (model: Model) => {
 
       <div><label htmlFor="None">City of Origin</label></div>
 
-      <select name="numbers" id="numbers">
+      <select name="numbers" value={model.cityOfOrigin} onChange={(e) => { dispatch(ChangeCityOfOrigin(e.currentTarget.value)); }}>
         <option value="1">London</option>
         <option value="2">New York</option>
         <option value="3">Shanghi</option>

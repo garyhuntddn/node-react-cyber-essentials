@@ -24,4 +24,5 @@ export type Model = {
   name: string;
   isAuthenticated: boolean;
   enable2FA: boolean;
+  cityOfOrigin: string;
 };

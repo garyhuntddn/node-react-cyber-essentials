@@ -9,14 +9,16 @@ import { SignInResult } from "./actions/SignInResultAction";
 import { SwitchPanel } from "./actions/SwitchPanel";
 import { ChangeEmail } from "./actions/ChangeEmailAction";
 import { ChangeEnable2FA } from "./actions/ChangeEnable2FAAction";
+import { ChangeDropDown } from "./actions/ChangeDropdownAction";
+import { ChangeCityOfOrigin } from "./actions/ChangeCityOfOriginAction";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, enable2FA: false, email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, enable2FA: false, cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 };
 
 describe("reducer tests", () => {
   it("should return the initial state", () => {
-    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
+    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
   });
 
   it("should update the view to ReadOnly", () => {
@@ -85,5 +87,9 @@ describe("reducer tests", () => {
 
   it("should set the email to johnsmith@outlook.com", () => {
     expect(Reducers(createInitialModel(), ChangeEmail("johnsmith@outlook.com"))).toEqual(expect.objectContaining({ email: "johnsmith@outlook.com" }));
+  });
+
+  it("should update the city of origin to Shanghi", () => {
+    expect(Reducers(createInitialModel(), ChangeCityOfOrigin("Shanghi"))).toEqual(expect.objectContaining({ cityOfOrigin: "Shanghi" }));
   });
 });
