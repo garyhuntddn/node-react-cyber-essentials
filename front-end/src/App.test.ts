@@ -9,7 +9,6 @@ import { SignInResult } from "./actions/SignInResultAction";
 import { SwitchPanel } from "./actions/SwitchPanel";
 import { ChangeEmail } from "./actions/ChangeEmailAction";
 import { ChangeEnable2FA } from "./actions/ChangeEnable2FAAction";
-import { ChangeDropDown } from "./actions/ChangeDropdownAction";
 import { ChangeCityOfOrigin } from "./actions/ChangeCityOfOriginAction";
 
 const createInitialModel = () => {
