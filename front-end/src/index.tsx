@@ -37,7 +37,7 @@ let model: Model = {
   address1: "",
   address2: "",
   postcode: "",
-  automobile: ""
+  automobiles: []
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );

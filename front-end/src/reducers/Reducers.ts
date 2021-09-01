@@ -19,7 +19,7 @@ import { ChangeEnable2FAAction, ChangeEnable2FAMessage } from "../actions/Change
 import { ChangeCityOfOriginAction, ChangeCityOfOriginMessage } from "../actions/ChangeCityOfOriginAction";
 import { ChangeColorAction, ChangeColorMessage } from "../actions/ChangeColorAction";
 import { ChangeMobileNumberAction, ChangeMobileNumberMessage } from "../actions/ChangeMobileNumber";
-import {ChangeEmploymentStatusMessage, ChangeEmploymentStatusAction } from "../actions/ChangeEmploymentStatus";
+import { ChangeEmploymentStatusMessage, ChangeEmploymentStatusAction } from "../actions/ChangeEmploymentStatus";
 import { ChangeAdress2, ChangeAdress2Action, ChangeAdress2Message } from "../actions/ChangeAddress2";
 import { ChangeAdress1Action, ChangeAdress1Message } from "../actions/ChangeAddress1";
 import { ChangePostcodeAction, ChangePostcodeMessage } from "../actions/ChangePostcode";
@@ -156,7 +156,13 @@ const reducers = (model: Model, action: Action): Model => {
 
     case ToggleAutomobileMessage: {
       const a = action as ToggleAutomobileAction;
-      return { ...model, automobile: a.automobile };
+      if (model.automobiles.indexOf(a.automobile) > -1) {
+        const x = [...model.automobiles];
+        x.splice(model.automobiles.indexOf(a.automobile), 1);
+        return { ...model, automobiles: x };
+      } else {
+        return { ...model, automobiles: [a.automobile, ...model.automobiles] };
+      }
     }
   }
   return model;

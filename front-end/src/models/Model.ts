@@ -33,5 +33,5 @@ export type Model = {
   address1: string;
   address2: string;
   postcode: string;
-  automobile: string;
+  automobiles: Array<string>;
 };

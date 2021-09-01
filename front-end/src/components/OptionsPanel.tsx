@@ -92,17 +92,17 @@ const OptionsPanel = (model: Model) => {
       </div>
       <div style={{ marginBottom: "25px" }}>
 
-      <div>What do you travel to work with </div>
+        <div>What do you travel to work with </div>
         <label>
-          <input type="checkbox" checked={model.automobile === "vehicle1"} name="vehicle1" value="Bike" onChange={() => { dispatch(ToggleAutomobile("vehicle1")); }}/>
+          <input type="checkbox" checked={model.automobiles.indexOf("vehicle1") > -1} name="vehicle1" value="Bike" onChange={() => { dispatch(ToggleAutomobile("vehicle1")); }} />
           I have a Bike
         </label>
         <label>
-          <input type="checkbox" checked={model.automobile === "vehicle2"} name="vehicle2" value="Car" onChange={() => { dispatch(ToggleAutomobile("vehicle2")); }}/>
+          <input type="checkbox" checked={model.automobiles.indexOf("vehicle2") > -1} name="vehicle2" value="Car" onChange={() => { dispatch(ToggleAutomobile("vehicle2")); }} />
           I have a car
         </label>
         <label>
-          <input type="checkbox" checked={model.automobile === "vehicle3"} name="vehicle3" value="Boat" onChange={() => { dispatch(ToggleAutomobile("vehicle3")); }}/>
+          <input type="checkbox" checked={model.automobiles.indexOf("vehicle3") > -1} name="vehicle3" value="Boat" onChange={() => { dispatch(ToggleAutomobile("vehicle3")); }} />
           I have a boat
         </label>
       </div>
