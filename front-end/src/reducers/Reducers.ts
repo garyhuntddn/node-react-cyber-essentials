@@ -18,6 +18,14 @@ import { ChangeEmailAction, ChangeEmailMessage } from "../actions/ChangeEmailAct
 import { ChangeEnable2FAAction, ChangeEnable2FAMessage } from "../actions/ChangeEnable2FAAction";
 import { ChangeCityOfOriginAction, ChangeCityOfOriginMessage } from "../actions/ChangeCityOfOriginAction";
 import { ChangeColorAction, ChangeColorMessage } from "../actions/ChangeColorAction";
+import { ChangeMobileNumberAction, ChangeMobileNumberMessage } from "../actions/ChangeMobileNumber";
+import {ChangeEmploymentStatusMessage, ChangeEmploymentStatusAction } from "../actions/ChangeEmploymentStatus";
+import { ChangeAdress2, ChangeAdress2Action, ChangeAdress2Message } from "../actions/ChangeAddress2";
+import { ChangeAdress1Action, ChangeAdress1Message } from "../actions/ChangeAddress1";
+import { ChangePostcodeAction, ChangePostcodeMessage } from "../actions/ChangePostcode";
+import { ChangeBackupNumberAction, ChangeBackupNumberMessage } from "../actions/ChangeBackupNumber";
+import { ChangeTownOrVillageAction, ChangeTownOrVillageMessage } from "../actions/ChangeTownOrVillageAction";
+import { ToggleAutomobileAction, ToggleAutomobileMessage } from "../actions/ToggleAutomobile";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -109,6 +117,46 @@ const reducers = (model: Model, action: Action): Model => {
     case ChangeColorMessage: {
       const a = action as ChangeColorAction;
       return { ...model, color: a.color };
+    }
+
+    case ChangeMobileNumberMessage: {
+      const a = action as ChangeMobileNumberAction;
+      return { ...model, mobileNumber: a.number };
+    }
+
+    case ChangeEmploymentStatusMessage: {
+      const a = action as ChangeEmploymentStatusAction;
+      return { ...model, employmentStatus: a.employmentStatus };
+    }
+
+    case ChangeAdress2Message: {
+      const a = action as ChangeAdress2Action;
+      return { ...model, address2: a.address2 };
+    }
+
+    case ChangeAdress1Message: {
+      const a = action as ChangeAdress1Action;
+      return { ...model, address1: a.address1 };
+    }
+
+    case ChangePostcodeMessage: {
+      const a = action as ChangePostcodeAction;
+      return { ...model, postcode: a.postcode };
+    }
+
+    case ChangeBackupNumberMessage: {
+      const a = action as ChangeBackupNumberAction;
+      return { ...model, backupNumber: a.backup };
+    }
+
+    case ChangeTownOrVillageMessage: {
+      const a = action as ChangeTownOrVillageAction;
+      return { ...model, townOrVillage: a.townOrVillage };
+    }
+
+    case ToggleAutomobileMessage: {
+      const a = action as ToggleAutomobileAction;
+      return { ...model, automobile: a.automobile };
     }
   }
   return model;

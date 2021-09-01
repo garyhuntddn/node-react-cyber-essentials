@@ -29,7 +29,15 @@ let model: Model = {
   isAuthenticated: false,
   enable2FA: false,
   cityOfOrigin: "",
-  color: ""
+  townOrVillage: "",
+  color: "",
+  mobileNumber: "",
+  backupNumber: "",
+  employmentStatus: "",
+  address1: "",
+  address2: "",
+  postcode: "",
+  automobile: ""
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );

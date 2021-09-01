@@ -11,14 +11,22 @@ import { ChangeEmail } from "./actions/ChangeEmailAction";
 import { ChangeEnable2FA } from "./actions/ChangeEnable2FAAction";
 import { ChangeCityOfOrigin } from "./actions/ChangeCityOfOriginAction";
 import { ChangeColor } from "./actions/ChangeColorAction";
+import { ChangeMobileNumber } from "./actions/ChangeMobileNumber";
+import { ChangeEmploymentStatus } from "./actions/ChangeEmploymentStatus";
+import { ChangeAdress1 } from "./actions/ChangeAddress1";
+import { ChangeAdress2 } from "./actions/ChangeAddress2";
+import { ChangePostcode } from "./actions/ChangePostcode";
+import { ChangeBackupNumber } from "./actions/ChangeBackupNumber";
+import { ChangeTownOrVillage } from "./actions/ChangeTownOrVillageAction";
+import { ToggleAutomobile } from "./actions/ToggleAutomobile";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, enable2FA: false, color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, enable2FA: false, automobile: "", townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 };
 
 describe("reducer tests", () => {
   it("should return the initial state", () => {
-    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
+    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, automobile: "", townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
   });
 
   it("should update the view to ReadOnly", () => {
@@ -95,5 +103,37 @@ describe("reducer tests", () => {
 
   it("should update the color to Black", () => {
     expect(Reducers(createInitialModel(), ChangeColor("Black"))).toEqual(expect.objectContaining({ color: "Black" }));
+  });
+
+  it("should set the number to 123456789", () => {
+    expect(Reducers(createInitialModel(), ChangeMobileNumber("123456789"))).toEqual(expect.objectContaining({ mobileNumber: "123456789" }));
+  });
+
+  it("should update the employment status to Full-time", () => {
+    expect(Reducers(createInitialModel(), ChangeEmploymentStatus("Full-time"))).toEqual(expect.objectContaining({ employmentStatus: "Full-time" }));
+  });
+
+  it("should set the address1 to 17 wallaberoad", () => {
+    expect(Reducers(createInitialModel(), ChangeAdress1("17 wallaberoad"))).toEqual(expect.objectContaining({ address1: "17 wallaberoad" }));
+  });
+
+  it("should set the address1 to 27 wallaberoad", () => {
+    expect(Reducers(createInitialModel(), ChangeAdress2("27 wallaberoad"))).toEqual(expect.objectContaining({ address2: "27 wallaberoad" }));
+  });
+
+  it("should set the postcode to CF64CRF", () => {
+    expect(Reducers(createInitialModel(), ChangePostcode("CF64CRF"))).toEqual(expect.objectContaining({ postcode: "CF64CRF" }));
+  });
+
+  it("should set the backup number to 345678910", () => {
+    expect(Reducers(createInitialModel(), ChangeBackupNumber("345678910"))).toEqual(expect.objectContaining({ backupNumber: "345678910" }));
+  });
+
+  it("should update the town or village to Penarth", () => {
+    expect(Reducers(createInitialModel(), ChangeTownOrVillage("Penarth"))).toEqual(expect.objectContaining({ townOrVillage: "Penarth" }));
+  });
+
+  it("should update the automobile to I have a car", () => {
+    expect(Reducers(createInitialModel(), ToggleAutomobile("Penarth"))).toEqual(expect.objectContaining({ automobile: "Penarth" }));
   });
 });

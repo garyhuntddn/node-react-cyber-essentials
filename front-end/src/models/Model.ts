@@ -25,5 +25,13 @@ export type Model = {
   isAuthenticated: boolean;
   enable2FA: boolean;
   cityOfOrigin: string;
+  townOrVillage: string;
   color: string;
+  mobileNumber: string;
+  backupNumber: string;
+  employmentStatus: string;
+  address1: string;
+  address2: string;
+  postcode: string;
+  automobile: string;
 };
