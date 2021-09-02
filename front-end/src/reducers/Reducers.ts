@@ -27,6 +27,7 @@ import { ChangeBackupNumberAction, ChangeBackupNumberMessage } from "../actions/
 import { ChangeTownOrVillageAction, ChangeTownOrVillageMessage } from "../actions/ChangeTownOrVillageAction";
 import { ToggleAutomobileAction, ToggleAutomobileMessage } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethodAction, TogglePaymentMethodMessage } from "../actions/TogglePaymentMethod";
+import { ChangeSiteReviewAction, ChangeSiteReviewMessage } from "../actions/ChangeSiteReview";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -175,6 +176,11 @@ const reducers = (model: Model, action: Action): Model => {
       } else {
         return { ...model, paymentMethods: [a.payment, ...model.paymentMethods] };
       }
+    }
+
+    case ChangeSiteReviewMessage: {
+      const a = action as ChangeSiteReviewAction;
+      return { ...model, siteReview: a.siteReview };
     }
   }
   return model;

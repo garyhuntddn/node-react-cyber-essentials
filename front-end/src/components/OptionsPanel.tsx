@@ -9,6 +9,7 @@ import { ChangeEmploymentStatus } from "../actions/ChangeEmploymentStatus";
 import { ChangeEnable2FA } from "../actions/ChangeEnable2FAAction";
 import { ChangeMobileNumber } from "../actions/ChangeMobileNumber";
 import { ChangePostcode } from "../actions/ChangePostcode";
+import { ChangeSiteReview } from "../actions/ChangeSiteReview";
 import { ChangeTownOrVillage } from "../actions/ChangeTownOrVillageAction";
 import { SwitchPanel } from "../actions/SwitchPanel";
 import { ToggleAutomobile } from "../actions/ToggleAutomobile";
@@ -48,6 +49,7 @@ const OptionsPanel = (model: Model) => {
           <option value="Los Angeles">Los Angeles</option>
         </select>
       </div>
+
       <div style={{ marginBottom: "25px" }}><label>Town/ village <input type="text" placeholder="Penarth" onChange={(e) => { dispatch(ChangeTownOrVillage(e.currentTarget.value)); }} value={model.townOrVillage} /></label></div>
 
       <div style={{ marginBottom: "25px" }}>
@@ -69,8 +71,10 @@ const OptionsPanel = (model: Model) => {
           Green
         </label>
       </div>
-      <div style={{ marginBottom: "25px" }}><label>Mobile Number <input type="number" onChange={(e) => { dispatch(ChangeMobileNumber(e.currentTarget.value)); }} value={model.mobileNumber} /></label></div>
-      <div style={{ marginBottom: "25px" }}><label>Backup Number <input type="number" onChange={(e) => { dispatch(ChangeBackupNumber(e.currentTarget.value)); }} value={model.backupNumber} /></label></div>
+
+      <div style={{ marginBottom: "25px" }}><label>Mobile Number <input type="tel" onChange={(e) => { dispatch(ChangeMobileNumber(e.currentTarget.value)); }} value={model.mobileNumber} /></label></div>
+
+      <div style={{ marginBottom: "25px" }}><label>Backup Number <input type="tel" onChange={(e) => { dispatch(ChangeBackupNumber(e.currentTarget.value)); }} value={model.backupNumber} /></label></div>
 
       <div style={{ marginBottom: "25px" }}>
         <div>Employment status </div>
@@ -91,8 +95,8 @@ const OptionsPanel = (model: Model) => {
           Unemployed
         </label>
       </div>
-      <div style={{ marginBottom: "25px" }}>
 
+      <div style={{ marginBottom: "25px" }}>
         <div>What do you travel to work with </div>
         <label>
           <input type="checkbox" checked={model.automobiles.indexOf("vehicle1") > -1} name="vehicle1" value="Bike" onChange={() => { dispatch(ToggleAutomobile("vehicle1")); }} />
@@ -108,30 +112,38 @@ const OptionsPanel = (model: Model) => {
         </label>
       </div>
 
-      <div>Prefered payment method </div>
-      <select value={model.paymentMethods} name="list_box_name" size={3} multiple={true} onChange={(e) => {
-        const existing = [...model.paymentMethods];
-        const options = e.currentTarget.options;
-        for (let i = 0; i < e.currentTarget.options.length; i++) {
-          const value = options[i].value;
-          const wasSelected = existing.indexOf(value) > -1;
-          const isSelected = options[i].selected;
-          if (isSelected === wasSelected) continue;
-          dispatch(TogglePaymentMethod(value));
-        }
-      }} >
-        <option value="Visa">
-          Visa
-        </option>
-        <option value="Mastercard">
-          Mastercard
-        </option>
-        <option value="Paypal">
-          Paypal
-        </option>
-        ...
-      </select>
-    </div >
+      <div style={{ marginBottom: "25px" }}>
+        <div>Prefered payment method </div>
+        <select value={model.paymentMethods} name="list_box_name" size={3} multiple={true} onChange={(e) => {
+          const existing = [...model.paymentMethods];
+          const options = e.currentTarget.options;
+          for (let i = 0; i < e.currentTarget.options.length; i++) {
+            const value = options[i].value;
+            const wasSelected = existing.indexOf(value) > -1;
+            const isSelected = options[i].selected;
+            if (isSelected === wasSelected) continue;
+            dispatch(TogglePaymentMethod(value));
+          }
+        }} >
+          <option value="Visa">
+            Visa
+          </option>
+          <option value="Mastercard">
+            Mastercard
+          </option>
+          <option value="Paypal">
+            Paypal
+          </option>
+          ...
+        </select>
+      </div>
+
+      <div style={{ marginBottom: "25px" }}>
+        <div>Customer site review </div>
+        <textarea rows={5} cols={50} onChange={(e) => dispatch(ChangeSiteReview(e.currentTarget.value))} value={model.siteReview}/>
+      </div>
+
+    </div>
   );
 }
 
