@@ -19,14 +19,15 @@ import { ChangePostcode } from "./actions/ChangePostcode";
 import { ChangeBackupNumber } from "./actions/ChangeBackupNumber";
 import { ChangeTownOrVillage } from "./actions/ChangeTownOrVillageAction";
 import { ToggleAutomobile } from "./actions/ToggleAutomobile";
+import { TogglePaymentMethod } from "./actions/TogglePaymentMethod";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, enable2FA: false, automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, enable2FA: false, paymentMethods: [], automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 };
 
 describe("reducer tests", () => {
   it("should return the initial state", () => {
-    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
+    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, enable2FA: false, paymentMethods: [], automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
   });
 
   it("should update the view to ReadOnly", () => {
@@ -135,5 +136,9 @@ describe("reducer tests", () => {
 
   it("should update the automobile to I have a car", () => {
     expect(Reducers(createInitialModel(), ToggleAutomobile("Penarth"))).toEqual(expect.objectContaining({ automobiles: ["Penarth"] }));
+  });
+
+  it("should update the payment method to Visa", () => {
+    expect(Reducers(createInitialModel(), TogglePaymentMethod("Visa"))).toEqual(expect.objectContaining({ paymentMethods: ["Visa"] }));
   });
 });

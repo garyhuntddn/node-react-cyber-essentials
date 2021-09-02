@@ -12,6 +12,7 @@ import { ChangePostcode } from "../actions/ChangePostcode";
 import { ChangeTownOrVillage } from "../actions/ChangeTownOrVillageAction";
 import { SwitchPanel } from "../actions/SwitchPanel";
 import { ToggleAutomobile } from "../actions/ToggleAutomobile";
+import { TogglePaymentMethod } from "../actions/TogglePaymentMethod";
 import { Model, PanelConstants } from "../models/Model";
 
 const OptionsPanel = (model: Model) => {
@@ -106,7 +107,31 @@ const OptionsPanel = (model: Model) => {
           I have a boat
         </label>
       </div>
-    </div>
+
+      <div>Prefered payment method </div>
+      <select value={model.paymentMethods} name="list_box_name" size={3} multiple={true} onChange={(e) => {
+        const existing = [...model.paymentMethods];
+        const options = e.currentTarget.options;
+        for (let i = 0; i < e.currentTarget.options.length; i++) {
+          const value = options[i].value;
+          const wasSelected = existing.indexOf(value) > -1;
+          const isSelected = options[i].selected;
+          if (isSelected === wasSelected) continue;
+          dispatch(TogglePaymentMethod(value));
+        }
+      }} >
+        <option value="Visa">
+          Visa
+        </option>
+        <option value="Mastercard">
+          Mastercard
+        </option>
+        <option value="Paypal">
+          Paypal
+        </option>
+        ...
+      </select>
+    </div >
   );
 }
 

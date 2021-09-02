@@ -34,4 +34,5 @@ export type Model = {
   address2: string;
   postcode: string;
   automobiles: Array<string>;
+  paymentMethods: Array<string>;
 };

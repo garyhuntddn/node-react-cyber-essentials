@@ -26,6 +26,7 @@ import { ChangePostcodeAction, ChangePostcodeMessage } from "../actions/ChangePo
 import { ChangeBackupNumberAction, ChangeBackupNumberMessage } from "../actions/ChangeBackupNumber";
 import { ChangeTownOrVillageAction, ChangeTownOrVillageMessage } from "../actions/ChangeTownOrVillageAction";
 import { ToggleAutomobileAction, ToggleAutomobileMessage } from "../actions/ToggleAutomobile";
+import { TogglePaymentMethodAction, TogglePaymentMethodMessage } from "../actions/TogglePaymentMethod";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -162,6 +163,17 @@ const reducers = (model: Model, action: Action): Model => {
         return { ...model, automobiles: x };
       } else {
         return { ...model, automobiles: [a.automobile, ...model.automobiles] };
+      }
+    }
+
+    case TogglePaymentMethodMessage: {
+      const a = action as TogglePaymentMethodAction;
+      if (model.paymentMethods.indexOf(a.payment) > -1) {
+        const x = [...model.automobiles];
+        x.splice(model.paymentMethods.indexOf(a.payment), 1);
+        return { ...model, paymentMethods: x };
+      } else {
+        return { ...model, paymentMethods: [a.payment, ...model.paymentMethods] };
       }
     }
   }
