@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { ChangeAdress1 } from "../actions/ChangeAddress1";
 import { ChangeAdress2 } from "../actions/ChangeAddress2";
 import { ChangeBackupNumber } from "../actions/ChangeBackupNumber";
+import { ChangeBirthday } from "../actions/ChangeBirthdayAction";
 import { ChangeCityOfOrigin } from "../actions/ChangeCityOfOriginAction";
 import { ChangeColor } from "../actions/ChangeColorAction";
 import { ChangeEmail } from "../actions/ChangeEmailAction";
@@ -22,9 +23,13 @@ const OptionsPanel = (model: Model) => {
   return (
     <div>
       <div style={{ marginBottom: "25px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.Questionnaire))}>Back</button></div>
+
       <div style={{ marginBottom: "25px" }}><label>Email Address <input type="text" placeholder="johnsmith@outlook.com" onChange={(e) => { dispatch(ChangeEmail(e.currentTarget.value)); }} value={model.email} /></label></div>
+
       <div style={{ marginBottom: "25px" }}><label>Address line 1 <input type="text" placeholder="19 coswell road" onChange={(e) => { dispatch(ChangeAdress1(e.currentTarget.value)); }} value={model.address1} /></label></div>
+
       <div style={{ marginBottom: "25px" }}><label>Adress line 2 <input type="text" placeholder="27 wallabe avenue" onChange={(e) => { dispatch(ChangeAdress2(e.currentTarget.value)); }} value={model.address2} /></label></div>
+
       <div style={{ marginBottom: "25px" }}><label>Postcode <input type="text" placeholder="CN54 TUZ" onChange={(e) => { dispatch(ChangePostcode(e.currentTarget.value)); }} value={model.postcode} /></label></div>
 
       <div style={{ marginBottom: "25px" }}>
@@ -142,6 +147,8 @@ const OptionsPanel = (model: Model) => {
         <div>Customer site review </div>
         <textarea rows={5} cols={50} onChange={(e) => dispatch(ChangeSiteReview(e.currentTarget.value))} value={model.siteReview}/>
       </div>
+
+      <div style={{ marginBottom: "25px" }}><label>Birthday (optional)<input type="date"  onChange={(e) => { dispatch(ChangeBirthday(e.currentTarget.value)); }}  value={model.birthday}/></label></div>
 
     </div>
   );

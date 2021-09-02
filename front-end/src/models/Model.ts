@@ -36,4 +36,5 @@ export type Model = {
   automobiles: Array<string>;
   paymentMethods: Array<string>;
   siteReview: string;
+  birthday: string;
 };

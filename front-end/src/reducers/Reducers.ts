@@ -28,6 +28,7 @@ import { ChangeTownOrVillageAction, ChangeTownOrVillageMessage } from "../action
 import { ToggleAutomobileAction, ToggleAutomobileMessage } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethodAction, TogglePaymentMethodMessage } from "../actions/TogglePaymentMethod";
 import { ChangeSiteReviewAction, ChangeSiteReviewMessage } from "../actions/ChangeSiteReview";
+import { ChangeBirthdayAction, ChangeBirthdayMessage } from "../actions/ChangeBirthdayAction";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -181,6 +182,11 @@ const reducers = (model: Model, action: Action): Model => {
     case ChangeSiteReviewMessage: {
       const a = action as ChangeSiteReviewAction;
       return { ...model, siteReview: a.siteReview };
+    }
+
+    case ChangeBirthdayMessage: {
+      const a = action as ChangeBirthdayAction;
+      return { ...model, birthday: a.birthday };
     }
   }
   return model;

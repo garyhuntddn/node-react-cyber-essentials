@@ -38,6 +38,7 @@ let model: Model = {
   address2: "",
   postcode: "",
   siteReview: "",
+  birthday: "",
   automobiles: [],
   paymentMethods: []
 };
