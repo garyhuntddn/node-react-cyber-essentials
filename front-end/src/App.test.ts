@@ -22,14 +22,19 @@ import { ToggleAutomobile } from "./actions/ToggleAutomobile";
 import { TogglePaymentMethod } from "./actions/TogglePaymentMethod";
 import { ChangeSiteReview } from "./actions/ChangeSiteReview";
 import { ChangeBirthday } from "./actions/ChangeBirthdayAction";
+import { ChangeSubmitDate } from "./actions/ChangeSubmitDateAction";
+import { ChangeFavouriteColor } from "./actions/ChangeFavouriteColor";
+import { ChangeFavouriteMonth } from "./actions/ChangeFavouriteMonthAction";
+import { ChangeWeek } from "./actions/ChangeWeekAction";
+import { ChangeWorkingHours } from "./actions/ChangeWorkingHours";
 
 const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, enable2FA: false, birthday: "", siteReview: "", paymentMethods: [], automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
+  return { answers, view: ViewConstants.Editable, enable2FA: false, workingHours: 0, week: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false };
 };
 
 describe("reducer tests", () => {
   it("should return the initial state", () => {
-    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, birthday: "", enable2FA: false, siteReview: "", paymentMethods: [], automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
+    expect(Reducers(createInitialModel(), {} as any)).toEqual({ answers, view: ViewConstants.Editable, workingHours: 0, week: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", enable2FA: false, siteReview: "", paymentMethods: [], automobiles: [], townOrVillage: "", backupNumber: "", postcode: "", address2: "", address1: "", employmentStatus: "", mobileNumber: "", color: "", cityOfOrigin: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false });
   });
 
   it("should update the view to ReadOnly", () => {
@@ -150,5 +155,25 @@ describe("reducer tests", () => {
 
   it("should update the birthday to 17/04/2017", () => {
     expect(Reducers(createInitialModel(), ChangeBirthday("17/04/2017"))).toEqual(expect.objectContaining({ birthday: "17/04/2017" }));
+  });
+
+  it("should update the submit date to 17/04/2017 17:30", () => {
+    expect(Reducers(createInitialModel(), ChangeSubmitDate("17/04/2017 17:30"))).toEqual(expect.objectContaining({ submitDate: "17/04/2017 17:30" }));
+  });
+
+  it("should update the favourite color to Blue", () => {
+    expect(Reducers(createInitialModel(), ChangeFavouriteColor("Blue"))).toEqual(expect.objectContaining({ favouriteColor: "Blue" }));
+  });
+
+  it("should update the favourite month to January 2017", () => {
+    expect(Reducers(createInitialModel(), ChangeFavouriteMonth("January 2017"))).toEqual(expect.objectContaining({ favouriteMonth: "January 2017" }));
+  });
+
+  it("should update the week to 2", () => {
+    expect(Reducers(createInitialModel(), ChangeWeek("2"))).toEqual(expect.objectContaining({ week: "2" }));
+  });
+
+  it("should update the working hours to 15", () => {
+    expect(Reducers(createInitialModel(), ChangeWorkingHours(15))).toEqual(expect.objectContaining({ workingHours: 15 }));
   });
 });

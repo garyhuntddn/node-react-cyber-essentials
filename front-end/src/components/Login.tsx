@@ -10,7 +10,7 @@ const Login = ( model: Model ) => {
   return (
     <div>
       <div><label>Username <input type="text" placeholder="Username" onChange={ ( e ) => { dispatch( ChangeUserName( e.currentTarget.value ) ); } } value={ model.userName } /></label></div>
-      <div><label> Password <input type=" password" placeholder="Password" id="password" onChange={ e => dispatch( ChangePassword( e.currentTarget.value ) ) } value={ model.password } /></label></div>
+      <div><label> Password <input type="password" placeholder="Password" id="password" onChange={ e => dispatch( ChangePassword( e.currentTarget.value ) ) } value={ model.password } /></label></div>
       <div><button onClick={ () => dispatch( SignIn() ) }>Sign in </button></div>
     </div>
   );

@@ -8,10 +8,14 @@ import { ChangeColor } from "../actions/ChangeColorAction";
 import { ChangeEmail } from "../actions/ChangeEmailAction";
 import { ChangeEmploymentStatus } from "../actions/ChangeEmploymentStatus";
 import { ChangeEnable2FA } from "../actions/ChangeEnable2FAAction";
+import { ChangeFavouriteColor } from "../actions/ChangeFavouriteColor";
+import { ChangeFavouriteMonth } from "../actions/ChangeFavouriteMonthAction";
 import { ChangeMobileNumber } from "../actions/ChangeMobileNumber";
 import { ChangePostcode } from "../actions/ChangePostcode";
 import { ChangeSiteReview } from "../actions/ChangeSiteReview";
+import { ChangeSubmitDate } from "../actions/ChangeSubmitDateAction";
 import { ChangeTownOrVillage } from "../actions/ChangeTownOrVillageAction";
+import { ChangeWorkingHours } from "../actions/ChangeWorkingHours";
 import { SwitchPanel } from "../actions/SwitchPanel";
 import { ToggleAutomobile } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethod } from "../actions/TogglePaymentMethod";
@@ -145,11 +149,18 @@ const OptionsPanel = (model: Model) => {
 
       <div style={{ marginBottom: "25px" }}>
         <div>Customer site review </div>
-        <textarea rows={5} cols={50} onChange={(e) => dispatch(ChangeSiteReview(e.currentTarget.value))} value={model.siteReview}/>
+        <textarea rows={5} cols={50} onChange={(e) => dispatch(ChangeSiteReview(e.currentTarget.value))} value={model.siteReview} />
       </div>
 
-      <div style={{ marginBottom: "25px" }}><label>Birthday (optional)<input type="date"  onChange={(e) => { dispatch(ChangeBirthday(e.currentTarget.value)); }}  value={model.birthday}/></label></div>
+      <div style={{ marginBottom: "25px" }}><label>Birthday (optional)<input type="date" onChange={(e) => { dispatch(ChangeBirthday(e.currentTarget.value)); }} value={model.birthday} /></label></div>
 
+      <div style={{ marginBottom: "25px" }}><label>Finish date and submit time (optional)<input type="datetime-local" onChange={(e) => { dispatch(ChangeSubmitDate(e.currentTarget.value)); }} value={model.submitDate}/></label></div>
+
+      <div style={{ marginBottom: "25px" }}><label>Favourite color <input type="color" onChange={(e) => { dispatch(ChangeFavouriteColor(e.currentTarget.value)); }} value={model.favouriteColor}/></label></div>
+
+      <div style={{ marginBottom: "25px" }}><label>Favourite month <input type="month" onChange={(e) => { dispatch(ChangeFavouriteMonth(e.currentTarget.value)); }} value={model.favouriteMonth}/></label></div>
+
+      <div style={{ marginBottom: "25px" }}><label>working hours <input type="range" onChange={(e) => { dispatch(ChangeWorkingHours(e.currentTarget.valueAsNumber)); }} value={model.workingHours}/></label></div>
     </div>
   );
 }

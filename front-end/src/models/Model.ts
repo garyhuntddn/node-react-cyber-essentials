@@ -37,4 +37,9 @@ export type Model = {
   paymentMethods: Array<string>;
   siteReview: string;
   birthday: string;
+  submitDate: string;
+  favouriteColor: string;
+  favouriteMonth: string;
+  week: string;
+  workingHours: number;
 };

@@ -39,6 +39,11 @@ let model: Model = {
   postcode: "",
   siteReview: "",
   birthday: "",
+  submitDate: "",
+  favouriteColor: "",
+  favouriteMonth: "",
+  week: "",
+  workingHours: 0,
   automobiles: [],
   paymentMethods: []
 };

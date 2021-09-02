@@ -29,6 +29,11 @@ import { ToggleAutomobileAction, ToggleAutomobileMessage } from "../actions/Togg
 import { TogglePaymentMethodAction, TogglePaymentMethodMessage } from "../actions/TogglePaymentMethod";
 import { ChangeSiteReviewAction, ChangeSiteReviewMessage } from "../actions/ChangeSiteReview";
 import { ChangeBirthdayAction, ChangeBirthdayMessage } from "../actions/ChangeBirthdayAction";
+import { ChangeSubmitDateAction, ChangeSubmitDateMessage } from "../actions/ChangeSubmitDateAction";
+import { ChangeFavouriteColorAction, ChangeFavouriteColorMessage } from "../actions/ChangeFavouriteColor";
+import { ChangeFavouriteMonthAction, ChangeFavouriteMonthMessage } from "../actions/ChangeFavouriteMonthAction";
+import { ChangeWeekAction, ChangeWeekMessage } from "../actions/ChangeWeekAction";
+import { ChangeWorkingHoursAction, ChangeWorkingHoursMessage } from "../actions/ChangeWorkingHours";
 
 const reducers = (model: Model, action: Action): Model => {
   switch (action.type) {
@@ -187,6 +192,31 @@ const reducers = (model: Model, action: Action): Model => {
     case ChangeBirthdayMessage: {
       const a = action as ChangeBirthdayAction;
       return { ...model, birthday: a.birthday };
+    }
+
+    case ChangeSubmitDateMessage: {
+      const a = action as ChangeSubmitDateAction;
+      return { ...model, submitDate: a.submitDate };
+    }
+
+    case ChangeFavouriteColorMessage: {
+      const a = action as ChangeFavouriteColorAction;
+      return { ...model, favouriteColor: a.favouriteColor };
+    }
+
+    case ChangeFavouriteMonthMessage: {
+      const a = action as ChangeFavouriteMonthAction;
+      return { ...model, favouriteMonth: a.favouriteMonth };
+    }
+
+    case ChangeWeekMessage: {
+      const a = action as ChangeWeekAction;
+      return { ...model, week: a.week };
+    }
+
+    case ChangeWorkingHoursMessage: {
+      const a = action as ChangeWorkingHoursAction;
+      return { ...model, workingHours: a.workingHours };
     }
   }
   return model;
