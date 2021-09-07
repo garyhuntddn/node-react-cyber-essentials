@@ -64,43 +64,43 @@ const OptionsPanel = ( model: Model ) => {
       <div style={ { marginBottom: "25px" } }>
         <div>Page Colour</div>
         <label>
-          <input type="radio" checked={ model.color === "Red" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Red" ) ); } } />
+          <input type="radio" checked={ model.options.color === "Red" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Red" ) ); } } />
           Red
         </label>
         <label>
-          <input type="radio" checked={ model.color === "Black" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Black" ) ); } } />
+          <input type="radio" checked={ model.options.color === "Black" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Black" ) ); } } />
           Black
         </label>
         <label>
-          <input type="radio" checked={ model.color === "Blue" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Blue" ) ); } } />
+          <input type="radio" checked={ model.options.color === "Blue" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Blue" ) ); } } />
           Blue
         </label>
         <label>
-          <input type="radio" checked={ model.color === "Green" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Green" ) ); } } />
+          <input type="radio" checked={ model.options.color === "Green" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Green" ) ); } } />
           Green
         </label>
       </div>
 
-      <div style={ { marginBottom: "25px" } }><label>Mobile Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeMobileNumber( e.currentTarget.value ) ); } } value={ model.mobileNumber } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Mobile Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeMobileNumber( e.currentTarget.value ) ); } } value={ model.options.mobileNumber } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Backup Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeBackupNumber( e.currentTarget.value ) ); } } value={ model.backupNumber } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Backup Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeBackupNumber( e.currentTarget.value ) ); } } value={ model.options.backupNumber } /></label></div>
 
       <div style={ { marginBottom: "25px" } }>
         <div>Employment status </div>
         <label>
-          <input type="radio" checked={ model.employmentStatus === "Full-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Full-time" ) ); } } />
+          <input type="radio" checked={ model.options.employmentStatus === "Full-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Full-time" ) ); } } />
           Full-time
         </label>
         <label>
-          <input type="radio" checked={ model.employmentStatus === "Part-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Part-time" ) ); } } />
+          <input type="radio" checked={ model.options.employmentStatus === "Part-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Part-time" ) ); } } />
           Part-time
         </label>
         <label>
-          <input type="radio" checked={ model.employmentStatus === "Temporary employement" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Temporary employment" ) ); } } />
+          <input type="radio" checked={ model.options.employmentStatus === "Temporary employement" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Temporary employment" ) ); } } />
           Temporary employment
         </label>
         <label>
-          <input type="radio" checked={ model.employmentStatus === "Unemployed" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Unemployed" ) ); } } />
+          <input type="radio" checked={ model.options.employmentStatus === "Unemployed" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Unemployed" ) ); } } />
           Unemployed
         </label>
       </div>

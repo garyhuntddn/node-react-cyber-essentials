@@ -27,10 +27,6 @@ let model: Model = {
   name: "",
   email: "",
   isAuthenticated: false,
-  color: "",
-  mobileNumber: "",
-  backupNumber: "",
-  employmentStatus: "",
   address1: "",
   address2: "",
   postcode: "",
@@ -47,7 +43,11 @@ let model: Model = {
     enable2FA: false,
     townOrVillage: "",
     cityOfOrigin: "",
-
+    color: "",
+    mobileNumber: "",
+    backupNumber: "",
+    employmentStatus: "",
+  
   }
 };
 

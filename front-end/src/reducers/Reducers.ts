@@ -124,17 +124,17 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ChangeColorMessage: {
       const a = action as ChangeColorAction;
-      return { ...model, color: a.color };
+      return { ...model, options: { ...model.options, color: a.color } };
     }
 
     case ChangeMobileNumberMessage: {
       const a = action as ChangeMobileNumberAction;
-      return { ...model, mobileNumber: a.number };
+      return { ...model, options: { ...model.options, mobileNumber: a.number } };
     }
 
     case ChangeEmploymentStatusMessage: {
       const a = action as ChangeEmploymentStatusAction;
-      return { ...model, employmentStatus: a.employmentStatus };
+      return { ...model, options: { ...model.options, employmentStatus: a.employmentStatus } };
     }
 
     case ChangeAdress2Message: {
@@ -154,7 +154,7 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ChangeBackupNumberMessage: {
       const a = action as ChangeBackupNumberAction;
-      return { ...model, backupNumber: a.backup };
+      return { ...model, options: { ...model.options, backupNumber: a.backup } };
     }
 
     case ChangeTownOrVillageMessage: {
