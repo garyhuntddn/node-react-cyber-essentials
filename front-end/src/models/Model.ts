@@ -15,6 +15,8 @@ export enum ViewConstants {
 
 export type Options= {
   enable2FA: boolean;
+  cityOfOrigin: string;
+  townOrVillage: string;
 }
 
 export type Model = {
@@ -29,8 +31,6 @@ export type Model = {
   isAuthenticated: boolean;
   options: Options;
 
-  cityOfOrigin: string;
-  townOrVillage: string;
   color: string;
   mobileNumber: string;
   backupNumber: string;

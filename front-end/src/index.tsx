@@ -27,8 +27,6 @@ let model: Model = {
   name: "",
   email: "",
   isAuthenticated: false,
-  cityOfOrigin: "",
-  townOrVillage: "",
   color: "",
   mobileNumber: "",
   backupNumber: "",
@@ -47,6 +45,8 @@ let model: Model = {
   paymentMethods: [],
   options: {
     enable2FA: false,
+    townOrVillage: "",
+    cityOfOrigin: "",
 
   }
 };

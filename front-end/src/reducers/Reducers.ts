@@ -119,7 +119,7 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ChangeCityOfOriginMessage: {
       const a = action as ChangeCityOfOriginAction;
-      return { ...model, cityOfOrigin: a.cityOfOrigin };
+      return { ...model, options: { ...model.options, cityOfOrigin: a.cityOfOrigin } };
     }
 
     case ChangeColorMessage: {
@@ -159,7 +159,7 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ChangeTownOrVillageMessage: {
       const a = action as ChangeTownOrVillageAction;
-      return { ...model, townOrVillage: a.townOrVillage };
+      return { ...model, options: { ...model.options, townOrVillage: a.townOrVillage } };
     }
 
     case ToggleAutomobileMessage: {
