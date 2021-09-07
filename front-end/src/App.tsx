@@ -26,7 +26,7 @@ const App = (model: Props) => {
         {model.panel === PanelConstants.FailedLogin && <FailedLogin />}
         {model.panel === PanelConstants.Questionnaire && <Questionnaire {...model} />}
         {model.panel === PanelConstants.CreateGroup && <CreateGroup {...model} />}
-        {model.panel === PanelConstants.OptionsPanel && <OptionsPanel {...model} />}
+        {model.panel === PanelConstants.OptionsPanel && <OptionsPanel {...model.options} />}
       </section>
     </div >
   );

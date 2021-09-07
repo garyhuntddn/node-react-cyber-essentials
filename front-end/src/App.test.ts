@@ -33,12 +33,12 @@ export type RecursivePartial<T> = {
 };
 
 const createInitialModel = (): Model => {
-  return { answers, view: ViewConstants.Editable, email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "" } };
+  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "", email: "" } };
 };
 
 describe( "reducer tests", () => {
   it( "should return the initial state", () => {
-    expect( Reducers( createInitialModel(), {} as any ) ).toEqual<Model>( { answers, view: ViewConstants.Editable, email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "" } } );
+    expect( Reducers( createInitialModel(), {} as any ) ).toEqual<Model>( { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "", email: "" } } );
   } );
 
   it( "should update the view to ReadOnly", () => {
@@ -106,7 +106,7 @@ describe( "reducer tests", () => {
   } );
 
   it( "should set the email to johnsmith@outlook.com", () => {
-    expect( Reducers( createInitialModel(), ChangeEmail( "johnsmith@outlook.com" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { email: "johnsmith@outlook.com" } ) );
+    expect( Reducers( createInitialModel(), ChangeEmail( "johnsmith@outlook.com" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { email: "johnsmith@outlook.com" } ) } ) );
   } );
 
   it( "should update the city of origin to Shanghi", () => {

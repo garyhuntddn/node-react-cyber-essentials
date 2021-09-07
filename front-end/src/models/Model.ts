@@ -14,23 +14,24 @@ export enum ViewConstants {
 }
 
 export type Options= {
-  enable2FA: boolean;
-  cityOfOrigin: string;
-  townOrVillage: string;
-  color: string;
-  mobileNumber: string;
-  backupNumber: string;
-  employmentStatus: string;
   address1: string;
   address2: string;
-  postcode: string;
   automobiles: Array<string>;
-  paymentMethods: Array<string>;
-  siteReview: string;
+  backupNumber: string;
   birthday: string;
-  submitDate: string;
+  color: string;
+  cityOfOrigin: string;
+  email: string;
+  employmentStatus: string;
+  enable2FA: boolean;
   favouriteColor: string;
   favouriteMonth: string;
+  mobileNumber: string;
+  paymentMethods: Array<string>;
+  postcode: string;
+  siteReview: string;
+  submitDate: string;
+  townOrVillage: string;
   week: string;
   workingHours: number;
 }
@@ -40,7 +41,6 @@ export type Model = {
   panel: PanelConstants;
   view: ViewConstants;
   group: string;
-  email: string;
   userName: string;
   password: string;
   name: string;

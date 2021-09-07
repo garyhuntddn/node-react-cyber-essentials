@@ -114,7 +114,7 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ChangeEmailMessage: {
       const a = action as ChangeEmailAction;
-      return { ...model, email: a.email };
+      return { ...model, options: { ...model.options, email: a.email } };
     }
 
     case ChangeCityOfOriginMessage: {
