@@ -21,36 +21,36 @@ import { ToggleAutomobile } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethod } from "../actions/TogglePaymentMethod";
 import { Options, PanelConstants } from "../models/Model";
 
-const OptionsPanel = ( optionsModel: Options ) => {
+const OptionsPanel = ( options: Options ) => {
   const dispatch = useDispatch();
 
   return (
     <div>
       <div style={ { marginBottom: "25px" } }><button onClick={ () => dispatch( SwitchPanel( PanelConstants.Questionnaire ) ) }>Back</button></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Email Address <input type="text" placeholder="johnsmith@outlook.com" onChange={ ( e ) => { dispatch( ChangeEmail( e.currentTarget.value ) ); } } value={ optionsModel.email } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Email Address <input type="text" placeholder="johnsmith@outlook.com" onChange={ ( e ) => { dispatch( ChangeEmail( e.currentTarget.value ) ); } } value={ options.email } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Address line 1 <input type="text" placeholder="19 coswell road" onChange={ ( e ) => { dispatch( ChangeAdress1( e.currentTarget.value ) ); } } value={ optionsModel.address1 } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Address line 1 <input type="text" placeholder="19 coswell road" onChange={ ( e ) => { dispatch( ChangeAdress1( e.currentTarget.value ) ); } } value={ options.address1 } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Adress line 2 <input type="text" placeholder="27 wallabe avenue" onChange={ ( e ) => { dispatch( ChangeAdress2( e.currentTarget.value ) ); } } value={ optionsModel.address2 } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Adress line 2 <input type="text" placeholder="27 wallabe avenue" onChange={ ( e ) => { dispatch( ChangeAdress2( e.currentTarget.value ) ); } } value={ options.address2 } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Postcode <input type="text" placeholder="CN54 TUZ" onChange={ ( e ) => { dispatch( ChangePostcode( e.currentTarget.value ) ); } } value={ optionsModel.postcode } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Postcode <input type="text" placeholder="CN54 TUZ" onChange={ ( e ) => { dispatch( ChangePostcode( e.currentTarget.value ) ); } } value={ options.postcode } /></label></div>
 
       <div style={ { marginBottom: "25px" } }>
         <div>Enable 2FA</div>
         <label>
-          <input type="radio" checked={ optionsModel.enable2FA === true } radioGroup="YesNo" onChange={ () => { dispatch( ChangeEnable2FA( true ) ); } } />
+          <input type="radio" checked={ options.enable2FA === true } radioGroup="YesNo" onChange={ () => { dispatch( ChangeEnable2FA( true ) ); } } />
           Yes
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.enable2FA === false } radioGroup="YesNo" onChange={ () => { dispatch( ChangeEnable2FA( false ) ); } } />
+          <input type="radio" checked={ options.enable2FA === false } radioGroup="YesNo" onChange={ () => { dispatch( ChangeEnable2FA( false ) ); } } />
           No
         </label>
       </div>
 
       <div style={ { marginBottom: "25px" } }>
         <label htmlFor="None">City of Origin </label>
-        <select name="numbers" value={ optionsModel.cityOfOrigin } onChange={ ( e ) => { dispatch( ChangeCityOfOrigin( e.currentTarget.value ) ); } }>
+        <select name="numbers" value={ options.cityOfOrigin } onChange={ ( e ) => { dispatch( ChangeCityOfOrigin( e.currentTarget.value ) ); } }>
           <option value="London">London</option>
           <option value="New York">New York</option>
           <option value="Shanghi">Shanghi</option>
@@ -59,48 +59,48 @@ const OptionsPanel = ( optionsModel: Options ) => {
         </select>
       </div>
 
-      <div style={ { marginBottom: "25px" } }><label>Town/ village <input type="text" placeholder="Penarth" onChange={ ( e ) => { dispatch( ChangeTownOrVillage( e.currentTarget.value ) ); } } value={ optionsModel.townOrVillage } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Town/ village <input type="text" placeholder="Penarth" onChange={ ( e ) => { dispatch( ChangeTownOrVillage( e.currentTarget.value ) ); } } value={ options.townOrVillage } /></label></div>
 
       <div style={ { marginBottom: "25px" } }>
         <div>Page Colour</div>
         <label>
-          <input type="radio" checked={ optionsModel.color === "Red" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Red" ) ); } } />
+          <input type="radio" checked={ options.color === "Red" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Red" ) ); } } />
           Red
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.color === "Black" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Black" ) ); } } />
+          <input type="radio" checked={ options.color === "Black" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Black" ) ); } } />
           Black
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.color === "Blue" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Blue" ) ); } } />
+          <input type="radio" checked={ options.color === "Blue" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Blue" ) ); } } />
           Blue
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.color === "Green" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Green" ) ); } } />
+          <input type="radio" checked={ options.color === "Green" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Green" ) ); } } />
           Green
         </label>
       </div>
 
-      <div style={ { marginBottom: "25px" } }><label>Mobile Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeMobileNumber( e.currentTarget.value ) ); } } value={ optionsModel.mobileNumber } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Mobile Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeMobileNumber( e.currentTarget.value ) ); } } value={ options.mobileNumber } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Backup Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeBackupNumber( e.currentTarget.value ) ); } } value={ optionsModel.backupNumber } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Backup Number <input type="tel" onChange={ ( e ) => { dispatch( ChangeBackupNumber( e.currentTarget.value ) ); } } value={ options.backupNumber } /></label></div>
 
       <div style={ { marginBottom: "25px" } }>
         <div>Employment status </div>
         <label>
-          <input type="radio" checked={ optionsModel.employmentStatus === "Full-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Full-time" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === "Full-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Full-time" ) ); } } />
           Full-time
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.employmentStatus === "Part-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Part-time" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === "Part-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Part-time" ) ); } } />
           Part-time
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.employmentStatus === "Temporary employement" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Temporary employment" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === "Temporary employement" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Temporary employment" ) ); } } />
           Temporary employment
         </label>
         <label>
-          <input type="radio" checked={ optionsModel.employmentStatus === "Unemployed" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Unemployed" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === "Unemployed" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Unemployed" ) ); } } />
           Unemployed
         </label>
       </div>
@@ -108,23 +108,23 @@ const OptionsPanel = ( optionsModel: Options ) => {
       <div style={ { marginBottom: "25px" } }>
         <div>What do you travel to work with </div>
         <label>
-          <input type="checkbox" checked={ optionsModel.automobiles.indexOf( "vehicle1" ) > -1 } name="vehicle1" value="Bike" onChange={ () => { dispatch( ToggleAutomobile( "vehicle1" ) ); } } />
+          <input type="checkbox" checked={ options.automobiles.indexOf( "vehicle1" ) > -1 } name="vehicle1" value="Bike" onChange={ () => { dispatch( ToggleAutomobile( "vehicle1" ) ); } } />
           I have a Bike
         </label>
         <label>
-          <input type="checkbox" checked={ optionsModel.automobiles.indexOf( "vehicle2" ) > -1 } name="vehicle2" value="Car" onChange={ () => { dispatch( ToggleAutomobile( "vehicle2" ) ); } } />
+          <input type="checkbox" checked={ options.automobiles.indexOf( "vehicle2" ) > -1 } name="vehicle2" value="Car" onChange={ () => { dispatch( ToggleAutomobile( "vehicle2" ) ); } } />
           I have a car
         </label>
         <label>
-          <input type="checkbox" checked={ optionsModel.automobiles.indexOf( "vehicle3" ) > -1 } name="vehicle3" value="Boat" onChange={ () => { dispatch( ToggleAutomobile( "vehicle3" ) ); } } />
+          <input type="checkbox" checked={ options.automobiles.indexOf( "vehicle3" ) > -1 } name="vehicle3" value="Boat" onChange={ () => { dispatch( ToggleAutomobile( "vehicle3" ) ); } } />
           I have a boat
         </label>
       </div>
 
       <div style={ { marginBottom: "25px" } }>
         <div>Prefered payment method </div>
-        <select value={ optionsModel.paymentMethods } name="list_box_name" size={ 3 } multiple={ true } onChange={ ( e ) => {
-          const existing = [ ...optionsModel.paymentMethods ];
+        <select value={ options.paymentMethods } name="list_box_name" size={ 3 } multiple={ true } onChange={ ( e ) => {
+          const existing = [ ...options.paymentMethods ];
           const updatedOptions = e.currentTarget.options;
           for ( let i = 0; i < e.currentTarget.options.length; i++ ) {
             const value = updatedOptions[ i ].value;
@@ -134,33 +134,26 @@ const OptionsPanel = ( optionsModel: Options ) => {
             dispatch( TogglePaymentMethod( value ) );
           }
         } } >
-          <option value="Visa">
-            Visa
-          </option>
-          <option value="Mastercard">
-            Mastercard
-          </option>
-          <option value="Paypal">
-            Paypal
-          </option>
-          ...
+          <option value="Visa">Visa</option>
+          <option value="Mastercard">Mastercard</option>
+          <option value="Paypal">Paypal</option>
         </select>
       </div>
 
       <div style={ { marginBottom: "25px" } }>
         <div>Customer site review </div>
-        <textarea rows={ 5 } cols={ 50 } onChange={ ( e ) => dispatch( ChangeSiteReview( e.currentTarget.value ) ) } value={ optionsModel.siteReview } />
+        <textarea rows={ 5 } cols={ 50 } onChange={ ( e ) => dispatch( ChangeSiteReview( e.currentTarget.value ) ) } value={ options.siteReview } />
       </div>
 
-      <div style={ { marginBottom: "25px" } }><label>Birthday (optional)<input type="date" onChange={ ( e ) => { dispatch( ChangeBirthday( e.currentTarget.value ) ); } } value={ optionsModel.birthday } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Birthday (optional)<input type="date" onChange={ ( e ) => { dispatch( ChangeBirthday( e.currentTarget.value ) ); } } value={ options.birthday } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Finish date and submit time (optional)<input type="datetime-local" onChange={ ( e ) => { dispatch( ChangeSubmitDate( e.currentTarget.value ) ); } } value={ optionsModel.submitDate } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Finish date and submit time (optional)<input type="datetime-local" onChange={ ( e ) => { dispatch( ChangeSubmitDate( e.currentTarget.value ) ); } } value={ options.submitDate } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Favourite color <input type="color" onChange={ ( e ) => { dispatch( ChangeFavouriteColor( e.currentTarget.value ) ); } } value={ optionsModel.favouriteColor } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Favourite color <input type="color" onChange={ ( e ) => { dispatch( ChangeFavouriteColor( e.currentTarget.value ) ); } } value={ options.favouriteColor } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>Favourite month <input type="month" onChange={ ( e ) => { dispatch( ChangeFavouriteMonth( e.currentTarget.value ) ); } } value={ optionsModel.favouriteMonth } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>Favourite month <input type="month" onChange={ ( e ) => { dispatch( ChangeFavouriteMonth( e.currentTarget.value ) ); } } value={ options.favouriteMonth } /></label></div>
 
-      <div style={ { marginBottom: "25px" } }><label>working hours <input type="range" onChange={ ( e ) => { dispatch( ChangeWorkingHours( e.currentTarget.valueAsNumber ) ); } } value={ optionsModel.workingHours } /></label></div>
+      <div style={ { marginBottom: "25px" } }><label>working hours <input type="range" onChange={ ( e ) => { dispatch( ChangeWorkingHours( e.currentTarget.valueAsNumber ) ); } } value={ options.workingHours } /></label></div>
     </div>
   );
 }
