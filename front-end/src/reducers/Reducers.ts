@@ -139,17 +139,17 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ChangeAdress2Message: {
       const a = action as ChangeAdress2Action;
-      return { ...model, address2: a.address2 };
+      return { ...model, options: { ...model.options, address2: a.address2 } };
     }
 
     case ChangeAdress1Message: {
       const a = action as ChangeAdress1Action;
-      return { ...model, address1: a.address1 };
+      return { ...model, options: { ...model.options, address1: a.address1 } };
     }
 
     case ChangePostcodeMessage: {
       const a = action as ChangePostcodeAction;
-      return { ...model, postcode: a.postcode };
+      return { ...model, options: { ...model.options, postcode: a.postcode } };
     }
 
     case ChangeBackupNumberMessage: {
@@ -164,59 +164,59 @@ const reducers = ( model: Model, action: Action ): Model => {
 
     case ToggleAutomobileMessage: {
       const a = action as ToggleAutomobileAction;
-      if ( model.automobiles.indexOf( a.automobile ) > -1 ) {
-        const x = [ ...model.automobiles ];
-        x.splice( model.automobiles.indexOf( a.automobile ), 1 );
-        return { ...model, automobiles: x };
+      if ( model.options.automobiles.indexOf( a.automobile ) > -1 ) {
+        const x = [ ...model.options.automobiles ];
+        x.splice( model.options.automobiles.indexOf( a.automobile ), 1 );
+        return { ...model, options: { ...model.options, automobiles: x } };
       } else {
-        return { ...model, automobiles: [ a.automobile, ...model.automobiles ] };
+        return { ...model, options: { ...model.options, automobiles: [ a.automobile, ...model.options.automobiles ] } };
       }
     }
 
     case TogglePaymentMethodMessage: {
       const a = action as TogglePaymentMethodAction;
-      if ( model.paymentMethods.indexOf( a.payment ) > -1 ) {
-        const x = [ ...model.automobiles ];
-        x.splice( model.paymentMethods.indexOf( a.payment ), 1 );
-        return { ...model, paymentMethods: x };
+      if ( model.options.paymentMethods.indexOf( a.payment ) > -1 ) {
+        const x = [ ...model.options.automobiles ];
+        x.splice( model.options.paymentMethods.indexOf( a.payment ), 1 );
+        return { ...model, options: { ...model.options, paymentMethods: x } };
       } else {
-        return { ...model, paymentMethods: [ a.payment, ...model.paymentMethods ] };
+        return { ...model, options: { ...model.options, paymentMethods: [ a.payment, ...model.options.paymentMethods ] } };
       }
     }
 
     case ChangeSiteReviewMessage: {
       const a = action as ChangeSiteReviewAction;
-      return { ...model, siteReview: a.siteReview };
+      return { ...model, options: { ...model.options, siteReview: a.siteReview } };
     }
 
     case ChangeBirthdayMessage: {
       const a = action as ChangeBirthdayAction;
-      return { ...model, birthday: a.birthday };
+      return { ...model, options: { ...model.options, birthday: a.birthday } };
     }
 
     case ChangeSubmitDateMessage: {
       const a = action as ChangeSubmitDateAction;
-      return { ...model, submitDate: a.submitDate };
+      return { ...model, options: { ...model.options, submitDate: a.submitDate } };
     }
 
     case ChangeFavouriteColorMessage: {
       const a = action as ChangeFavouriteColorAction;
-      return { ...model, favouriteColor: a.favouriteColor };
+      return { ...model, options: { ...model.options, favouriteColor: a.favouriteColor } };
     }
 
     case ChangeFavouriteMonthMessage: {
       const a = action as ChangeFavouriteMonthAction;
-      return { ...model, favouriteMonth: a.favouriteMonth };
+      return { ...model, options: { ...model.options, favouriteMonth: a.favouriteMonth } };
     }
 
     case ChangeWeekMessage: {
       const a = action as ChangeWeekAction;
-      return { ...model, week: a.week };
+      return { ...model, options: { ...model.options, week: a.week } };
     }
 
     case ChangeWorkingHoursMessage: {
       const a = action as ChangeWorkingHoursAction;
-      return { ...model, workingHours: a.workingHours };
+      return { ...model, options: { ...model.options, workingHours: a.workingHours } };
     }
   }
   return model;

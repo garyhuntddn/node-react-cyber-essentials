@@ -21,6 +21,18 @@ export type Options= {
   mobileNumber: string;
   backupNumber: string;
   employmentStatus: string;
+  address1: string;
+  address2: string;
+  postcode: string;
+  automobiles: Array<string>;
+  paymentMethods: Array<string>;
+  siteReview: string;
+  birthday: string;
+  submitDate: string;
+  favouriteColor: string;
+  favouriteMonth: string;
+  week: string;
+  workingHours: number;
 }
 
 export type Model = {
@@ -34,17 +46,4 @@ export type Model = {
   name: string;
   isAuthenticated: boolean;
   options: Options;
-
-  address1: string;
-  address2: string;
-  postcode: string;
-  automobiles: Array<string>;
-  paymentMethods: Array<string>;
-  siteReview: string;
-  birthday: string;
-  submitDate: string;
-  favouriteColor: string;
-  favouriteMonth: string;
-  week: string;
-  workingHours: number;
 };

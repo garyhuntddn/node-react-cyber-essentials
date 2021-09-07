@@ -33,4 +33,3 @@ const App = (model: Props) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-

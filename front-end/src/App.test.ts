@@ -32,13 +32,13 @@ export type RecursivePartial<T> = {
   [ P in keyof T ]?: RecursivePartial<T[ P ]>;
 };
 
-const createInitialModel = () => {
-  return { answers, view: ViewConstants.Editable, workingHours: 0, week: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", } };
+const createInitialModel = (): Model => {
+  return { answers, view: ViewConstants.Editable, email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "" } };
 };
 
 describe( "reducer tests", () => {
   it( "should return the initial state", () => {
-    expect( Reducers( createInitialModel(), {} as any ) ).toEqual<Model>( { answers, view: ViewConstants.Editable, workingHours: 0, week: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", } } );
+    expect( Reducers( createInitialModel(), {} as any ) ).toEqual<Model>( { answers, view: ViewConstants.Editable, email: "", name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "" } } );
   } );
 
   it( "should update the view to ReadOnly", () => {
@@ -126,15 +126,15 @@ describe( "reducer tests", () => {
   } );
 
   it( "should set the address1 to 17 wallaberoad", () => {
-    expect( Reducers( createInitialModel(), ChangeAdress1( "17 wallaberoad" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { address1: "17 wallaberoad" } ) );
+    expect( Reducers( createInitialModel(), ChangeAdress1( "17 wallaberoad" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { address1: "17 wallaberoad" } ) } ) );
   } );
 
   it( "should set the address1 to 27 wallaberoad", () => {
-    expect( Reducers( createInitialModel(), ChangeAdress2( "27 wallaberoad" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { address2: "27 wallaberoad" } ) );
+    expect( Reducers( createInitialModel(), ChangeAdress2( "27 wallaberoad" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { address2: "27 wallaberoad" } ) } ) );
   } );
 
   it( "should set the postcode to CF64CRF", () => {
-    expect( Reducers( createInitialModel(), ChangePostcode( "CF64CRF" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { postcode: "CF64CRF" } ) );
+    expect( Reducers( createInitialModel(), ChangePostcode( "CF64CRF" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { postcode: "CF64CRF" } ) } ) );
   } );
 
   it( "should set the backup number to 345678910", () => {
@@ -146,38 +146,38 @@ describe( "reducer tests", () => {
   } );
 
   it( "should update the automobile to I have a car", () => {
-    expect( Reducers( createInitialModel(), ToggleAutomobile( "Penarth" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { automobiles: [ "Penarth" ] } ) );
+    expect( Reducers( createInitialModel(), ToggleAutomobile( "Penarth" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { automobiles: [ "Penarth" ] } ) } ) );
   } );
 
   it( "should update the payment method to Visa", () => {
-    expect( Reducers( createInitialModel(), TogglePaymentMethod( "Visa" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { paymentMethods: [ "Visa" ] } ) );
+    expect( Reducers( createInitialModel(), TogglePaymentMethod( "Visa" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { paymentMethods: [ "Visa" ] } ) } ) );
   } );
 
   it( "should update the site review to Good", () => {
-    expect( Reducers( createInitialModel(), ChangeSiteReview( "Good" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { siteReview: "Good" } ) );
+    expect( Reducers( createInitialModel(), ChangeSiteReview( "Good" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { siteReview: "Good" } ) } ) );
   } );
 
   it( "should update the birthday to 17/04/2017", () => {
-    expect( Reducers( createInitialModel(), ChangeBirthday( "17/04/2017" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { birthday: "17/04/2017" } ) );
+    expect( Reducers( createInitialModel(), ChangeBirthday( "17/04/2017" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { birthday: "17/04/2017" } ) } ) );
   } );
 
   it( "should update the submit date to 17/04/2017 17:30", () => {
-    expect( Reducers( createInitialModel(), ChangeSubmitDate( "17/04/2017 17:30" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { submitDate: "17/04/2017 17:30" } ) );
+    expect( Reducers( createInitialModel(), ChangeSubmitDate( "17/04/2017 17:30" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { submitDate: "17/04/2017 17:30" } ) } ) );
   } );
 
   it( "should update the favourite color to Blue", () => {
-    expect( Reducers( createInitialModel(), ChangeFavouriteColor( "Blue" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { favouriteColor: "Blue" } ) );
+    expect( Reducers( createInitialModel(), ChangeFavouriteColor( "Blue" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { favouriteColor: "Blue" } ) } ) );
   } );
 
   it( "should update the favourite month to January 2017", () => {
-    expect( Reducers( createInitialModel(), ChangeFavouriteMonth( "January 2017" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { favouriteMonth: "January 2017" } ) );
+    expect( Reducers( createInitialModel(), ChangeFavouriteMonth( "January 2017" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { favouriteMonth: "January 2017" } ) } ) );
   } );
 
   it( "should update the week to 2", () => {
-    expect( Reducers( createInitialModel(), ChangeWeek( "2" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { week: "2" } ) );
+    expect( Reducers( createInitialModel(), ChangeWeek( "2" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { week: "2" } ) } ) );
   } );
 
   it( "should update the working hours to 15", () => {
-    expect( Reducers( createInitialModel(), ChangeWorkingHours( 15 ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { workingHours: 15 } ) );
+    expect( Reducers( createInitialModel(), ChangeWorkingHours( 15 ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { workingHours: 15 } ) } ) );
   } );
 } );

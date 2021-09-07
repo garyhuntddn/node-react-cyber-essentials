@@ -27,18 +27,6 @@ let model: Model = {
   name: "",
   email: "",
   isAuthenticated: false,
-  address1: "",
-  address2: "",
-  postcode: "",
-  siteReview: "",
-  birthday: "",
-  submitDate: "",
-  favouriteColor: "",
-  favouriteMonth: "",
-  week: "",
-  workingHours: 0,
-  automobiles: [],
-  paymentMethods: [],
   options: {
     enable2FA: false,
     townOrVillage: "",
@@ -47,7 +35,18 @@ let model: Model = {
     mobileNumber: "",
     backupNumber: "",
     employmentStatus: "",
-  
+    address1: "",
+    address2: "",
+    postcode: "",
+    siteReview: "",
+    birthday: "",
+    submitDate: "",
+    favouriteColor: "",
+    favouriteMonth: "",
+    week: "",
+    workingHours: 0,
+    automobiles: [],
+    paymentMethods: [],
   }
 };
 
