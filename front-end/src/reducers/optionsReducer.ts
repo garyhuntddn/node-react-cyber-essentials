@@ -19,9 +19,9 @@ import { ChangeWeekMessage, ChangeWeekAction } from "../actions/ChangeWeekAction
 import { ChangeWorkingHoursMessage, ChangeWorkingHoursAction } from "../actions/ChangeWorkingHours";
 import { ToggleAutomobileMessage, ToggleAutomobileAction } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethodMessage, TogglePaymentMethodAction } from "../actions/TogglePaymentMethod";
-import { Options } from "../models/Model";
+import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Options } from "../models/Model";
 
-export const optionsReducer = ( options: Options = { email: "", address1: "", address2: "", automobiles: [], paymentMethods: [], color: "", favouriteColor: "", favouriteMonth: "", backupNumber: "", mobileNumber: "", birthday: "", cityOfOrigin: "", employmentStatus: "", enable2FA: false, postcode: "", siteReview: "", submitDate: "", townOrVillage: "", week: "", workingHours: 4 }, action: Action ): Options => {
+export const optionsReducer = ( options: Options = { email: "", address1: "", address2: "", automobiles: [], paymentMethods: [], color: ColorConstants.Empty, favouriteColor: "", favouriteMonth: "", backupNumber: "", mobileNumber: "", birthday: "", cityOfOrigin: CityOfOriginConstants.Empty, employmentStatus: EmploymentStatusConstants.Empty, enable2FA: false, postcode: "", siteReview: "", submitDate: "", townOrVillage: "", week: "", workingHours: 4 }, action: Action ): Options => {
   switch ( action.type ) {
     case ChangeEnable2FAMessage: {
       const a = action as ChangeEnable2FAAction;
@@ -91,12 +91,12 @@ export const optionsReducer = ( options: Options = { email: "", address1: "", ad
 
     case TogglePaymentMethodMessage: {
       const a = action as TogglePaymentMethodAction;
-      if ( options.paymentMethods.indexOf( a.payment ) > -1 ) {
-        const x = [ ...options.automobiles ];
-        x.splice( options.paymentMethods.indexOf( a.payment ), 1 );
+      if ( options.paymentMethods.indexOf( a.paymentMethod ) > -1 ) {
+        const x = [ ...options.paymentMethods ];
+        x.splice( options.paymentMethods.indexOf( a.paymentMethod ), 1 );
         return { ...options, paymentMethods: x }
       } else {
-        return { ...options, paymentMethods: [ a.payment, ...options.paymentMethods ] }
+        return { ...options, paymentMethods: [ a.paymentMethod, ...options.paymentMethods ] }
       };
     }
 

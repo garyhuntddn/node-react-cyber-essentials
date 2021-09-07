@@ -3,7 +3,7 @@ import { ChangePassword } from "./actions/ChangePasswordAction";
 import { ChangeView } from "./actions/ChangeViewAction";
 import { UpdateAnswer } from "./actions/UpdateAnswerAction";
 import { answers } from "./models/answerList";
-import { Model, Options, PanelConstants, ViewConstants } from "./models/Model";
+import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Model, Options, PanelConstants, PaymentMethodConstants, VehicleConstants, ViewConstants } from "./models/Model";
 import Reducers from "./reducers/Reducers";
 import { SignInResult } from "./actions/SignInResultAction";
 import { SwitchPanel } from "./actions/SwitchPanel";
@@ -33,12 +33,12 @@ export type RecursivePartial<T> = {
 };
 
 const createInitialModel = (): Model => {
-  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "", email: "" } };
+  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: CityOfOriginConstants.Empty, townOrVillage: "", backupNumber: "", mobileNumber: "", color: ColorConstants.Empty, employmentStatus: EmploymentStatusConstants.Empty, favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "", email: "" } };
 };
 
 describe( "reducer tests", () => {
   it( "should return the initial state", () => {
-    expect( Reducers( createInitialModel(), {} as any ) ).toEqual<Model>( { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: "", townOrVillage: "", backupNumber: "", mobileNumber: "", color: "", employmentStatus: "", favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "", email: "" } } );
+    expect( Reducers( createInitialModel(), {} as any ) ).toEqual<Model>( { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: { enable2FA: false, cityOfOrigin: CityOfOriginConstants.Empty, townOrVillage: "", backupNumber: "", mobileNumber: "", color: ColorConstants.Empty, employmentStatus: EmploymentStatusConstants.Empty, favouriteMonth: "", favouriteColor: "", submitDate: "", birthday: "", siteReview: "", paymentMethods: [], automobiles: [], postcode: "", address2: "", address1: "", workingHours: 0, week: "", email: "" } } );
   } );
 
   it( "should update the view to ReadOnly", () => {
@@ -110,11 +110,11 @@ describe( "reducer tests", () => {
   } );
 
   it( "should update the city of origin to Shanghi", () => {
-    expect( Reducers( createInitialModel(), ChangeCityOfOrigin( "Shanghi" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { cityOfOrigin: "Shanghi" } ) } ) );
+    expect( Reducers( createInitialModel(), ChangeCityOfOrigin( CityOfOriginConstants.Shanghi ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { cityOfOrigin: CityOfOriginConstants.Shanghi } ) } ) );
   } );
 
   it( "should update the color to Black", () => {
-    expect( Reducers( createInitialModel(), ChangeColor( "Black" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { color: "Black" } ) } ) );
+    expect( Reducers( createInitialModel(), ChangeColor( ColorConstants.Black ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { color: ColorConstants.Black } ) } ) );
   } );
 
   it( "should set the number to 123456789", () => {
@@ -122,7 +122,7 @@ describe( "reducer tests", () => {
   } );
 
   it( "should update the employment status to Full-time", () => {
-    expect( Reducers( createInitialModel(), ChangeEmploymentStatus( "Full-time" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { employmentStatus: "Full-time" } ) } ) );
+    expect( Reducers( createInitialModel(), ChangeEmploymentStatus( EmploymentStatusConstants.FullTime ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { employmentStatus: EmploymentStatusConstants.FullTime } ) } ) );
   } );
 
   it( "should set the address1 to 17 wallaberoad", () => {
@@ -146,11 +146,11 @@ describe( "reducer tests", () => {
   } );
 
   it( "should update the automobile to I have a car", () => {
-    expect( Reducers( createInitialModel(), ToggleAutomobile( "Penarth" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { automobiles: [ "Penarth" ] } ) } ) );
+    expect( Reducers( createInitialModel(), ToggleAutomobile( VehicleConstants.vehicle1 ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { automobiles: [ VehicleConstants.vehicle1 ] } ) } ) );
   } );
 
   it( "should update the payment method to Visa", () => {
-    expect( Reducers( createInitialModel(), TogglePaymentMethod( "Visa" ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { paymentMethods: [ "Visa" ] } ) } ) );
+    expect( Reducers( createInitialModel(), TogglePaymentMethod( PaymentMethodConstants.Visa ) ) ).toEqual( expect.objectContaining<RecursivePartial<Model>>( { options: expect.objectContaining<Partial<Options>>( { paymentMethods: [ PaymentMethodConstants.Visa ] } ) } ) );
   } );
 
   it( "should update the site review to Good", () => {

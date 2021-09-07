@@ -19,7 +19,7 @@ import { ChangeWorkingHours } from "../actions/ChangeWorkingHours";
 import { SwitchPanel } from "../actions/SwitchPanel";
 import { ToggleAutomobile } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethod } from "../actions/TogglePaymentMethod";
-import { Options, PanelConstants } from "../models/Model";
+import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Options, PanelConstants, PaymentMethodConstants, VehicleConstants } from "../models/Model";
 
 const OptionsPanel = ( options: Options ) => {
   const dispatch = useDispatch();
@@ -50,12 +50,12 @@ const OptionsPanel = ( options: Options ) => {
 
       <div style={ { marginBottom: "25px" } }>
         <label htmlFor="None">City of Origin </label>
-        <select name="numbers" value={ options.cityOfOrigin } onChange={ ( e ) => { dispatch( ChangeCityOfOrigin( e.currentTarget.value ) ); } }>
-          <option value="London">London</option>
-          <option value="New York">New York</option>
-          <option value="Shanghi">Shanghi</option>
-          <option value="Tokyo">Tokyo</option>
-          <option value="Los Angeles">Los Angeles</option>
+        <select name="numbers" value={ options.cityOfOrigin } onChange={ ( e ) => { dispatch( ChangeCityOfOrigin( e.currentTarget.value as CityOfOriginConstants ) ); } }>
+          <option value={ CityOfOriginConstants.London }>London</option>
+          <option value={ CityOfOriginConstants.NewYork }>New York</option>
+          <option value={ CityOfOriginConstants.Shanghi }>Shanghi</option>
+          <option value={ CityOfOriginConstants.Tokyo }>Tokyo</option>
+          <option value={ CityOfOriginConstants.LosAngeles }>Los Angeles</option>
         </select>
       </div>
 
@@ -64,19 +64,19 @@ const OptionsPanel = ( options: Options ) => {
       <div style={ { marginBottom: "25px" } }>
         <div>Page Colour</div>
         <label>
-          <input type="radio" checked={ options.color === "Red" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Red" ) ); } } />
+          <input type="radio" checked={ options.color === ColorConstants.Red } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( ColorConstants.Red ) ); } } />
           Red
         </label>
         <label>
-          <input type="radio" checked={ options.color === "Black" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Black" ) ); } } />
+          <input type="radio" checked={ options.color === ColorConstants.Black } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( ColorConstants.Black ) ); } } />
           Black
         </label>
         <label>
-          <input type="radio" checked={ options.color === "Blue" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Blue" ) ); } } />
+          <input type="radio" checked={ options.color === ColorConstants.Blue } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( ColorConstants.Blue ) ); } } />
           Blue
         </label>
         <label>
-          <input type="radio" checked={ options.color === "Green" } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( "Green" ) ); } } />
+          <input type="radio" checked={ options.color === ColorConstants.Green } radioGroup="Colors" onChange={ () => { dispatch( ChangeColor( ColorConstants.Green ) ); } } />
           Green
         </label>
       </div>
@@ -88,19 +88,19 @@ const OptionsPanel = ( options: Options ) => {
       <div style={ { marginBottom: "25px" } }>
         <div>Employment status </div>
         <label>
-          <input type="radio" checked={ options.employmentStatus === "Full-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Full-time" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === EmploymentStatusConstants.FullTime } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( EmploymentStatusConstants.FullTime ) ); } } />
           Full-time
         </label>
         <label>
-          <input type="radio" checked={ options.employmentStatus === "Part-time" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Part-time" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === EmploymentStatusConstants.PartTime } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( EmploymentStatusConstants.PartTime ) ); } } />
           Part-time
         </label>
         <label>
-          <input type="radio" checked={ options.employmentStatus === "Temporary employement" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Temporary employment" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === EmploymentStatusConstants.TemporaryEmployment } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( EmploymentStatusConstants.TemporaryEmployment ) ); } } />
           Temporary employment
         </label>
         <label>
-          <input type="radio" checked={ options.employmentStatus === "Unemployed" } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( "Unemployed" ) ); } } />
+          <input type="radio" checked={ options.employmentStatus === EmploymentStatusConstants.Unemployed } radioGroup="EmploymentStatus" onChange={ () => { dispatch( ChangeEmploymentStatus( EmploymentStatusConstants.Unemployed ) ); } } />
           Unemployed
         </label>
       </div>
@@ -108,15 +108,15 @@ const OptionsPanel = ( options: Options ) => {
       <div style={ { marginBottom: "25px" } }>
         <div>What do you travel to work with </div>
         <label>
-          <input type="checkbox" checked={ options.automobiles.indexOf( "vehicle1" ) > -1 } name="vehicle1" value="Bike" onChange={ () => { dispatch( ToggleAutomobile( "vehicle1" ) ); } } />
+          <input type="checkbox" checked={ options.automobiles.indexOf( VehicleConstants.vehicle1 ) > -1 } onChange={ () => { dispatch( ToggleAutomobile( VehicleConstants.vehicle1 ) ); } } />
           I have a Bike
         </label>
         <label>
-          <input type="checkbox" checked={ options.automobiles.indexOf( "vehicle2" ) > -1 } name="vehicle2" value="Car" onChange={ () => { dispatch( ToggleAutomobile( "vehicle2" ) ); } } />
+          <input type="checkbox" checked={ options.automobiles.indexOf( VehicleConstants.vehicle2 ) > -1 } onChange={ () => { dispatch( ToggleAutomobile( VehicleConstants.vehicle2 ) ); } } />
           I have a car
         </label>
         <label>
-          <input type="checkbox" checked={ options.automobiles.indexOf( "vehicle3" ) > -1 } name="vehicle3" value="Boat" onChange={ () => { dispatch( ToggleAutomobile( "vehicle3" ) ); } } />
+          <input type="checkbox" checked={ options.automobiles.indexOf( VehicleConstants.vehicle3 ) > -1 } onChange={ () => { dispatch( ToggleAutomobile( VehicleConstants.vehicle3 ) ); } } />
           I have a boat
         </label>
       </div>
@@ -127,16 +127,16 @@ const OptionsPanel = ( options: Options ) => {
           const existing = [ ...options.paymentMethods ];
           const updatedOptions = e.currentTarget.options;
           for ( let i = 0; i < e.currentTarget.options.length; i++ ) {
-            const value = updatedOptions[ i ].value;
+            const value = updatedOptions[ i ].value as PaymentMethodConstants;
             const wasSelected = existing.indexOf( value ) > -1;
             const isSelected = updatedOptions[ i ].selected;
             if ( isSelected === wasSelected ) continue;
             dispatch( TogglePaymentMethod( value ) );
           }
         } } >
-          <option value="Visa">Visa</option>
-          <option value="Mastercard">Mastercard</option>
-          <option value="Paypal">Paypal</option>
+          <option value={ PaymentMethodConstants.Visa }>Visa</option>
+          <option value={ PaymentMethodConstants.Mastercard }>Mastercard</option>
+          <option value={ PaymentMethodConstants.Paypal }>Paypal</option>
         </select>
       </div>
 

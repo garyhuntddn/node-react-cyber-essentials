@@ -10,7 +10,7 @@ import { createStore } from "redux";
 import { answers } from "./models/answerList";
 import { Provider } from "react-redux";
 import reducers from "./reducers/Reducers";
-import { Model, PanelConstants, ViewConstants } from "./models/Model";
+import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Model, PanelConstants, ViewConstants } from "./models/Model";
 import { persistanceMiddleware } from "./middleware/Persistence";
 
 const urlSearchParameters = new URLSearchParams( window.location.search );
@@ -32,10 +32,10 @@ let model: Model = {
     automobiles: [],
     backupNumber: "",
     birthday: "",
-    cityOfOrigin: "",
-    color: "",
+    cityOfOrigin: CityOfOriginConstants.Empty,
+    color: ColorConstants.Empty,
     email: "",
-    employmentStatus: "",
+    employmentStatus: EmploymentStatusConstants.Empty,
     enable2FA: false,
     favouriteColor: "",
     favouriteMonth: "",

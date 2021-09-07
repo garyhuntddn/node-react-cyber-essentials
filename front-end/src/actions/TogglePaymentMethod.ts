@@ -1,8 +1,10 @@
+import { PaymentMethodConstants } from "../models/Model";
+
 export const TogglePaymentMethodMessage = "TogglePaymentMethodAction";
 
-export const TogglePaymentMethod = ( payment: string ) => ( {
+export const TogglePaymentMethod = ( paymentMethod: PaymentMethodConstants ) => ( {
   type: TogglePaymentMethodMessage,
-  payment,
+  paymentMethod,
 } );
 
 export type TogglePaymentMethodAction = ReturnType<typeof TogglePaymentMethod>;

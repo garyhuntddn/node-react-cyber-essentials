@@ -1,6 +1,8 @@
+import { EmploymentStatusConstants } from "../models/Model";
+
 export const ChangeEmploymentStatusMessage = "ChangeEmploymentStatusAction";
 
-export const ChangeEmploymentStatus = ( employmentStatus: string ) => ( {
+export const ChangeEmploymentStatus = ( employmentStatus: EmploymentStatusConstants ) => ( {
   type: ChangeEmploymentStatusMessage,
   employmentStatus,
 } );
