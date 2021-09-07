@@ -17,6 +17,7 @@ What we've covered:
   * variable types
   * arrays
   * maps
+  * JSON
 3. introduction to typescript
   * types
   * enums
