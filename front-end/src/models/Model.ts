@@ -13,6 +13,10 @@ export enum ViewConstants {
   ReadOnly,
 }
 
+export type Options= {
+  enable2FA: boolean;
+}
+
 export type Model = {
   answers: Answers;
   panel: PanelConstants;
@@ -23,7 +27,8 @@ export type Model = {
   password: string;
   name: string;
   isAuthenticated: boolean;
-  enable2FA: boolean;
+  options: Options;
+
   cityOfOrigin: string;
   townOrVillage: string;
   color: string;

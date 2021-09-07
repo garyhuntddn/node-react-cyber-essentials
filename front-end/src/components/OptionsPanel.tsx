@@ -39,11 +39,11 @@ const OptionsPanel = (model: Model) => {
       <div style={{ marginBottom: "25px" }}>
         <div>Enable 2FA</div>
         <label>
-          <input type="radio" checked={model.enable2FA === true} radioGroup="YesNo" onChange={() => { dispatch(ChangeEnable2FA(true)); }} />
+          <input type="radio" checked={model.options.enable2FA === true} radioGroup="YesNo" onChange={() => { dispatch(ChangeEnable2FA(true)); }} />
           Yes
         </label>
         <label>
-          <input type="radio" checked={model.enable2FA === false} radioGroup="YesNo" onChange={() => { dispatch(ChangeEnable2FA(false)); }} />
+          <input type="radio" checked={model.options.enable2FA === false} radioGroup="YesNo" onChange={() => { dispatch(ChangeEnable2FA(false)); }} />
           No
         </label>
       </div>

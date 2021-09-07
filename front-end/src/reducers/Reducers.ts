@@ -13,14 +13,14 @@ import { Network } from "../models/Network";
 import { Software } from "../models/Software";
 import { SignInResultAction, SignInResultMessage } from "../actions/SignInResultAction";
 import { SwitchPanelAction, SwitchPanelMessage } from "../actions/SwitchPanel";
-import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAction";
+import { CreateGroupMessage } from "../actions/CreateGroupAction";
 import { ChangeEmailAction, ChangeEmailMessage } from "../actions/ChangeEmailAction";
 import { ChangeEnable2FAAction, ChangeEnable2FAMessage } from "../actions/ChangeEnable2FAAction";
 import { ChangeCityOfOriginAction, ChangeCityOfOriginMessage } from "../actions/ChangeCityOfOriginAction";
 import { ChangeColorAction, ChangeColorMessage } from "../actions/ChangeColorAction";
 import { ChangeMobileNumberAction, ChangeMobileNumberMessage } from "../actions/ChangeMobileNumber";
 import { ChangeEmploymentStatusMessage, ChangeEmploymentStatusAction } from "../actions/ChangeEmploymentStatus";
-import { ChangeAdress2, ChangeAdress2Action, ChangeAdress2Message } from "../actions/ChangeAddress2";
+import { ChangeAdress2Action, ChangeAdress2Message } from "../actions/ChangeAddress2";
 import { ChangeAdress1Action, ChangeAdress1Message } from "../actions/ChangeAddress1";
 import { ChangePostcodeAction, ChangePostcodeMessage } from "../actions/ChangePostcode";
 import { ChangeBackupNumberAction, ChangeBackupNumberMessage } from "../actions/ChangeBackupNumber";
@@ -35,8 +35,8 @@ import { ChangeFavouriteMonthAction, ChangeFavouriteMonthMessage } from "../acti
 import { ChangeWeekAction, ChangeWeekMessage } from "../actions/ChangeWeekAction";
 import { ChangeWorkingHoursAction, ChangeWorkingHoursMessage } from "../actions/ChangeWorkingHours";
 
-const reducers = (model: Model, action: Action): Model => {
-  switch (action.type) {
+const reducers = ( model: Model, action: Action ): Model => {
+  switch ( action.type ) {
     case ChangeViewMessage: {
       const a = action as ChangeViewAction;
       return { ...model, view: a.view };
@@ -44,35 +44,35 @@ const reducers = (model: Model, action: Action): Model => {
 
     case UpdateAnswerMessage: {
       const a = action as UpdateAnswerAction;
-      return { ...model, answers: { ...model.answers, [a.id]: a.value } };
+      return { ...model, answers: { ...model.answers, [ a.id ]: a.value } };
     }
 
     case UpdateRowAnswerMessage: {
       const a = action as UpdateRowAnswerAction;
-      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
-      const newArray = [...existingArray];
-      newArray[a.index] = { ...a.value };
-      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
+      const existingArray: Array<Hardware | Software | Network> = ( model.answers[ a.id ] as Array<Hardware | Software | Network> ) || [];
+      const newArray = [ ...existingArray ];
+      newArray[ a.index ] = { ...a.value };
+      const newAnswers = { ...model.answers, [ a.id ]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
     }
 
     case DeleteRowAnswerMessage: {
       const a = action as DeleteRowAnswerAction;
-      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
-      const newArray = [...existingArray];
-      newArray.splice(a.index, 1);
-      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
+      const existingArray: Array<Hardware | Software | Network> = ( model.answers[ a.id ] as Array<Hardware | Software | Network> ) || [];
+      const newArray = [ ...existingArray ];
+      newArray.splice( a.index, 1 );
+      const newAnswers = { ...model.answers, [ a.id ]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
     }
 
     case AddRowAnswerMessage: {
       const a = action as AddRowAnswerAction;
-      const existingArray: Array<Hardware | Software | Network> = (model.answers[a.id] as Array<Hardware | Software | Network>) || [];
-      const newArray = [...existingArray];
-      newArray.push(a.value);
-      const newAnswers = { ...model.answers, [a.id]: newArray as Answer };
+      const existingArray: Array<Hardware | Software | Network> = ( model.answers[ a.id ] as Array<Hardware | Software | Network> ) || [];
+      const newArray = [ ...existingArray ];
+      newArray.push( a.value );
+      const newAnswers = { ...model.answers, [ a.id ]: newArray as Answer };
 
       return { ...model, answers: newAnswers };
     }
@@ -95,7 +95,7 @@ const reducers = (model: Model, action: Action): Model => {
     case SwitchPanelMessage: {
       const a = action as SwitchPanelAction;
 
-      if (a.panel === PanelConstants.Login) {
+      if ( a.panel === PanelConstants.Login ) {
         return { ...model, panel: a.panel, password: "", isAuthenticated: false, answers: {} };
       }
 
@@ -103,13 +103,13 @@ const reducers = (model: Model, action: Action): Model => {
     }
 
     case CreateGroupMessage: {
-      const a = action as CreateGroupAction;
+      //const a = action as CreateGroupAction;
       return { ...model };
     }
 
     case ChangeEnable2FAMessage: {
       const a = action as ChangeEnable2FAAction;
-      return { ...model, enable2FA: a.enable2FA };
+      return { ...model, options: { ...model.options, enable2FA: a.enable2FA } };
     }
 
     case ChangeEmailMessage: {
@@ -164,23 +164,23 @@ const reducers = (model: Model, action: Action): Model => {
 
     case ToggleAutomobileMessage: {
       const a = action as ToggleAutomobileAction;
-      if (model.automobiles.indexOf(a.automobile) > -1) {
-        const x = [...model.automobiles];
-        x.splice(model.automobiles.indexOf(a.automobile), 1);
+      if ( model.automobiles.indexOf( a.automobile ) > -1 ) {
+        const x = [ ...model.automobiles ];
+        x.splice( model.automobiles.indexOf( a.automobile ), 1 );
         return { ...model, automobiles: x };
       } else {
-        return { ...model, automobiles: [a.automobile, ...model.automobiles] };
+        return { ...model, automobiles: [ a.automobile, ...model.automobiles ] };
       }
     }
 
     case TogglePaymentMethodMessage: {
       const a = action as TogglePaymentMethodAction;
-      if (model.paymentMethods.indexOf(a.payment) > -1) {
-        const x = [...model.automobiles];
-        x.splice(model.paymentMethods.indexOf(a.payment), 1);
+      if ( model.paymentMethods.indexOf( a.payment ) > -1 ) {
+        const x = [ ...model.automobiles ];
+        x.splice( model.paymentMethods.indexOf( a.payment ), 1 );
         return { ...model, paymentMethods: x };
       } else {
-        return { ...model, paymentMethods: [a.payment, ...model.paymentMethods] };
+        return { ...model, paymentMethods: [ a.payment, ...model.paymentMethods ] };
       }
     }
 

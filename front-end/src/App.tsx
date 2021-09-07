@@ -1,5 +1,4 @@
 import "./App.scss";
-import { Action } from "redux";
 import { connect } from "react-redux";
 import { Model, PanelConstants } from "./models/Model";
 import Questionnaire from "./components/Questionnaire";
@@ -12,7 +11,7 @@ const mapStateToProps = (state: Model) => {
   return state;
 };
 
-const mapDispatchToProps = (dispatch: (action: Action) => unknown) => ({});
+const mapDispatchToProps = () => ({});
 
 type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
@@ -34,7 +33,4 @@ const App = (model: Props) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-function dispatch(arg0: JSX.Element): void {
-  throw new Error("Function not implemented.");
-}
 

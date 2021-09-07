@@ -24,10 +24,9 @@ let model: Model = {
   group: group,
   userName: "",
   password: "",
-  name: "", 
+  name: "",
   email: "",
   isAuthenticated: false,
-  enable2FA: false,
   cityOfOrigin: "",
   townOrVillage: "",
   color: "",
@@ -45,7 +44,11 @@ let model: Model = {
   week: "",
   workingHours: 0,
   automobiles: [],
-  paymentMethods: []
+  paymentMethods: [],
+  options: {
+    enable2FA: false,
+
+  }
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );
