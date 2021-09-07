@@ -84,4 +84,5 @@ export type Model = {
   name: string;
   isAuthenticated: boolean;
   options: Options;
+  unsavedOptions: Options;
 };

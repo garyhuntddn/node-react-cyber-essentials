@@ -47,6 +47,28 @@ let model: Model = {
     townOrVillage: "",
     week: "",
     workingHours: 0,
+  },
+  unsavedOptions: {
+    address1: "",
+    address2: "",
+    automobiles: [],
+    backupNumber: "",
+    birthday: "",
+    cityOfOrigin: CityOfOriginConstants.Empty,
+    color: ColorConstants.Empty,
+    email: "",
+    employmentStatus: EmploymentStatusConstants.Empty,
+    enable2FA: false,
+    favouriteColor: "",
+    favouriteMonth: "",
+    mobileNumber: "",
+    paymentMethods: [],
+    postcode: "",
+    siteReview: "",
+    submitDate: "",
+    townOrVillage: "",
+    week: "",
+    workingHours: 0,
   }
 };
 

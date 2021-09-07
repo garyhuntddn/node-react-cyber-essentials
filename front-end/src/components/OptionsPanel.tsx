@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useStore } from "react-redux";
 import { ChangeAdress1 } from "../actions/ChangeAddress1";
 import { ChangeAdress2 } from "../actions/ChangeAddress2";
 import { ChangeBackupNumber } from "../actions/ChangeBackupNumber";
@@ -16,13 +16,16 @@ import { ChangeSiteReview } from "../actions/ChangeSiteReview";
 import { ChangeSubmitDate } from "../actions/ChangeSubmitDateAction";
 import { ChangeTownOrVillage } from "../actions/ChangeTownOrVillageAction";
 import { ChangeWorkingHours } from "../actions/ChangeWorkingHours";
+import { ResetOptions } from "../actions/ResetOptions";
+import { SaveOptions } from "../actions/SaveOptions";
 import { SwitchPanel } from "../actions/SwitchPanel";
 import { ToggleAutomobile } from "../actions/ToggleAutomobile";
 import { TogglePaymentMethod } from "../actions/TogglePaymentMethod";
-import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Options, PanelConstants, PaymentMethodConstants, VehicleConstants } from "../models/Model";
+import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Model, Options, PanelConstants, PaymentMethodConstants, VehicleConstants } from "../models/Model";
 
 const OptionsPanel = ( options: Options ) => {
   const dispatch = useDispatch();
+  const model = useStore<Model>().getState();
 
   return (
     <div>
@@ -154,6 +157,11 @@ const OptionsPanel = ( options: Options ) => {
       <div style={ { marginBottom: "25px" } }><label>Favourite month <input type="month" onChange={ ( e ) => { dispatch( ChangeFavouriteMonth( e.currentTarget.value ) ); } } value={ options.favouriteMonth } /></label></div>
 
       <div style={ { marginBottom: "25px" } }><label>working hours <input type="range" onChange={ ( e ) => { dispatch( ChangeWorkingHours( e.currentTarget.valueAsNumber ) ); } } value={ options.workingHours } /></label></div>
+
+      <div>
+        <button onClick={ () => dispatch( ResetOptions( { ...model.options } ) ) }>Reset</button>
+        <button onClick={ () => dispatch( SaveOptions( options ) ) }>Save</button>
+      </div>
     </div>
   );
 }

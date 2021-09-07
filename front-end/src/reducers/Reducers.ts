@@ -1,3 +1,4 @@
+import { Model } from "../models/Model";
 import { combineReducers } from "redux";
 import { viewReducer } from "./viewReducer";
 import { answersReducer } from "./answersReducer";
@@ -6,9 +7,9 @@ import { passwordReducer } from "./passwordReducer";
 import { isAuthenticatedReducer } from "./isAuthenticatedReducer";
 import { panelReducer } from "./panelReducer";
 import { nameReducer } from "./nameReducer";
-import { optionsReducer } from "./optionsReducer";
+import { unsavedOptionsReducer } from "./unsavedOptionsReducer";
 import { groupReducer } from "./groupReducer";
-import { Model } from "../models/Model";
+import { optionsReducer } from "./optionsReducer";
 
 const reducers = combineReducers<Model>( {
   view: viewReducer,
@@ -18,6 +19,7 @@ const reducers = combineReducers<Model>( {
   isAuthenticated: isAuthenticatedReducer,
   panel: panelReducer,
   options: optionsReducer,
+  unsavedOptions: unsavedOptionsReducer,
   name: nameReducer,
   group: groupReducer
 } );
