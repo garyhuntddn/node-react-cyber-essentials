@@ -1,38 +1,35 @@
 import "./App.scss";
-import { Action } from "redux";
 import { connect } from "react-redux";
 import { Model, PanelConstants } from "./models/Model";
 import Questionnaire from "./components/Questionnaire";
 import Login from "./components/Login";
 import FailedLogin from "./components/FailedLogin";
 import CreateGroup from "./components/CreateGroup";
+import OptionsPanel from "./components/OptionsPanel";
 
-const mapStateToProps = (state: Model) => {
+const mapStateToProps = ( state: Model ) => {
   return state;
 };
 
-const mapDispatchToProps = (dispatch: (action: Action) => unknown) => ({});
+const mapDispatchToProps = () => ( {} );
 
 type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
-const App = (model: Props) => {
+const App = ( model: Props ) => {
   return (
     <div className="App">
       <header>
-        <h1>Cyber Essentials Questionnaire</h1>
+        <h1 style={ { color: model.options.favouriteColor } }>Cyber Essentials Questionnaire</h1>
       </header>
       <section>
-        {model.panel === PanelConstants.Login && <Login {...model} />}
-        {model.panel === PanelConstants.FailedLogin && <FailedLogin />}
-        {model.panel === PanelConstants.Questionnaire && <Questionnaire {...model} />}
-        {model.panel === PanelConstants.CreateGroup && <CreateGroup {...model} />}
+        { model.panel === PanelConstants.Login && <Login { ...model } /> }
+        { model.panel === PanelConstants.FailedLogin && <FailedLogin /> }
+        { model.panel === PanelConstants.Questionnaire && <Questionnaire { ...model } /> }
+        { model.panel === PanelConstants.CreateGroup && <CreateGroup { ...model } /> }
+        { model.panel === PanelConstants.OptionsPanel && <OptionsPanel { ...model.unsavedOptions } /> }
       </section>
     </div >
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-function dispatch(arg0: JSX.Element): void {
-  throw new Error("Function not implemented.");
-}
-
+export default connect( mapStateToProps, mapDispatchToProps )( App );

@@ -9,8 +9,8 @@ const CreateGroupPage = (model: Model) => {
   return (
     <div>
       <div style={{ marginBottom: "25px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.Questionnaire))}>Back</button></div>
-      <div><label>Create group <input type="text" placeholder="Name" onChange={(e) => { dispatch(CreateGroup(e.currentTarget.value)); }} value={model.name} /></label></div>
-      <div style={{ marginTop: "5px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.CreateGroup))}>Create Group</button></div>
+      <div><label>Group Name <input type="text" placeholder="Name" onChange={(e) => { dispatch(CreateGroup(e.currentTarget.value)); }} value={model.name} /></label></div>
+      <div style={{ marginTop: "5px" }}><button>Create Group</button></div>
     </div>
   );
 }

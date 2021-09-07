@@ -10,7 +10,7 @@ import { createStore } from "redux";
 import { answers } from "./models/answerList";
 import { Provider } from "react-redux";
 import reducers from "./reducers/Reducers";
-import { Model, PanelConstants, ViewConstants } from "./models/Model";
+import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Model, PanelConstants, ViewConstants } from "./models/Model";
 import { persistanceMiddleware } from "./middleware/Persistence";
 
 const urlSearchParameters = new URLSearchParams( window.location.search );
@@ -24,8 +24,52 @@ let model: Model = {
   group: group,
   userName: "",
   password: "",
-  name: "", 
-  isAuthenticated: false
+  name: "",
+  isAuthenticated: false,
+  options: {
+    address1: "",
+    address2: "",
+    automobiles: [],
+    backupNumber: "",
+    birthday: "",
+    cityOfOrigin: CityOfOriginConstants.Empty,
+    color: ColorConstants.Empty,
+    email: "",
+    employmentStatus: EmploymentStatusConstants.Empty,
+    enable2FA: false,
+    favouriteColor: "",
+    favouriteMonth: "",
+    mobileNumber: "",
+    paymentMethods: [],
+    postcode: "",
+    siteReview: "",
+    submitDate: "",
+    townOrVillage: "",
+    week: "",
+    workingHours: 0,
+  },
+  unsavedOptions: {
+    address1: "",
+    address2: "",
+    automobiles: [],
+    backupNumber: "",
+    birthday: "",
+    cityOfOrigin: CityOfOriginConstants.Empty,
+    color: ColorConstants.Empty,
+    email: "",
+    employmentStatus: EmploymentStatusConstants.Empty,
+    enable2FA: false,
+    favouriteColor: "",
+    favouriteMonth: "",
+    mobileNumber: "",
+    paymentMethods: [],
+    postcode: "",
+    siteReview: "",
+    submitDate: "",
+    townOrVillage: "",
+    week: "",
+    workingHours: 0,
+  }
 };
 
 const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );
