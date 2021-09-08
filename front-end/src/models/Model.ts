@@ -5,6 +5,7 @@ export enum PanelConstants {
   FailedLogin,
   Questionnaire,
   CreateGroup,
+  Management,
   OptionsPanel
 }
 
@@ -74,6 +75,10 @@ export type Options = {
   workingHours: number;
 }
 
+export type Management = {
+  groups: Array<string>;
+}
+
 export type Model = {
   answers: Answers;
   panel: PanelConstants;
@@ -85,4 +90,5 @@ export type Model = {
   isAuthenticated: boolean;
   options: Options;
   unsavedOptions: Options;
+  management: Management;
 };

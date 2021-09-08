@@ -22,8 +22,8 @@ import { ToggleAutomobileMessage, ToggleAutomobileAction } from "../actions/Togg
 import { TogglePaymentMethodMessage, TogglePaymentMethodAction } from "../actions/TogglePaymentMethod";
 import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Options } from "../models/Model";
 
-export const unsavedOptionsReducer = ( options: Options = { email: "", address1: "", address2: "", automobiles: [], paymentMethods: [], color: ColorConstants.Empty, favouriteColor: "", favouriteMonth: "", backupNumber: "", mobileNumber: "", birthday: "", cityOfOrigin: CityOfOriginConstants.Empty, employmentStatus: EmploymentStatusConstants.Empty, enable2FA: false, postcode: "", siteReview: "", submitDate: "", townOrVillage: "", week: "", workingHours: 4 }, action: Action ): Options => {
-  switch ( action.type ) {
+export const unsavedOptionsReducer = (options: Options = { email: "", address1: "", address2: "", automobiles: [], paymentMethods: [], color: ColorConstants.Empty, favouriteColor: "", favouriteMonth: "", backupNumber: "", mobileNumber: "", birthday: "", cityOfOrigin: CityOfOriginConstants.Empty, employmentStatus: EmploymentStatusConstants.Empty, enable2FA: false, postcode: "", siteReview: "", submitDate: "", townOrVillage: "", week: "", workingHours: 4 }, action: Action): Options => {
+  switch (action.type) {
     case ResetOptionsMessage: {
       const a = action as ResetOptionsAction;
       return a.options;
@@ -86,24 +86,24 @@ export const unsavedOptionsReducer = ( options: Options = { email: "", address1:
 
     case ToggleAutomobileMessage: {
       const a = action as ToggleAutomobileAction;
-      if ( options.automobiles.indexOf( a.automobile ) > -1 ) {
-        const x = [ ...options.automobiles ];
-        x.splice( options.automobiles.indexOf( a.automobile ), 1 );
-        return { ...options, automobiles: x }
+      if (options.automobiles.indexOf(a.automobile) > -1) {
+        const x = [...options.automobiles];
+        x.splice(options.automobiles.indexOf(a.automobile), 1);
+        return { ...options, automobiles: x };
       } else {
-        return { ...options, automobiles: [ a.automobile, ...options.automobiles ] };
+        return { ...options, automobiles: [a.automobile, ...options.automobiles] };
       }
     }
 
     case TogglePaymentMethodMessage: {
       const a = action as TogglePaymentMethodAction;
-      if ( options.paymentMethods.indexOf( a.paymentMethod ) > -1 ) {
-        const x = [ ...options.paymentMethods ];
-        x.splice( options.paymentMethods.indexOf( a.paymentMethod ), 1 );
-        return { ...options, paymentMethods: x }
+      if (options.paymentMethods.indexOf(a.paymentMethod) > -1) {
+        const x = [...options.paymentMethods];
+        x.splice(options.paymentMethods.indexOf(a.paymentMethod), 1);
+        return { ...options, paymentMethods: x };
       } else {
-        return { ...options, paymentMethods: [ a.paymentMethod, ...options.paymentMethods ] }
-      };
+        return { ...options, paymentMethods: [a.paymentMethod, ...options.paymentMethods] };
+      }
     }
 
     case ChangeSiteReviewMessage: {

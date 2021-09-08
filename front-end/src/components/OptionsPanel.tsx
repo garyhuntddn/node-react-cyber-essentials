@@ -159,7 +159,7 @@ const OptionsPanel = ( options: Options ) => {
       <div style={ { marginBottom: "25px" } }><label>working hours <input type="range" onChange={ ( e ) => { dispatch( ChangeWorkingHours( e.currentTarget.valueAsNumber ) ); } } value={ options.workingHours } /></label></div>
 
       <div>
-        <button onClick={ () => dispatch( ResetOptions( { ...model.options } ) ) }>Reset</button>
+        <button style={ { marginRight: "25px" } } onClick={ () => dispatch( ResetOptions( { ...model.options } ) ) }>Reset</button>
         <button onClick={ () => dispatch( SaveOptions( options ) ) }>Save</button>
       </div>
     </div>

@@ -10,12 +10,14 @@ import { nameReducer } from "./nameReducer";
 import { unsavedOptionsReducer } from "./unsavedOptionsReducer";
 import { groupReducer } from "./groupReducer";
 import { optionsReducer } from "./optionsReducer";
+import { managementReducer } from "./managementReducer";
 
 const reducers = combineReducers<Model>( {
   view: viewReducer,
   answers: answersReducer,
   userName: userNameReducer,
   password: passwordReducer,
+  management: managementReducer,
   isAuthenticated: isAuthenticatedReducer,
   panel: panelReducer,
   options: optionsReducer,

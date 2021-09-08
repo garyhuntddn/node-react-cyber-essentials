@@ -13,8 +13,8 @@ import reducers from "./reducers/Reducers";
 import { CityOfOriginConstants, ColorConstants, EmploymentStatusConstants, Model, PanelConstants, ViewConstants } from "./models/Model";
 import { persistanceMiddleware } from "./middleware/Persistence";
 
-const urlSearchParameters = new URLSearchParams( window.location.search );
-const urlParameters = Object.fromEntries( urlSearchParameters.entries() );
+const urlSearchParameters = new URLSearchParams(window.location.search);
+const urlParameters = Object.fromEntries(urlSearchParameters.entries());
 const group = urlParameters.g;
 
 let model: Model = {
@@ -25,6 +25,7 @@ let model: Model = {
   userName: "",
   password: "",
   name: "",
+  management: { groups: [] },
   isAuthenticated: false,
   options: {
     address1: "",
@@ -72,15 +73,15 @@ let model: Model = {
   }
 };
 
-const store = createStore( reducers as any, model, composeWithDevTools( applyMiddleware( thunkMiddleware, persistanceMiddleware ) ) );
+const store = createStore(reducers as any, model, composeWithDevTools(applyMiddleware(thunkMiddleware, persistanceMiddleware)));
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={ store }>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById( "root" )
+  document.getElementById("root")
 );
 
 reportWebVitals();
