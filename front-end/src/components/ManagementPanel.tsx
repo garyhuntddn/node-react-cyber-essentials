@@ -25,8 +25,8 @@ const ManagementPanel = (management: Management) => {
         {management.groups.length > 0 &&
           <div style={{ marginBottom: "25px" }}>
             <label>Manage a group
-              <select name="numbers" onChange={(e) => { dispatch(SelectGroup(e.currentTarget.value)); }}>
-                {management.groups.map(g => <option key={g.name}>{g.name}</option>)}
+              <select onChange={(e) => { dispatch(SelectGroup(e.currentTarget.value)); }} >
+                {management.groups.map(g => <option selected={g.name === management.selectedGroup} key={g.name}>{g.name}</option>)}
               </select>
             </label>
           </div>
@@ -43,7 +43,7 @@ const ManagementPanel = (management: Management) => {
                 {currentGroup.users.map(u => <li key={u}>{u} <button onClick={() => dispatch(DeleteUserFromGroup(currentGroup.name, u))} >X</button></li>)}
               </ul>
             </div>}
-            <label>Add a user to the group <input type="text" onChange={(e) => dispatch(ChangeUnusedAddUser(e.currentTarget.value))} value={management.unsavedAddUser}></input>
+            <label>Add a user to the group <input type="text" autoComplete="new user" onChange={(e) => dispatch(ChangeUnusedAddUser(e.currentTarget.value))} value={management.unsavedAddUser}></input>
               <button onClick={() => dispatch(AddUserToGroup(currentGroup.name, management.unsavedAddUser))}>Add</button>
             </label>
 

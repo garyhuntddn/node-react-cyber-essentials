@@ -4,6 +4,7 @@ import { SignInResult } from "./SignInResultAction";
 import { ThunkAction } from "redux-thunk";
 import { RootStateOrAny } from "react-redux";
 import { RetrieveAnswers } from "./RetrieveAnswersAction";
+import { RetrieveOptions } from "./RetrieveOptionsAction";
 
 export const SignInMessage = "SignInAction";
 
@@ -31,6 +32,7 @@ export const SignIn = (): ThunkAction<void, RootStateOrAny, unknown, Action<stri
       console.log( `response from authentication: ${ text }` );
 
       if ( text === "ok" ) {
+        dispatch( RetrieveOptions() as any as Action );
         dispatch( RetrieveAnswers() as any as Action );
       } else {
         dispatch( SignInResult( false ) );

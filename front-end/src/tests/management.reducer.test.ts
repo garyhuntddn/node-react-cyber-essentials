@@ -3,6 +3,7 @@ import { ChangeUnusedAddUser } from "../actions/ChangeUnsavedAddUser";
 import { CreateGroup } from "../actions/CreateGroupAction";
 import { DeleteUserFromGroup } from "../actions/DeleteUserFromGroupAction";
 import { SelectGroup } from "../actions/SelectGroupAction";
+import { SetGroups } from "../actions/SetGroupsAction";
 import { UpdateCurrentPassword } from "../actions/UpdateCurrentPasswordAction";
 import { UpdateNewPassword } from "../actions/UpdateNewPasswordAction";
 import { UpdateNewRepeatPassword } from "../actions/UpdateNewRepeatPasswordAction";
@@ -25,7 +26,7 @@ describe("management reducer tests", () => {
   });
 
   it("should add a group called Bob", () => {
-    expect(Reducers(createInitialModel(), CreateGroup("Bob"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ groups: [{ name: "Bob", users: [], isOwner: true }] }) }));
+    expect(Reducers(createInitialModel(), CreateGroup("tom", "Bob"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ groups: [{ name: "Bob", users: ["tom"], isOwner: true }] }) }));
   });
 
   it("should update the selected group to Bob", () => {
@@ -52,5 +53,11 @@ describe("management reducer tests", () => {
     const model = createInitialModel();
     model.management.groups.push({ name: "123", isOwner: true, users: ["Bob", "Jane", "Freddy"] });
     expect(Reducers(model, DeleteUserFromGroup("123", "Jane"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ groups: [{ name: "123", isOwner: true, users: ["Bob", "Freddy"] }] }) }));
+  });
+
+  it("should replace existing groups", () => {
+    const model = createInitialModel();
+    model.management.groups.push({ name: "123", isOwner: true, users: ["Bob", "Jane", "Freddy"] });
+    expect(Reducers(model, SetGroups([{ name: "xyz", isOwner: true, users: ["Jane"] }]))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ groups: [{ name: "xyz", isOwner: true, users: ["Jane"] }] }) }));
   });
 });

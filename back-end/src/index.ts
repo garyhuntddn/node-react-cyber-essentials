@@ -174,71 +174,29 @@ server.post("/groups", async (req: any, res: any) => {
   res.send("done\r\n");
 });
 
-/*
-server.post( "/groupUsers", async ( req: any, res: any ) => {
-  const request = req as Request;
-  const json = request.body as any as { name: string };
-  const groupName = req.query.g;
-  logger.debug( `group ${ groupName }` );
+server.get("/user", async (req: any, res: any) => {
+  await authenticate(req);
 
-  await authenticate( req );
+  const db = await connectToMongo();
+  const groups = db.collection("groups");
+  const allGroups = await groups.find().toArray();
 
-  const userName = req.header( "X-UserName" ) as string;
-  logger.debug( `user ${ userName }` );
+  const userName = req.header("X-UserName") as string;
 
-  const group = messagesPerGroup[ groupName ];
-  if ( !group ) {
-    throw new Error( "Nope!" );
-  }
+  logger.debug(`searching for groups for username: ${userName}`);
 
-  if ( userName !== group.users[ 0 ] ) {
-    throw new Error( "Nope!" );
-  }
+  const matchingGroups = allGroups.filter(g => {
+    if (g.users.indexOf(userName) > -1) return true;
+    return false;
+  });
 
-  group.users.push( json.name );
+  const expandedGroups = matchingGroups.map(g => ({ name: g.name, isOwner: g.users[0] === userName, users: g.users }));
 
-  logger.debug( `user count is now ${ group.users.length }` );
+  logger.debug({ groups: JSON.stringify(expandedGroups) });
 
-  res.send( "done\r\n" );
-} );
-*/
-
-/*
-server.delete( "/groupUsers", async ( req: any, res: any ) => {
-  const request = req as Request;
-  const json = request.body as any as { name: string };
-  const groupName = req.query.g;
-  logger.debug( `group ${ groupName }` );
-
-  await authenticate( req );
-
-  const userName = req.header( "X-UserName" ) as string;
-  logger.debug( `user ${ userName }` );
-
-  const group = messagesPerGroup[ groupName ];
-  if ( !group ) {
-    logger.debug( "group does not exist" );
-    throw new Error( "Nope!" );
-  }
-
-  if ( userName !== group.users[ 0 ] ) {
-    logger.debug( "user is not owner of group" );
-    throw new Error( "Nope!" );
-  }
-
-  const index = group.users.findIndex( m => m === json.name );
-  if ( index < 0 ) {
-    logger.debug( "user is not in group" );
-    throw new Error( "Nope!" );
-  }
-
-  group.users.splice( index, 1 );
-
-  logger.debug( `user count is now ${ group.users.length }` );
-
-  res.send( "done\r\n" );
-} );
-*/
+  res.set("Content-Type", "application/json; charset=utf-8");
+  res.send(JSON.stringify(expandedGroups));
+});
 
 server.post("/users", async (req: any, res: any) => {
   const request = req as Request;

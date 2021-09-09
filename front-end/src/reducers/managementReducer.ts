@@ -4,6 +4,7 @@ import { ChangeUnusedAddUserAction, ChangeUnusedAddUserMessage } from "../action
 import { CreateGroupAction, CreateGroupMessage } from "../actions/CreateGroupAction";
 import { DeleteUserFromGroupAction, DeleteUserFromGroupMessage } from "../actions/DeleteUserFromGroupAction";
 import { SelectGroupAction, SelectGroupMessage } from "../actions/SelectGroupAction";
+import { SetGroupsAction, SetGroupsMessage } from "../actions/SetGroupsAction";
 import { UpdateCurrentPasswordAction, UpdateCurrentPasswordMessage } from "../actions/UpdateCurrentPasswordAction";
 import { UpdateNewPasswordAction, UpdateNewPasswordMessage } from "../actions/UpdateNewPasswordAction";
 import { UpdateNewRepeatPasswordAction, UpdateNewRepeatPasswordMessage } from "../actions/UpdateNewRepeatPasswordAction";
@@ -28,11 +29,7 @@ export const managementReducer = (management: Management = { groups: [], current
 
     case CreateGroupMessage: {
       const a = action as CreateGroupAction;
-      let selectedGroup = management.selectedGroup;
-      if (selectedGroup === "") {
-        selectedGroup = a.name;
-      }
-      return { ...management, groups: [...management.groups, { name: a.name, isOwner: true, users: [] }], selectedGroup: selectedGroup };
+      return { ...management, groups: [...management.groups, { name: a.name, isOwner: true, users: [a.username] }], selectedGroup: a.name };
     }
 
     case SelectGroupMessage: {
@@ -53,7 +50,7 @@ export const managementReducer = (management: Management = { groups: [], current
 
       // create a new array of all of the other groups, with the updated group appended
       const groups = management.groups.map(m => (m.name === a.group ? updatedGroup : m));
-      return { ...management, groups };
+      return { ...management, groups, unsavedAddUser: "" };
     }
 
     case DeleteUserFromGroupMessage: {
@@ -65,6 +62,11 @@ export const managementReducer = (management: Management = { groups: [], current
       // create a new array of all of the other groups, with the updated group appended
       const groups = management.groups.map(m => (m.name === a.group ? updatedGroup : m));
       return { ...management, groups };
+    }
+
+    case SetGroupsMessage: {
+      const a = action as SetGroupsAction;
+      return { ...management, groups: a.groups, selectedGroup: a.groups.length > 0 ? a.groups[0].name : "" };
     }
   }
 
