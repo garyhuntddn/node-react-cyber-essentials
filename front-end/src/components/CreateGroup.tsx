@@ -10,7 +10,7 @@ const CreateGroupPage = (model: Model) => {
   return (
     <div>
       <div style={{ marginBottom: "25px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.ManagementPanel))}>Back</button></div>
-      <div><label>Group Name <input type="text" placeholder="Name" onChange={(e) => { dispatch(UpdateUnsavedGroupName(e.currentTarget.value)); }} value={model.unsavedGroupName} /></label></div>
+      <div><label>Group Name <input type="text" placeholder="new group name" onChange={(e) => { dispatch(UpdateUnsavedGroupName(e.currentTarget.value)); }} value={model.unsavedGroupName} /></label></div>
       <div style={{ marginTop: "5px" }}><button onClick={(e) => { dispatch(CreateGroup(model.unsavedGroupName)); dispatch(SwitchPanel(PanelConstants.ManagementPanel)); }}>Create Group </button></div>
     </div>
   );

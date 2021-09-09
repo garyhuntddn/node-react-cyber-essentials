@@ -75,11 +75,12 @@ export type Options = {
 };
 
 export type Management = {
-  groups: Array<string>;
+  groups: Array<Group>;
   currentPassword: string;
   newPassword: string;
   newRepeatPassword: string;
   selectedGroup: string;
+  unsavedAddUser: string;
 };
 
 export type Group = {
@@ -87,8 +88,6 @@ export type Group = {
   isOwner: boolean;
   users: Array<string>;
 };
-
-export type Groups = { [id: string]: Group };
 
 export type Model = {
   answers: Answers;
@@ -103,5 +102,4 @@ export type Model = {
   unsavedOptions: Options;
   unsavedGroupName: string;
   management: Management;
-  groups: Groups;
 };

@@ -22,11 +22,10 @@ let model: Model = {
   panel: PanelConstants.Login,
   view: ViewConstants.Editable,
   group: group,
-  groups: {},
   userName: "",
   password: "",
   name: "",
-  management: { groups: [], currentPassword: "", newPassword: "", newRepeatPassword: "", selectedGroup: "", },
+  management: { groups: [], currentPassword: "", newPassword: "", newRepeatPassword: "", selectedGroup: "", unsavedAddUser: "" },
   isAuthenticated: false,
   unsavedGroupName: "",
   options: {
