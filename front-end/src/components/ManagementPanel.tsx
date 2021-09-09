@@ -8,6 +8,7 @@ import { PanelConstants, Management } from "../models/Model";
 import { ChangeUnusedAddUser } from "../actions/ChangeUnsavedAddUser";
 import { AddUserToGroup } from "../actions/AddUserToGroupAction";
 import { DeleteUserFromGroup } from "../actions/DeleteUserFromGroupAction";
+import { SaveGroupChanges } from "../actions/SaveGroupChangesAction";
 
 const ManagementPanel = (management: Management) => {
   const dispatch = useDispatch();
@@ -43,7 +44,12 @@ const ManagementPanel = (management: Management) => {
               </ul>
             </div>}
             <label>Add a user to the group <input type="text" onChange={(e) => dispatch(ChangeUnusedAddUser(e.currentTarget.value))} value={management.unsavedAddUser}></input>
-              <button onClick={() => dispatch(AddUserToGroup(currentGroup.name, management.unsavedAddUser))}>Add</button></label>
+              <button onClick={() => dispatch(AddUserToGroup(currentGroup.name, management.unsavedAddUser))}>Add</button>
+            </label>
+
+            <p>
+              <button onClick={() => dispatch(SaveGroupChanges({ ...currentGroup }))}>Save changes</button>
+            </p>
           </div>
         }
       </div>
@@ -58,7 +64,7 @@ const ManagementPanel = (management: Management) => {
       <div><label>Delete account?</label></div>
       <div style={{ marginBottom: "25px" }}><button onClick={() => dispatch((PanelConstants.Questionnaire))}>Delete account</button></div>
 
-    </div>
+    </div >
   );
 
 }
