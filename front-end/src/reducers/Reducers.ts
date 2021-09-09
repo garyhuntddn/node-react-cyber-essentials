@@ -11,6 +11,8 @@ import { unsavedOptionsReducer } from "./unsavedOptionsReducer";
 import { groupReducer } from "./groupReducer";
 import { optionsReducer } from "./optionsReducer";
 import { managementReducer } from "./managementReducer";
+import { unsavedGroupNameReducer } from "./unsavedGroupNameReducer";
+import { groupsReducer } from "./groupsReducer";
 
 const reducers = combineReducers<Model>( {
   view: viewReducer,
@@ -23,7 +25,9 @@ const reducers = combineReducers<Model>( {
   options: optionsReducer,
   unsavedOptions: unsavedOptionsReducer,
   name: nameReducer,
-  group: groupReducer
+  group: groupReducer,
+  groups: groupsReducer,
+  unsavedGroupName: unsavedGroupNameReducer,
 } );
 
 export default reducers;

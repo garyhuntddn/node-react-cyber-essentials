@@ -15,7 +15,6 @@ const Questionnaire = (model: Model) => {
 
         <div style={{ marginBottom: "15px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.OptionsPanel))}>Options</button></div>
         <div style={{ position: "fixed", right: "0", top: "0", marginRight: "1vw", marginTop: "1vw" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.Login))}>Logout</button></div>
-        <div style={{ marginBottom: "15px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.CreateGroup))}>Create Group</button></div>
         <div style={{ marginBottom: "15px" }}><button onClick={() => dispatch(SwitchPanel(PanelConstants.ManagementPanel))}>Management</button></div>
 
       </div>

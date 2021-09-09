@@ -6,7 +6,7 @@ export enum PanelConstants {
   Questionnaire,
   CreateGroup,
   ManagementPanel,
-  OptionsPanel
+  OptionsPanel,
 }
 
 export enum ViewConstants {
@@ -19,7 +19,7 @@ export enum ColorConstants {
   Red = "Red",
   Black = "Black",
   Blue = "Blue",
-  Green = "Green"
+  Green = "Green",
 }
 
 export enum EmploymentStatusConstants {
@@ -27,9 +27,8 @@ export enum EmploymentStatusConstants {
   FullTime = "Full-time",
   PartTime = "Part-time",
   TemporaryEmployment = "Temporary employment",
-  Unemployed = "Unemployed"
+  Unemployed = "Unemployed",
 }
-
 
 export enum CityOfOriginConstants {
   Empty = "",
@@ -37,19 +36,19 @@ export enum CityOfOriginConstants {
   NewYork = "New York",
   Shanghi = "Shanghi",
   Tokyo = "Tokyo",
-  LosAngeles = "Los Angeles"
+  LosAngeles = "Los Angeles",
 }
 
 export enum PaymentMethodConstants {
   Visa = "visa",
   Mastercard = "Mastercard",
-  Paypal = "Paypal"
+  Paypal = "Paypal",
 }
 
 export enum VehicleConstants {
   vehicle1 = "vehicle1",
   vehicle2 = "vehicle2",
-  vehicle3 = "vehicle3"
+  vehicle3 = "vehicle3",
 }
 
 export type Options = {
@@ -73,14 +72,23 @@ export type Options = {
   townOrVillage: string;
   week: string;
   workingHours: number;
-}
+};
 
 export type Management = {
   groups: Array<string>;
   currentPassword: string;
   newPassword: string;
   newRepeatPassword: string;
-}
+  selectedGroup: string;
+};
+
+export type Group = {
+  name: string;
+  isOwner: boolean;
+  users: Array<string>;
+};
+
+export type Groups = { [id: string]: Group };
 
 export type Model = {
   answers: Answers;
@@ -93,5 +101,7 @@ export type Model = {
   isAuthenticated: boolean;
   options: Options;
   unsavedOptions: Options;
+  unsavedGroupName: string;
   management: Management;
+  groups: Groups;
 };
