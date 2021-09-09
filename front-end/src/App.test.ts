@@ -29,6 +29,9 @@ import { ChangeWeek } from "./actions/ChangeWeekAction";
 import { ChangeWorkingHours } from "./actions/ChangeWorkingHours";
 import { SaveOptions } from "./actions/SaveOptions";
 import { ToggleGroup } from "./actions/ToggleGroup";
+import { UpdateCurrentPassword } from "./actions/UpdateCurrentPasswordAction";
+import { UpdateNewPassword } from "./actions/UpdateNewPasswordAction";
+import { UpdateNewRepeatPassword } from "./actions/UpdateNewRepeatPasswordAction";
 
 export type RecursivePartial<T> = {
   [P in keyof T]?: RecursivePartial<T[P]>;
@@ -39,7 +42,7 @@ const createInitialOptions = (): Options => {
 };
 
 const createInitialModel = (): Model => {
-  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: createInitialOptions(), unsavedOptions: createInitialOptions(), management: { groups: [] } };
+  return { answers, view: ViewConstants.Editable, name: "", group: "", password: "", userName: "", panel: PanelConstants.Login, isAuthenticated: false, options: createInitialOptions(), unsavedOptions: createInitialOptions(), management: { groups: [], currentPassword: "", newPassword: "", newRepeatPassword: "" } };
 };
 
 describe("reducer tests", () => {
@@ -50,7 +53,7 @@ describe("reducer tests", () => {
       name: "",
       group: "",
       password: "",
-      management: {groups: []},
+      management: { groups: [], currentPassword: "", newPassword: "", newRepeatPassword: "" },
       userName: "",
       panel: PanelConstants.Login,
       isAuthenticated: false,
@@ -206,4 +209,16 @@ describe("reducer tests", () => {
   it("should update the groups to group1", () => {
     expect(Reducers(createInitialModel(), ToggleGroup("group1"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ groups: ["group1"] }) }));
   });
+
+  it("should update the password to Password2319", () => {
+    expect(Reducers(createInitialModel(), UpdateCurrentPassword("Password2319"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ currentPassword: "Password2319" }) }));
+  });
+
+  it("should update the new password to Password1234", () => {
+    expect(Reducers(createInitialModel(), UpdateNewPassword("Password1234"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ newPassword: "Password1234" }) }));
+  })
+
+  it("should update the new repeat password to Password1234", () => {
+    expect(Reducers(createInitialModel(), UpdateNewRepeatPassword("Password1234"))).toEqual(expect.objectContaining<RecursivePartial<Model>>({ management: expect.objectContaining<Partial<Management>>({ newRepeatPassword: "Password1234" }) }));
+  })
 });

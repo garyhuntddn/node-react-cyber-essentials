@@ -5,7 +5,7 @@ export enum PanelConstants {
   FailedLogin,
   Questionnaire,
   CreateGroup,
-  Management,
+  ManagementPanel,
   OptionsPanel
 }
 
@@ -77,6 +77,9 @@ export type Options = {
 
 export type Management = {
   groups: Array<string>;
+  currentPassword: string;
+  newPassword: string;
+  newRepeatPassword: string;
 }
 
 export type Model = {

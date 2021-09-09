@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import FailedLogin from "./components/FailedLogin";
 import CreateGroup from "./components/CreateGroup";
 import OptionsPanel from "./components/OptionsPanel";
-import Management from "./components/Management";
+import ManagementPanel from "./components/ManagementPanel";
 
 const mapStateToProps = (state: Model) => {
   return state;
@@ -28,7 +28,7 @@ const App = (model: Props) => {
         {model.panel === PanelConstants.Questionnaire && <Questionnaire {...model} />}
         {model.panel === PanelConstants.CreateGroup && <CreateGroup {...model} />}
         {model.panel === PanelConstants.OptionsPanel && <OptionsPanel {...model.unsavedOptions} />}
-        {model.panel === PanelConstants.Management && <Management {...model} />}
+        {model.panel === PanelConstants.ManagementPanel && <ManagementPanel {...model.management} />}
       </section>
     </div >
   );

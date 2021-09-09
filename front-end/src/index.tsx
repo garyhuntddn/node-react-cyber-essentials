@@ -25,7 +25,7 @@ let model: Model = {
   userName: "",
   password: "",
   name: "",
-  management: { groups: [] },
+  management: { groups: [], currentPassword: "", newPassword: "", newRepeatPassword: "" },
   isAuthenticated: false,
   options: {
     address1: "",
